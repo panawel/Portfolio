@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paybox | Idan Pnuel</title>
+    <meta name="description" content="Paybox QA project details">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        .project-detail-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .project-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .project-section li::before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .service-name {
+            display: block;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-media {
+            width: 100%;
+            max-width: 300px;
+            /* Reduced size for mobile app feel */
+            display: block;
+            margin: 2rem auto;
+            border-radius: 20px;
+            border: 6px solid #1a1a1a;
+            /* Subtle bezel */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .project-media:hover {
+            transform: scale(1.02);
+        }
+
+        .media-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+
+
+        .results-section {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0.4) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-primary);
+        }
+
+        .results-section h2 {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .results-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .more-projects-footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .more-projects-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .project-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .results-section {
+                padding: 1.5rem;
+            }
+
+            .scope-content-wrapper {
+                flex-direction: column;
+            }
+
+            .scope-image-container {
+                margin: 2rem auto 0;
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Idan Pnuel</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="dropdown">
+                    <a href="../projects.html" class="dropdown-toggle active">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="paybox.html">
+                            <img src="../media/Paybox/logo.png" alt="Paybox Label"> Paybox
+                        </a>
+                        <a href="signal.html">
+                            <img src="../media/Singal/logo.png" alt="Signal Label"> Signal
+                        </a>
+                        <a href="smart-crm.html">
+                            <img src="../media/SMART CRM/logo.png" alt="Smart CRM Label"> Smart CRM
+                        </a>
+                        <a href="planet.html">
+                            <img src="../media/PLANET/logo.png" alt="Planet Label"> Planet
+                        </a>
+                        <a href="leumi-goodies.html">
+                            <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies Label"> Leumi
+                            Goodies
+                        </a>
+                        <a href="carrefour.html">
+                            <img src="../media/Carrefour/logo.png" alt="Carrefour Label"> Carrefour
+                        </a>
+                        <a href="bigi.html">
+                            <img src="../media/BIGI/logo.png" alt="BIGI Label"> BIGI
+                        </a>
+                    </div>
+                </div>
+                <a href="../certificates.html">Certificates</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="project-detail-hero">
+            <div class="container">
+                <h1>Paybox</h1>
+                <img src="../media/Paybox/logo.png" alt="Paybox"
+                    style="display: block; margin: 0 auto 1.5rem; height: 60px; object-fit: contain;">
+                <p style="max-width: 600px; margin: 1rem auto; color: var(--text-muted);">
+                    Comprehensive QA support for Paybox - a leading mobile payment app with 3.2 billion ILS transferred
+                    in 2021.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">FinTech</span>
+                    <span class="tech-badge">Mobile App</span>
+                    <span class="tech-badge">QA Engineering</span>
+                    <span class="tech-badge">API Testing</span>
+                </div>
+            </div>
+        </section>
+
+        <article class="container project-content">
+
+            <div class="project-section">
+
+                <h2>Overview</h2>
+                <p>
+                    I Developed and executed test plans for the "Voucher Carousel" Component. Using the 'Postman' tool,
+                    I executed API Tests, preventing critical bugs that could cause financial losses for over 1.5
+                    million users.
+                </p>
+                <img src="../media/Paybox/InShot_20240619_233324222-ezgif.com-crop.gif" alt="Paybox App Demo"
+                    class="project-media">
+                <p>The voucher carousel is the part of the app that allows users to:</p>
+                <ul>
+                    <li>Earn points with every purchase and convert them into money.</li>
+                    <li>Send various types of vouchers as holiday or birthday gifts from the user's account to friends
+                        who also have the app installed.</li>
+                    <li>Pay with the accumulated vouchers at selected supermarkets, stores, and Brands.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="../media/symbols/api.png" alt="API" class="service-icon">
+                        <span class="service-name">API</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/CRUD.png" alt="CRUD" class="service-icon">
+                        <span class="service-name">CRUD</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Exploratory.png" alt="Exploratory" class="service-icon">
+                        <span class="service-name">Exploratory</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/E2E.png" alt="E2E" class="service-icon">
+                        <span class="service-name">E2E</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Mobile GUI.png" alt="UI" class="service-icon">
+                        <span class="service-name">UI</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Integration.png" alt="Integration" class="service-icon">
+                        <span class="service-name">Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Device Scope</h2>
+                <div class="tech-stack" style="justify-content: flex-start;">
+                    <span class="tech-badge">✔ Pixel 5</span>
+                    <span class="tech-badge">✔ Pixel 6 Pro</span>
+                    <span class="tech-badge">✔ iPhone 13</span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Project Scope</h2>
+
+                <div class="scope-content-wrapper" style="display: flex; gap: 3rem; align-items: flex-start;">
+                    <div class="scope-text" style="flex: 1;">
+                        <h3>"Voucher Carousel" Section</h3>
+                        <p>Allows payment using the user's vouchers in selected supermarkets, stores, and Brands:</p>
+                        <ul>
+                            <li>Adding a new voucher.</li>
+                            <li>Splitting vouchers (for amounts greater than 1500 ILS).</li>
+                            <li>Activating a voucher with an authentication code.</li>
+                            <li>Locked voucher.</li>
+                            <li>Deleting a voucher.</li>
+                            <li>Voucher redemption process and payment at checkout.</li>
+                            <li>Canceling redemption (refund).</li>
+                            <li>Voucher details for online payment.</li>
+                            <li>Sending the voucher to a friend.</li>
+                            <li>Canceling sending to a friend.</li>
+                            <li>Action history of the voucher.</li>
+                            <li>List of networks that accept the voucher.</li>
+                        </ul>
+
+                        <h3>Vouchers Section (Main Screen)</h3>
+                        <ul>
+                            <li>Total amount of all vouchers.</li>
+                            <li>Action history.</li>
+                        </ul>
+
+                        <h3>Secondary Screens</h3>
+                        <ul>
+                            <li>"Terms of Use" approval screen displayed on the first app launch.</li>
+                            <li>Updating the list of networks cooperating with Paybox in the database.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scope-image-container" style="flex: 0 0 250px;">
+                        <img src="../media/Paybox/unnamed.gif" alt="Voucher Carousel" class="project-media"
+                            style="margin: 0; width: 100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>API Testing</h2>
+                <p>
+                    In the "real world", actions such as redeeming a voucher, refund, or canceling sending to a friend,
+                    are typically API calls triggered by the system at the checkout counter of a store.
+                </p>
+                <p>
+                    However, in the testing environment, I used the SDK version of the app and utilized
+                    <strong>Postman</strong> to simulate these actions.
+                </p>
+                <p>
+                    By sending API requests through Postman, I could replicate these scenarios and verify that the
+                    system behaves correctly. I used Postman to test the voucher redemption process, ensuring that when
+                    a voucher is redeemed, it correctly updates the system and processes the payment. Similarly, I
+                    tested the refund and canceling sending to a friend process to ensure that these actions were
+                    handled smoothly and the system reverted the changes accurately.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>UI Testing</h2>
+                <img src="../media/Paybox/unnamed (1).gif" alt="UI Testing" class="project-media">
+                <p>
+                    I conducted UI tests covering all scenarios and screens where the vouchers are displayed. This was
+                    done to ensure the correct display of all 22 types of vouchers and to verify that the information is
+                    presented without distortion, and that no elements overlap or hide each other.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>C.R.U.D & Database Integration</h2>
+                <p>
+                    The application is in its maintenance phase, so occasionally, calls are received from customers who
+                    have made transactions and purchases using the app, experiencing various issues or errors. As a QA
+                    engineer with access to the customer database, I am responsible for tracing the steps and actions
+                    performed by the customers based on the information recorded in the company's database. This
+                    involves integrating between several databases to try to identify and understand the bugs that
+                    ultimately led to the failures. This is done to ensure that if an issue did occur, it is confirmed
+                    and promptly fixed in collaboration with the developers.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Integration Testing</h2>
+                <p>
+                    I ensured that every user operation, such as purchases and transactions, was accurately and
+                    consistently reflected in the database. This included verifying that data was correctly written,
+                    updated, and retrieved from the database without discrepancies.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>End-to-End Tests</h2>
+                <p>
+                    I performed End-to-End tests focusing on Boundary Value Analysis and ensured vouchers were split
+                    when their amounts exceeded 1500 ILS.
+                </p>
+                <p>
+                    For example, a voucher of 3000 ILS should split into two 1500 ILS vouchers, and a 3100 ILS voucher
+                    should split into two 1500 ILS vouchers and one 100 ILS voucher. This involved testing edge cases
+                    around the 1500 ILS boundary to confirm that the splitting logic functioned accurately and
+                    consistently.
+                </p>
+                <p>
+                    Additionally, I tested vouchers with an identification mechanism requiring activation before use. I
+                    verified that if a user entered the wrong identification code three times, the voucher would be
+                    blocked. This included testing the correct activation process and the blocking mechanism to ensure
+                    the system effectively prevented unauthorized use after repeated incorrect attempts.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Exploratory Testing</h2>
+                <p>
+                    I performed exploratory tests by interacting with the app in creative and unconventional ways to
+                    identify potential issues that might not be detected by formal testing methods. This involves
+                    thinking outside the box and experimenting with different features, navigation paths, and user
+                    interactions to uncover hidden bugs and usability problems.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Tools Used</h2>
+                <div class="tech-stack" style="justify-content: flex-start; margin-bottom: 2rem;">
+                    <span class="tech-badge">JIRA + AIO Test</span>
+                    <span class="tech-badge">Postman</span>
+                    <span class="tech-badge">Paybox SDK</span>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Results</h2>
+                <ul class="results-list">
+                    <li>Enhanced "Voucher Carousel" quality and a detailed testing report with all the findings
+                        presented to the client (Paybox).</li>
+                    <li>Support, and quick response during the maintenance phase of the application - addressing every
+                        request until a complete fix to the issue is found.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>In Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">QA Engineers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Test Environments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Defects Detected</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">800+</span>
+                        <span class="stat-label">Total Tests</span>
+                    </div>
+                    <div class="stat-item" style="grid-column: 1 / -1;">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Service Availability</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </article>
+
+        <section class="more-projects-footer">
+            <div class="container">
+                <h3 class="more-projects-title">Explore More Projects</h3>
+                <div id="random-projects-container" class="other-projects"
+                    style="border-top: none; margin-top: 0; padding-top: 0;">
+                    <a href="signal.html" class="other-project-btn" style="display:none;" data-id="signal">
+                        <img src="../media/Singal/logo.png" alt="Signal" class="other-project-logo">
+                        <span class="other-project-name">Signal</span>
+                    </a>
+                    <a href="smart-crm.html" class="other-project-btn" style="display:none;" data-id="smart-crm">
+                        <img src="../media/SMART CRM/logo.png" alt="Smart CRM" class="other-project-logo">
+                        <span class="other-project-name">Smart CRM</span>
+                    </a>
+                    <a href="planet.html" class="other-project-btn" style="display:none;" data-id="planet">
+                        <img src="../media/PLANET/logo.png" alt="Planet" class="other-project-logo">
+                        <span class="other-project-name">Planet</span>
+                    </a>
+                    <a href="leumi-goodies.html" class="other-project-btn" style="display:none;" data-id="leumi">
+                        <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies"
+                            class="other-project-logo">
+                        <span class="other-project-name">Leumi Goodies</span>
+                    </a>
+                    <a href="carrefour.html" class="other-project-btn" style="display:none;" data-id="carrefour">
+                        <img src="../media/Carrefour/logo.png" alt="Carrefour" class="other-project-logo">
+                        <span class="other-project-name">Carrefour</span>
+                    </a>
+                    <a href="bigi.html" class="other-project-btn" style="display:none;" data-id="bigi">
+                        <img src="../media/BIGI/logo.png" alt="BIGI" class="other-project-logo">
+                        <span class="other-project-name">BIGI</span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Randomly show 4 projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            // Fisher-Yates shuffle
+            for (let i = projects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [projects[i], projects[j]] = [projects[j], projects[i]];
+            }
+            // Show first 4
+            projects.slice(0, 4).forEach(p => p.style.display = 'flex');
+        });
+    </script>
+</body>
+
+</html>

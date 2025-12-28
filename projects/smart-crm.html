@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart CRM | Idan Pnuel</title>
+    <meta name="description" content="Smart CRM QA project details">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        .project-detail-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            /* Combine hero gradient with page background */
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .project-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .project-section li::before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Custom list markers for Smart CRM */
+        .project-section ul.check-list li::before {
+            content: "✔";
+        }
+
+        .project-section ul.plus-list li::before {
+            content: "＋";
+        }
+
+        .project-section ul.dot-list li::before {
+            content: "•";
+            font-size: 1.5rem;
+            line-height: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .service-name {
+            display: block;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-media {
+            width: 100%;
+            max-width: 900px;
+            /* Adapted for main dashboard */
+            display: block;
+            margin: 2rem auto;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Slightly different border for dashboard */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .project-media:hover {
+            transform: scale(1.01);
+            /* Subtle scaling for large image */
+        }
+
+
+
+        .results-section {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0.4) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-primary);
+        }
+
+        .results-section h2 {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .results-list li::before {
+            content: "✎";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .more-projects-footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .more-projects-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .project-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .results-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Quote specific styles inside project-section to fit design */
+        .quote-block {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent-primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-align: right;
+            display: block;
+        }
+
+        /* Restored Quite and Testing Process Styles */
+        .quote-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--accent-primary);
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-family: serif;
+        }
+
+        .quote-text-restored {
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            color: var(--text-main);
+        }
+
+        .quote-author-restored {
+            font-weight: 600;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .round-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Idan Pnuel</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="dropdown">
+                    <a href="../projects.html" class="dropdown-toggle active">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="paybox.html">
+                            <img src="../media/Paybox/logo.png" alt="Paybox Label"> Paybox
+                        </a>
+                        <a href="signal.html">
+                            <img src="../media/Singal/logo.png" alt="Signal Label"> Signal
+                        </a>
+                        <a href="smart-crm.html">
+                            <img src="../media/SMART%20CRM/logo.png" alt="Smart CRM Label"> Smart CRM
+                        </a>
+                        <a href="planet.html">
+                            <img src="../media/PLANET/logo.png" alt="Planet Label"> Planet
+                        </a>
+                        <a href="leumi-goodies.html">
+                            <img src="../media/Leumi%20Goodies/1200x600wa%20(1).png" alt="Leumi Goodies Label"> Leumi
+                            Goodies
+                        </a>
+                        <a href="carrefour.html">
+                            <img src="../media/Carrefour/logo.png" alt="Carrefour Label"> Carrefour
+                        </a>
+                        <a href="bigi.html">
+                            <img src="../media/BIGI/logo.png" alt="BIGI Label"> BIGI
+                        </a>
+                    </div>
+                </div>
+                <a href="../certificates.html">Certificates</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-detail-hero">
+            <div class="container">
+                <h1>Smart CRM</h1>
+                <img src="../media/SMART%20CRM/logo.png" alt="Smart CRM"
+                    style="display: block; margin: 0 auto 1.5rem; height: 60px; object-fit: contain;">
+
+                <!-- Hero Image -->
+                <img src="../media/SMART%20CRM/2023-07-03%2001_02_19.067%2B0300.jpg" alt="Smart CRM Dashboard"
+                    class="project-media" style="margin-top: 0; margin-bottom: 2rem; max-width: 300px;">
+
+                <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted); font-size: 1.25rem;">
+                    Boosting quality for Customer Relationship Management mobile app.
+                </p>
+
+                <p
+                    style="max-width: 800px; margin: 1rem auto; color: var(--text-secondary); text-align: center; line-height: 1.6;">
+                    Provided testing support and Design QA to assist the startup in identifying critical bugs and
+                    fixing them before releasing a new version to the Play Store.
+                </p>
+
+                <div class="tech-stack">
+                    <span class="tech-badge">Data Integrity</span>
+                    <span class="tech-badge">Workflow Testing</span>
+                    <span class="tech-badge">Automation</span>
+                    <span class="tech-badge">B2B Application</span>
+                </div>
+            </div>
+        </section>
+
+        <article class="container project-content">
+
+            <div class="project-section">
+                <h2>Overview</h2>
+                <!-- Quote Block Design -->
+                <div class="quote-container">
+                    <span class="quote-icon">❝</span>
+                    <div class="quote-text-restored">
+                        Wow! I skimmed through your STD document in Jira to see your bugs Reports - you did an amazing
+                        job!
+                        It looks really impressive, detailed, and understandable!
+                        <br><br>
+                        Well done! I will definitely go through all the bugs systematically and make sure to fix them
+                        before the next release.
+                        <br><br>
+                        Truly, hats off to you! In your recommendations, you can put my phone number :-)
+                    </div>
+                    <div class="quote-author-restored">
+                        ✎ CEO of the 'Smart CRM' startup company
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="../media/symbols/Mobile%20apps%20testing.png" alt="Mobile Tests" class="service-icon">
+                        <span class="service-name">Mobile Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/E2E.png" alt="E2E Tests" class="service-icon">
+                        <span class="service-name">E2E</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Exploratory.png" alt="Exploratory" class="service-icon">
+                        <span class="service-name">Exploratory</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Interruption.png" alt="Interruption" class="service-icon">
+                        <span class="service-name">Interruption</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/CRUD.png" alt="CRUD" class="service-icon">
+                        <span class="service-name">CRUD</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Security.png" alt="Security" class="service-icon">
+                        <span class="service-name">Security</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Backup%20%26%20Restore.png" alt="Backup & Restore"
+                            class="service-icon">
+                        <span class="service-name">Backup & Restore</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Integration.png" alt="Integration" class="service-icon">
+                        <span class="service-name">Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Device Scope</h2>
+                <div class="tech-stack" style="justify-content: flex-start;">
+                    <span class="tech-badge">✔ OnePlus Nord CE 2</span>
+                    <span class="tech-badge">✔ Samsung Galaxy S22 Ultra</span>
+                    <span class="tech-badge">✔ Redmi Note 7</span>
+                    <span class="tech-badge">✔ Samsung DEX</span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Project Scope</h2>
+                <p>The Smart CRM company and its development team provided an APK file of the upcoming version
+                    (pre-release) for testing to achieve established business goals:</p>
+                <ul class="check-list">
+                    <li>Focus on new features not available in the current Play Store version.</li>
+                    <li>Ensure reduction in defects and bugs that could lead to failures and disruptions in user
+                        experience.</li>
+                    <li>Avoid expensive post-release defect fixing.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>The Testing Process - B2B Application</h2>
+                <p>The execution phase was divided into 2 rounds:</p>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; margin-bottom: 3rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                        <span class="round-badge">Round 1</span>
+                        <h3 style="margin-top: 0.5rem;">Functional Testing</h3>
+                        <p>Localization, GUI, Compatibility, End-to-End, Usability, Exploratory, CRUD.</p>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                        <span class="round-badge">Round 2</span>
+                        <h3 style="margin-top: 0.5rem;">Non-Functional Testing</h3>
+                        <p>Integration, Authorization, Network, I18N, Interruption, Installation Testing, Backup &
+                            Restore, Security.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>E2E (End-to-End)</h2>
+                <p>The following business processes were tested:</p>
+                <ul class="plus-list">
+                    <li>Adding a new customer as a "lead" (creating a new lead for a potential customer).</li>
+                    <li>Editing an existing lead details.</li>
+                    <li>Sending a WhatsApp message to the customer without adding them to the contact list.</li>
+                    <li>Purchasing a subscription and checking feature limitations based on subscription type.</li>
+                    <li>Negative testing to challenge the system's behavior in boundary cases.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Integration</h2>
+                <p>We designed and executed scripts to test integration between Smart CRM and third-party apps,
+                    ensuring correct data flow:</p>
+                <ul class="plus-list">
+                    <li>Integration between "Smart CRM" and the device browser.</li>
+                    <li>Integration with WhatsApp to send pre-written message templates.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Gateway</h2>
+                <ul class="plus-list">
+                    <li>Verified calculation of payment amounts based on premium plans, discounts, or promotions.</li>
+                    <li>Ensured the subscription purchase process aligns with the Play Store purchasing process without
+                        bugs.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>I18N (Internationalization)</h2>
+                <p>We spoofed locations and changed device languages to test global compatibility:</p>
+                <ul class="plus-list">
+                    <li>Verified "Leads" filtering screen adaptation.</li>
+                    <li>Checked subscription purchase screen adaptation and process success.</li>
+                    <li>Ensured "Floating Circle" widget pop-ups display correctly.</li>
+                    <li>Validated application menus, contact screens, and more.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Backup & Restore</h2>
+                <p>Ensured validity, reliability, and integrity of the new backup/restore feature involving cloud data
+                    transmission.</p>
+                <p>We verified that the backup process preserves all required data and that restoration works after
+                    a server crash or device switch. We tested across different user accounts, subscription types,
+                    and devices to mitigate data loss risks.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>C.R.U.D</h2>
+                <p>Tests on database operations (Create, Read, Update, Delete):</p>
+                <ul class="plus-list">
+                    <li>User registration and account creation.</li>
+                    <li>User login authentication and account access.</li>
+                    <li>Subscription purchase process and account detail updates reflected across the app.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Interruption</h2>
+                <p>Challenged the application with external disruptions to prevent crashes or data loss:</p>
+                <ul class="plus-list">
+                    <li>Triggering voice dictation while playing music.</li>
+                    <li>Triggering voice notes during a phone call with Bluetooth headphones.</li>
+                    <li>Testing collisions between the "floating circle" widget and other app widgets.</li>
+                    <li>Responding to notifications from the notification shade.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Security</h2>
+                <p>Conducted system resilience tests against unauthorized access and checked for privacy issues or data
+                    leaks.</p>
+                <p>We monitored and analyzed communication between the app and servers, verified encryption of backed-up
+                    data, and ensured no sensitive information was exposed during transfer.</p>
+
+                <h3 style="margin-top: 1.5rem;">Tools Used:</h3>
+                <div class="tech-stack" style="justify-content: flex-start; margin-top: 1rem;">
+                    <span class="tech-badge">JIRA + Xray</span>
+                    <span class="tech-badge">MEmu Play</span>
+                    <span class="tech-badge">Fiddler</span>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Results</h2>
+                <ul class="results-list">
+                    <li>QA testing successful in identifying critical bugs before Play Store release.</li>
+                    <li>Significantly enhanced overall app quality and user experience, aligning with business
+                        objectives.</li>
+                    <li>Received positive feedback from the CEO motivating further development in software quality
+                        testing.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>In Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Software Product</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Weeks Duration</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">QA Engineers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Test Environments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">48</span>
+                        <span class="stat-label">Defects Detected</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Critical Defects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">620+</span>
+                        <span class="stat-label">Tests in Total</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Documents</h2>
+                <div style="text-align: center; margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem;">
+                    <a href="https://docs.google.com/document/d/1FdG3eTan7XD_xlk-hrDJ2ctbsWfQw39pTwLuF4bzE_w/edit?usp=sharing"
+                        target="_blank" class="btn btn-primary"
+                        style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📄</span> STP Document
+                    </a>
+                    <a href="https://docs.google.com/presentation/d/1ppRLioak4nNha0YNADaPnTD9OCKdHuFW/edit?usp=sharing&ouid=118407128876216779267&rtpof=true&sd=true"
+                        target="_blank" class="btn btn-secondary"
+                        style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📊</span> STR Document
+                    </a>
+                </div>
+            </div>
+
+        </article>
+
+        <section class="more-projects-footer">
+            <div class="container">
+                <h3 class="more-projects-title">Explore More Projects</h3>
+                <div id="random-projects-container" class="other-projects"
+                    style="border-top: none; margin-top: 0; padding-top: 0;">
+                    <a href="paybox.html" class="other-project-btn" style="display:none;" data-id="paybox">
+                        <img src="../media/Paybox/logo.png" alt="Paybox" class="other-project-logo">
+                        <span class="other-project-name">Paybox</span>
+                    </a>
+                    <a href="signal.html" class="other-project-btn" style="display:none;" data-id="signal">
+                        <img src="../media/Singal/logo.png" alt="Signal" class="other-project-logo">
+                        <span class="other-project-name">Signal</span>
+                    </a>
+                    <a href="smart-crm.html" class="other-project-btn" style="display:none;" data-id="smart-crm">
+                        <img src="../media/SMART%20CRM/logo.png" alt="Smart CRM" class="other-project-logo">
+                        <span class="other-project-name">Smart CRM</span>
+                    </a>
+                    <a href="planet.html" class="other-project-btn" style="display:none;" data-id="planet">
+                        <img src="../media/PLANET/logo.png" alt="Planet" class="other-project-logo">
+                        <span class="other-project-name">Planet</span>
+                    </a>
+                    <a href="leumi-goodies.html" class="other-project-btn" style="display:none;" data-id="leumi">
+                        <img src="../media/Leumi%20Goodies/1200x600wa%20(1).png" alt="Leumi Goodies"
+                            class="other-project-logo">
+                        <span class="other-project-name">Leumi Goodies</span>
+                    </a>
+                    <a href="carrefour.html" class="other-project-btn" style="display:none;" data-id="carrefour">
+                        <img src="../media/Carrefour/logo.png" alt="Carrefour" class="other-project-logo">
+                        <span class="other-project-name">Carrefour</span>
+                    </a>
+                    <a href="bigi.html" class="other-project-btn" style="display:none;" data-id="bigi">
+                        <img src="../media/BIGI/logo.png" alt="BIGI" class="other-project-logo">
+                        <span class="other-project-name">BIGI</span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Randomly show 4 projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            // Fisher-Yates shuffle
+            for (let i = projects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [projects[i], projects[j]] = [projects[j], projects[i]];
+            }
+            // Show first 4
+            projects.slice(0, 4).forEach(p => p.style.display = 'flex');
+        });
+    </script>
+</body>
+
+</html>

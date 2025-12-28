@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idan Pnuel | QA Engineer Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Idan Pnuel, a QA Engineer with 8+ years of experience. View projects, certifications, and skills.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Idan Pnuel",
+      "jobTitle": "QA Engineer",
+      "url": "https://idanpnuel.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/idan-pnuel/"
+      ]
+    }
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://idanpnuel.com/">
+    <meta property="og:title" content="Idan Pnuel | QA Engineer Portfolio">
+    <meta property="og:description"
+        content="Portfolio of Idan Pnuel, a QA Engineer with 8+ years of experience. View projects, certifications, and skills.">
+    <!-- Replace with actual absolute path to a social preview image when available -->
+    <!-- <meta property="og:image" content="https://idanpnuel.com/media/social-preview.png"> -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://idanpnuel.com/">
+    <meta property="twitter:title" content="Idan Pnuel | QA Engineer Portfolio">
+    <meta property="twitter:description"
+        content="Portfolio of Idan Pnuel, a QA Engineer with 8+ years of experience. View projects, certifications, and skills.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://idanpnuel.com/">
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Custom Home Page Styles -->
+    <style>
+        /* Fade In Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .role {
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            background: transparent;
+            display: block;
+            padding: 0;
+            border: none;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Updated CTA styling for inside card */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Bio Section Redesign - Overlapping Glassmorphism */
+        .bio-section {
+            padding: 0 0 6rem 0;
+            background: transparent;
+            position: relative;
+            z-index: 10;
+            margin-top: -120px;
+            /* Pull up over the video */
+        }
+
+        .bio-card {
+            background: rgba(15, 15, 15, 0.7);
+            /* More transparent for glass effect */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            /* Slightly brighter top border */
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            /* For animation */
+        }
+
+        /* Observer class for animation triggers */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bio-quote-icon {
+            font-size: 4rem;
+            color: var(--accent-primary);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            background: var(--bg-dark);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: serif;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .bio-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 300;
+            font-style: normal;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        /* CTA Section Redesign */
+        .cta-section {
+            padding-bottom: 6rem;
+        }
+
+        .cta-buttons {
+            gap: 2rem;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .role {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            /* Adjust overlap for mobile */
+            .bio-section {
+                margin-top: -100px;
+                /* Higher overlap */
+                padding-bottom: 4rem;
+            }
+
+            .bio-card {
+                padding: 2.5rem 1rem;
+                background: rgba(15, 15, 15, 0.85);
+                /* Slightly less transparent for readability */
+                backdrop-filter: blur(20px);
+                border-radius: 20px;
+                margin: 0 1rem;
+                /* Ensure some side spacing */
+            }
+
+            .bio-text {
+                font-size: 1.1rem;
+            }
+
+            /* Compact Buttons One-After-Another */
+            .cta-buttons {
+                flex-direction: column !important;
+                /* Force column layout */
+                gap: 1rem;
+                flex-wrap: nowrap;
+                margin-top: 2rem !important;
+                width: 100%;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                /* Full width buttons */
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+                white-space: nowrap;
+                /* Keep text on one line */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Idan Pnuel</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <div class="dropdown">
+                    <a href="projects.html" class="dropdown-toggle">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="projects/paybox.html">
+                            <img src="media/Paybox/logo.png" alt="Paybox Label" loading="lazy" width="24" height="24">
+                            Paybox
+                        </a>
+                        <a href="projects/signal.html">
+                            <img src="media/Singal/logo.png" alt="Signal Label" loading="lazy" width="24" height="24">
+                            Signal
+                        </a>
+                        <a href="projects/smart-crm.html">
+                            <img src="media/SMART CRM/logo.png" alt="Smart CRM Label" loading="lazy" width="24"
+                                height="24"> Smart CRM
+                        </a>
+                        <a href="projects/planet.html">
+                            <img src="media/PLANET/logo.png" alt="Planet Label" loading="lazy" width="24" height="24">
+                            Planet
+                        </a>
+                        <a href="projects/leumi-goodies.html">
+                            <img src="media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies Label" loading="lazy"
+                                width="24" height="24"> Leumi Goodies
+                        </a>
+                        <a href="projects/carrefour.html">
+                            <img src="media/Carrefour/logo.png" alt="Carrefour Label" loading="lazy" width="24"
+                                height="24"> Carrefour
+                        </a>
+                        <a href="projects/bigi.html">
+                            <img src="media/BIGI/logo.png" alt="BIGI Label" loading="lazy" width="24" height="24"> BIGI
+                        </a>
+                    </div>
+                </div>
+                <a href="certificates.html">Certificates</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-video-container">
+                <video autoplay loop muted playsinline class="video-placeholder" style="object-fit: cover;">
+                    <source src="media/desktop.mp4" media="(min-width: 1025px)">
+                    <source src="media/tablet.mp4" media="(min-width: 769px)">
+                    <source src="media/mobile.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="container hero-content">
+                <h1>Idan Pnuel</h1>
+                <div class="role">QA Engineer</div>
+
+                <div class="experience-counter">
+                    <p>Celebrating <span id="years-counter">...</span> Years as a QA Engineer!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bio Section -->
+        <section class="bio-section">
+            <div class="container">
+                <div class="bio-card animate-on-scroll">
+                    <!-- Bio Content Grid -->
+                    <div class="bio-grid">
+                        <div class="bio-item">
+                            <img src="media/symbols/timeline logo (1).png" alt="Timeline - 8 Years Experience"
+                                class="bio-feature-icon" loading="lazy" width="80" height="80">
+                            <p>I have a keen eye for detail developed through 8 years of previous professional
+                                experience -</p>
+                        </div>
+                        <div class="bio-item">
+                            <img src="media/symbols/QA logo.png" alt="QA Processes"
+                                class="bio-feature-icon bio-feature-icon-lg" loading="lazy" width="100" height="100">
+
+                            <p>that applied over the past two years to QA processes to ensure that the products I work
+                                on meet the highest standards of quality and performance.</p>
+                        </div>
+                    </div>
+                    <!-- CTA Buttons inside Card -->
+                    <div class="cta-buttons animate-on-scroll" style="transition-delay: 0.2s; margin-top: 3rem;">
+                        <a href="projects.html" class="btn btn-primary">View Projects</a>
+                        <a href="certificates.html" class="btn btn-secondary">View Certificates</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Simple Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+
+
+</body>
+
+</html>

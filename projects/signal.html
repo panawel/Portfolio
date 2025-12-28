@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal | Idan Pnuel</title>
+    <meta name="description" content="Signal QA project details">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        .project-detail-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .project-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .project-section li::before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .service-name {
+            display: block;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-media {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 20px;
+            border: 6px solid #1a1a1a;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .project-media:hover {
+            transform: scale(1.02);
+        }
+
+        .media-gif-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .media-gif-row .project-media {
+            max-width: 250px;
+            margin: 0;
+        }
+
+
+
+        .results-section {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0.4) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-primary);
+        }
+
+        .results-section h2 {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .results-list li::before {
+            content: "✎";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .more-projects-footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .more-projects-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .project-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .media-gif-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .results-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Idan Pnuel</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="dropdown">
+                    <a href="../projects.html" class="dropdown-toggle active">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="paybox.html">
+                            <img src="../media/Paybox/logo.png" alt="Paybox Label"> Paybox
+                        </a>
+                        <a href="signal.html">
+                            <img src="../media/Singal/logo.png" alt="Signal Label"> Signal
+                        </a>
+                        <a href="smart-crm.html">
+                            <img src="../media/SMART CRM/logo.png" alt="Smart CRM Label"> Smart CRM
+                        </a>
+                        <a href="planet.html">
+                            <img src="../media/PLANET/logo.png" alt="Planet Label"> Planet
+                        </a>
+                        <a href="leumi-goodies.html">
+                            <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies Label"> Leumi
+                            Goodies
+                        </a>
+                        <a href="carrefour.html">
+                            <img src="../media/Carrefour/logo.png" alt="Carrefour Label"> Carrefour
+                        </a>
+                        <a href="bigi.html">
+                            <img src="../media/BIGI/logo.png" alt="BIGI Label"> BIGI
+                        </a>
+                    </div>
+                </div>
+                <a href="../certificates.html">Certificates</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-detail-hero">
+            <div class="container">
+                <h1>Signal</h1>
+                <img src="../media/Singal/logo.png" alt="Signal"
+                    style="display: block; margin: 0 auto 1.5rem; height: 60px; object-fit: contain;">
+
+                <!-- Hero Image -->
+                <img src="../media/Singal/signal-on-phone-handheld-hero-smaller.jpg" alt="Signal Hero"
+                    class="project-media" style="margin-top: 0; margin-bottom: 2rem;">
+
+                <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted); font-size: 1.25rem;">
+                    Increasing the number of tests by 50% within a given timeframe
+                </p>
+
+                <p
+                    style="max-width: 800px; margin: 1rem auto; color: var(--text-secondary); text-align: center; line-height: 1.6;">
+                    In my first year as a QA engineer, my curiosity about the world of QA grew, along with my desire to
+                    learn and explore the field of testing. I read about various types of testing and techniques, and I
+                    self-learned an AI tool called 'Maestro' and combined it with 'Appium' to utilize it for mobile
+                    automation testing of 'Signal' app. This allowed me to increase the number of tests that could be
+                    completed within the same timeframe, alongside manual testing.
+                </p>
+
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Appium</span>
+                    <span class="tech-badge">Maestro</span>
+                    <span class="tech-badge">Mobile Automation</span>
+                    <span class="tech-badge">Privacy</span>
+                </div>
+            </div>
+        </section>
+
+        <article class="container project-content">
+
+
+
+            <div class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    'Signal' is a messaging app focused on privacy. It's free, easy to use, open-source, and features
+                    strong end-to-end encryption to keep communications completely private.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="../media/symbols/Mobile Automation Tests.png" alt="Mobile Automation"
+                            class="service-icon">
+                        <span class="service-name">Mobile Automation Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/E2E.png" alt="E2E" class="service-icon">
+                        <span class="service-name">E2E</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Exploratory.png" alt="Exploratory" class="service-icon">
+                        <span class="service-name">Exploratory Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/installation.png" alt="Installation" class="service-icon">
+                        <span class="service-name">Installation Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Component.png" alt="Component" class="service-icon">
+                        <span class="service-name">Component</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Mobile GUI.png" alt="UI" class="service-icon">
+                        <span class="service-name">UI</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/regression.png" alt="Regression" class="service-icon">
+                        <span class="service-name">Regression</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Integration.png" alt="Integration" class="service-icon">
+                        <span class="service-name">Integration Tests</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Device Scope</h2>
+                <div class="tech-stack" style="justify-content: flex-start;">
+                    <span class="tech-badge">✔ Pixel 5</span>
+                    <span class="tech-badge">✔ Pixel 6 Pro</span>
+                    <span class="tech-badge">✔ Samsung Galaxy s22 Ultra</span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Project Scope</h2>
+                <p>The development team provided me with an APK file of our internal 'Signal' version, which I tested
+                    before it was rolled out to our customers worldwide:</p>
+                <ul>
+                    <li>Focus on the new integration features between Signal and another classified product of the
+                        company. These features are unique and are not available in the original version found in the
+                        Play Store.</li>
+                    <li>To ensure there is no regression and basic functions are not interrupted or stopped due to the
+                        new features and changes added.</li>
+                    <li>Perform Exploratory tests by using the app in creative and unexpected ways to find potential
+                        issues that might not be caught by formal tests.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>End-to-End Tests</h2>
+                <p>Ensured that the entire app worked smoothly from start to finish. I verified scenarios like
+                    registering new users, OTP verification, sending messages, high-quality video/audio calls, proper
+                    notification display, permissions, sending/receiving media files, creating groups, and the app's
+                    scalability in landscape/split-screen mode. I checked many other aspects to make sure the app
+                    functioned correctly.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Component</h2>
+                <p>I divided the app into screens, each displaying various elements. Each element is a component that I
+                    tested with different types of functional and non-functional tests. Based on this component
+                    breakdown, I documented the bugs found in each component in Jira in an organized way. This included
+                    steps to reproduce, screenshots, videos, app version details, and more, This helped developers fix
+                    issues faster and more efficiently.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>UI</h2>
+                <p>UI tests checked that all visual elements of the app, like buttons and text fields and in Differnt
+                    Languages, displayed and functioned correctly across different devices. I also ensured the app was
+                    user-friendly and responsive.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Installations</h2>
+                <p>I performed installation tests to ensure that there weren’t any problems when installing, updating,
+                    or uninstalling the application on different devices, and operating systems Versions.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Regression</h2>
+                <p>I always run regression tests whenever we added new features or fixed any bugs so that I could be
+                    sure that nothing had broken in the other parts of the app.</p>
+                <p>There are a huge number of tests (More than 600 test cases) that need to be repeated with every new
+                    version. So, whenever I had some time, I read about using automation to streamline the testing
+                    process.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Automation</h2>
+                <p>The efficiency and coverage of my testing efforts was greatly improved by basic automation tests. I
+                    automated a lot of test cases for Signal application using 'Maestro' AI tool which was also used
+                    together with 'Appium'. This included automating repetitive test cases such as message sending and
+                    receiving, calls, groups, user registration processes, and more...</p>
+                <p>I wrote python scripts to simulate various end-user scenarios to ensure that updates didn't affect
+                    the app's functionality.</p>
+                <p>This helped shorten regression testing periods and allowing new builds to be quickly checked.</p>
+                <div class="media-gif-row">
+                    <img src="../media/Singal/InShot_20240617_012257532-ezgif.com-optimize.gif" alt="Signal Demo 2"
+                        class="project-media">
+                    <img src="../media/Singal/InShot_20240617_012818390-ezgif.com-optimize.gif" alt="Signal Demo 3"
+                        class="project-media">
+                </div>
+                <p
+                    style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; font-style: italic;">
+                    Automated Android testing with direct Jira failure reporting.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Tools</h2>
+                <div class="tech-stack" style="justify-content: flex-start; margin-bottom: 2rem;">
+                    <span class="tech-badge">JIRA + AIO Test</span>
+                    <span class="tech-badge">Appium</span>
+                    <span class="tech-badge">Python + Pycharm</span>
+                    <span class="tech-badge">Maestro</span>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Results</h2>
+                <ul class="results-list">
+                    <li>The automation tests quickly identified critical bugs and issues before the app was released and
+                        installed on customers' devices.</li>
+                    <li>Detailed documentation of over 100 bugs helped quickly fix all the issues, which enhanced the
+                        quality and reliability of the 'Signal' app.</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>In Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">QA engineer</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Test Environments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Months (Running)</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Builds</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Defects Detected</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label">Total Tests</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Documents</h2>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://github.com/panawel/SignalAutomation" target="_blank" class="btn btn-primary"
+                        style="background-color: #3b82f6; margin-bottom: 1rem;">
+                        Automation Files (GitHub)
+                    </a>
+                </div>
+            </div>
+
+
+        </article>
+
+        <section class="more-projects-footer">
+            <div class="container">
+                <h3 class="more-projects-title">Explore More Projects</h3>
+                <div id="random-projects-container" class="other-projects"
+                    style="border-top: none; margin-top: 0; padding-top: 0;">
+                    <a href="paybox.html" class="other-project-btn" style="display:none;" data-id="paybox">
+                        <img src="../media/Paybox/logo.png" alt="Paybox" class="other-project-logo">
+                        <span class="other-project-name">Paybox</span>
+                    </a>
+                    <a href="smart-crm.html" class="other-project-btn" style="display:none;" data-id="smart-crm">
+                        <img src="../media/SMART CRM/logo.png" alt="Smart CRM" class="other-project-logo">
+                        <span class="other-project-name">Smart CRM</span>
+                    </a>
+                    <a href="planet.html" class="other-project-btn" style="display:none;" data-id="planet">
+                        <img src="../media/PLANET/logo.png" alt="Planet" class="other-project-logo">
+                        <span class="other-project-name">Planet</span>
+                    </a>
+                    <a href="leumi-goodies.html" class="other-project-btn" style="display:none;" data-id="leumi">
+                        <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies"
+                            class="other-project-logo">
+                        <span class="other-project-name">Leumi Goodies</span>
+                    </a>
+                    <a href="carrefour.html" class="other-project-btn" style="display:none;" data-id="carrefour">
+                        <img src="../media/Carrefour/logo.png" alt="Carrefour" class="other-project-logo">
+                        <span class="other-project-name">Carrefour</span>
+                    </a>
+                    <a href="bigi.html" class="other-project-btn" style="display:none;" data-id="bigi">
+                        <img src="../media/BIGI/logo.png" alt="BIGI" class="other-project-logo">
+                        <span class="other-project-name">BIGI</span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Randomly show 4 projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            // Fisher-Yates shuffle
+            for (let i = projects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [projects[i], projects[j]] = [projects[j], projects[i]];
+            }
+            // Show first 4
+            projects.slice(0, 4).forEach(p => p.style.display = 'flex');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIGI | Idan Pnuel</title>
+    <meta name="description" content="BIGI QA project details">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "BIGI",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Android, iOS, Web",
+      "description": "A content app designed for kids and teenagers offering television programs, series, and movies.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "ILS"
+      },
+       "author": {
+          "@type": "Person",
+          "name": "Idan Pnuel"
+        }
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        .project-detail-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .project-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Custom List Styles */
+        .scope-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .scope-list li.main-item {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 1.5rem;
+        }
+
+        .scope-list li.main-item::before {
+            content: "►";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .scope-list li.sub-item {
+            padding-left: 2rem;
+            font-size: 1rem;
+        }
+
+        .scope-list li.sub-item::before {
+            content: "▷";
+            color: var(--text-muted);
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        .components-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .components-list li::before {
+            content: "⫸";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .service-name {
+            display: block;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-media {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.02);
+        }
+
+
+
+        .results-section {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(10, 10, 10, 0.4) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-primary);
+        }
+
+        .more-projects-footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .more-projects-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .project-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .results-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Testing Environment Grid */
+        .testing-env-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .env-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .env-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .env-icon {
+            font-size: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .env-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .env-details strong {
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .env-details span {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Idan Pnuel</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="dropdown">
+                    <a href="../projects.html" class="dropdown-toggle active">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="paybox.html">
+                            <img src="../media/Paybox/logo.png" alt="Paybox Label"> Paybox
+                        </a>
+                        <a href="signal.html">
+                            <img src="../media/Singal/logo.png" alt="Signal Label"> Signal
+                        </a>
+                        <a href="smart-crm.html">
+                            <img src="../media/SMART CRM/logo.png" alt="Smart CRM Label"> Smart CRM
+                        </a>
+                        <a href="planet.html">
+                            <img src="../media/PLANET/logo.png" alt="Planet Label"> Planet
+                        </a>
+                        <a href="leumi-goodies.html">
+                            <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies Label"> Leumi
+                            Goodies
+                        </a>
+                        <a href="carrefour.html">
+                            <img src="../media/Carrefour/logo.png" alt="Carrefour Label"> Carrefour
+                        </a>
+                        <a href="bigi.html">
+                            <img src="../media/BIGI/logo.png" alt="BIGI Label"> BIGI
+                        </a>
+                    </div>
+                </div>
+                <a href="../certificates.html">Certificates</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-detail-hero">
+            <div class="container">
+                <!-- Hero Image (No Title/Logo) -->
+                <img src="../media/BIGI/hfjon5jIWlPIlWUWWJhy671pkU1Cs_rdhBHR2mky5zPFB4RRu2jGG_wXGtZSEz5ntVw.png"
+                    alt="BIGI Content" class="project-media">
+
+                <p style="max-width: 800px; margin: 1.5rem auto 1rem; color: var(--text-muted); font-size: 1.25rem;">
+                    Provided QA support for 'BIGi' app, A world of content with all the kids and teenagers' series
+                </p>
+
+                <p
+                    style="max-width: 800px; margin: 0 auto; color: var(--text-secondary); text-align: center; line-height: 1.6;">
+                    As a QA tester for uTest's website, I was invited to perform professional tests to ensure a bug-free
+                    experience for users while playing video content from the VOD library and live stream features
+                    within the app.
+                </p>
+
+            </div>
+        </section>
+
+        <article class="container project-content">
+
+            <div class="project-section">
+                <h2>Overview</h2>
+                <p>'BIGi' is a content app designed for kids and teenagers. The app offers a wide range of television
+                    programs, series, movies.</p>
+                <p>The app features exclusive content from social media influencer stars and thousands of hours of
+                    content from both Israel and abroad.</p>
+                <p>With BIGi app users can enjoy the "children's channel", the "LOGI" channel, and a massive VOD library
+                    on any device, such as a smartphone, tablet, or smart TV, at any time.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="../media/symbols/Functional.png" alt="Functional Tests" class="service-icon"
+                            loading="lazy">
+                        <span class="service-name">Functional Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Mobile GUI.png" alt="Compatibility Tests" class="service-icon"
+                            loading="lazy">
+                        <span class="service-name">Compatibility Tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/Performance.png" alt="Load tests" class="service-icon"
+                            loading="lazy">
+                        <span class="service-name">Load tests</span>
+                    </div>
+                    <div class="service-card">
+                        <img src="../media/symbols/E2E.png" alt="I18N Tests" class="service-icon" loading="lazy">
+                        <span class="service-name">I18N Tests</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Project Scope</h2>
+                <p style="margin-bottom: 2rem;">The entire app is in scope!<br>
+                    The goal of this test cycle is to identify any issues related to its core functionality.<br>
+                    I will be testing all of its features and functionalities such as:</p>
+
+                <ul class="scope-list">
+                    <li class="main-item">Registration</li>
+                    <li class="sub-item">Registration process- choose a free plan</li>
+
+                    <li class="main-item">Login</li>
+                    <li class="sub-item">Login to the platform with existing accounts</li>
+                    <li class="sub-item">Login to the platform with free accounts</li>
+
+                    <li class="main-item">Forgot password process</li>
+                    <li class="sub-item">Click on forgot password</li>
+                    <li class="sub-item">Reset password</li>
+                    <li class="sub-item">Create a new password</li>
+                    <li class="sub-item">Log in with the new password</li>
+
+                    <li class="main-item">Playback</li>
+                    <li class="sub-item">Play live channel</li>
+                    <li class="sub-item">Play free VOD asset</li>
+                    <li class="sub-item">Play Paid VOD asset</li>
+
+                    <li class="main-item">Miscellaneous</li>
+                    <li class="sub-item">Add new profile</li>
+                    <li class="sub-item">Delete a profile</li>
+                    <li class="sub-item">Change platform language</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Components Scope</h2>
+                <ul class="components-list">
+                    <li>Categories</li>
+                    <li>Contact, help, and support</li>
+                    <li>Countdown feature - Auto-switching between episodes after an episode is over</li>
+                    <li>Design</li>
+                    <li>Live shows</li>
+                    <li>Main page</li>
+                    <li>Menu</li>
+                    <li>Player functionality</li>
+                    <li>Search</li>
+                    <li>Series</li>
+                    <li>Settings</li>
+                    <li>Social media links</li>
+                    <li>Splash screen</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Device Scope</h2>
+                <div class="testing-env-grid">
+                    <div class="env-card">
+                        <div class="env-icon">📱</div>
+                        <div class="env-details">
+                            <strong>Android Phone – Galaxy s22 Ultra, 5G</strong>
+                            <span>OS version: Android 13, One UI 5.1</span>
+                            <span>'BIGi' Application</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Results</h2>
+                <p>20 bugs were found, including 9 high-priority issues that could lead to financial loss.</p>
+                <p>Clear instructions were given to recreate the issues and aid in their quick resolution.</p>
+                <p>Good communication between me and development teams helped ensure high quality and user satisfaction.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>In Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">App Tested</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Hours Duration</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">9</span>
+                        <span class="stat-label">Functional Defects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">11</span>
+                        <span class="stat-label">Exploratory Defects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40</span>
+                        <span class="stat-label">Tests Total</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Documents</h2>
+                <div class="results-section" style="margin-top: 2rem;">
+                    <p style="text-align: center; font-style: italic; color: var(--text-muted);">
+                        As a result of customer's privacy agreement, I am unable to provide full details or attach any
+                        testing documents related to the testing process.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Gallery</h2>
+                <div class="project-gallery">
+                    <img src="../media/BIGI/Screenshot_20230407_154230_BIGI.jpg" alt="BIGI Screenshot 1"
+                        class="gallery-img" loading="lazy">
+                    <img src="../media/BIGI/Screenshot_20230407_155624_BIGI.jpg" alt="BIGI Screenshot 2"
+                        class="gallery-img" loading="lazy">
+                    <img src="../media/BIGI/Screenshot_20230407_154959_BIGI.jpg" alt="BIGI Screenshot 3"
+                        class="gallery-img" loading="lazy">
+                </div>
+            </div>
+
+        </article>
+
+        <section class="more-projects-footer">
+            <div class="container">
+                <h3 class="more-projects-title">Explore More Projects</h3>
+                <div id="random-projects-container" class="other-projects"
+                    style="border-top: none; margin-top: 0; padding-top: 0;">
+                    <a href="paybox.html" class="other-project-btn" style="display:none;" data-id="paybox">
+                        <img src="../media/Paybox/logo.png" alt="Paybox" class="other-project-logo" loading="lazy">
+                        <span class="other-project-name">Paybox</span>
+                    </a>
+                    <a href="signal.html" class="other-project-btn" style="display:none;" data-id="signal">
+                        <img src="../media/Singal/logo.png" alt="Signal" class="other-project-logo" loading="lazy">
+                        <span class="other-project-name">Signal</span>
+                    </a>
+                    <a href="smart-crm.html" class="other-project-btn" style="display:none;" data-id="smart-crm">
+                        <img src="../media/SMART CRM/logo.png" alt="Smart CRM" class="other-project-logo"
+                            loading="lazy">
+                        <span class="other-project-name">Smart CRM</span>
+                    </a>
+                    <a href="planet.html" class="other-project-btn" style="display:none;" data-id="planet">
+                        <img src="../media/PLANET/logo.png" alt="Planet" class="other-project-logo" loading="lazy">
+                        <span class="other-project-name">Planet</span>
+                    </a>
+                    <a href="leumi-goodies.html" class="other-project-btn" style="display:none;" data-id="leumi">
+                        <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies"
+                            class="other-project-logo" loading="lazy">
+                        <span class="other-project-name">Leumi Goodies</span>
+                    </a>
+                    <a href="carrefour.html" class="other-project-btn" style="display:none;" data-id="carrefour">
+                        <img src="../media/Carrefour/logo.png" alt="Carrefour" class="other-project-logo"
+                            loading="lazy">
+                        <span class="other-project-name">Carrefour</span>
+                    </a>
+                    <a href="bigi.html" class="other-project-btn" style="display:none;" data-id="bigi">
+                        <img src="../media/BIGI/logo.png" alt="BIGI" class="other-project-logo" loading="lazy">
+                        <span class="other-project-name">BIGI</span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Randomly show 4 projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            // Fisher-Yates shuffle
+            for (let i = projects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [projects[i], projects[j]] = [projects[j], projects[i]];
+            }
+            // Show first 4
+            projects.slice(0, 4).forEach(p => p.style.display = 'flex');
+        });
+    </script>
+</body>
+
+</html>
