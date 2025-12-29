@@ -224,14 +224,18 @@ function initScrollHint() {
     if (!scrollHint) return;
 
     let ticking = false;
+    let hasHidden = false;
 
     const onScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 if (window.scrollY > 50) {
                     scrollHint.classList.add('hide-hint');
+                    hasHidden = true;
                     // Remove listener so it never comes back
                     window.removeEventListener('scroll', onScroll);
+                } else if (!hasHidden) {
+                    scrollHint.classList.remove('hide-hint');
                 }
                 ticking = false;
             });
