@@ -298,17 +298,21 @@ h1 {
     padding: 1rem 2rem;
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    /* Anchor for fireworks */
     display: inline-block;
+    /* Wrap content tightly */
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    position: relative;
-    /* Anchor for fireworks canvas */
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.experience-counter p {
+    position: relative;
+    /* Anchor if attached to P */
+    margin: 0;
 }
 
 .experience-counter p {
