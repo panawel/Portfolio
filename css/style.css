@@ -689,7 +689,7 @@ footer {
     animation: none;
 }
 
-@media (max-height: 700px) {
+@media (max-height: 450px) {
     .scroll-hint {
         display: none;
     }
