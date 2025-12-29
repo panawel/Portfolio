@@ -224,19 +224,22 @@ function initScrollHint() {
     if (!scrollHint) return;
 
     let ticking = false;
-    window.addEventListener('scroll', () => {
+
+    const onScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 if (window.scrollY > 50) {
                     scrollHint.classList.add('hide-hint');
-                } else {
-                    scrollHint.classList.remove('hide-hint');
+                    // Remove listener so it never comes back
+                    window.removeEventListener('scroll', onScroll);
                 }
                 ticking = false;
             });
             ticking = true;
         }
-    });
+    };
+
+    window.addEventListener('scroll', onScroll);
 }
 
 // Single Fireworks System
