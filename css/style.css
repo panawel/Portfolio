@@ -519,9 +519,9 @@ footer {
         /* Drawer style */
         max-width: 300px;
         height: 100vh;
-        background: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #1e1b4b 100%);
+        /* Stronger Deep Black to Indigo */
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
         flex-direction: column;
         justify-content: flex-start;
         padding-top: calc(var(--header-height) + 2rem);
@@ -531,7 +531,7 @@ footer {
         /* Reset gap for list styling */
         transform: translateX(100%);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
         opacity: 1;
         /* Always visible for transform */
         overflow-y: auto;
@@ -547,12 +547,24 @@ footer {
     }
 
     .nav-links>a,
-    .dropdown-toggle {
+    .nav-links .dropdown-toggle {
         font-size: 1.2rem;
         padding: 1rem 2rem;
         width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        /* Brighter white for contrast */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* More visible separator */
+    }
+
+    .nav-links>a {
         display: block;
+    }
+
+    .nav-links .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .dropdown {
@@ -571,8 +583,8 @@ footer {
         left: auto !important;
         margin: 0 !important;
         width: 100% !important;
-        background: rgba(255, 255, 255, 0.03);
-        /* Lighter tint for mobile */
+        background: rgba(255, 255, 255, 0.08);
+        /* Distinct contrast against main menu */
         border: none;
         box-shadow: none;
         text-align: left;
@@ -594,7 +606,9 @@ footer {
     .dropdown-menu a {
         padding: 1rem 1.5rem 1rem 2.5rem;
         font-size: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        color: rgba(255, 255, 255, 0.9);
+        /* High readability */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -606,7 +620,13 @@ footer {
     .dropdown.active .dropdown-menu {
         max-height: 800px;
         opacity: 1;
-        padding: 0.5rem 0;
+        padding: 0;
+        /* Remove padding for pixel-perfect flush alignment */
+    }
+
+    .dropdown-menu a:last-child {
+        border-bottom: none;
+        /* Remove last border to avoid clash with next link */
     }
 
     .dropdown-toggle {
