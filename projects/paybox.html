@@ -30,23 +30,6 @@
             display: block;
         }
 
-        .tech-stack {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         .project-content {
             max-width: 900px;
             margin: 0 auto;
@@ -421,42 +404,46 @@
             <div class="project-section">
                 <h2>Project Scope</h2>
 
-                <div class="scope-content-wrapper" style="display: flex; gap: 3rem; align-items: flex-start;">
-                    <div class="scope-text" style="flex: 1;">
-                        <h3>"Voucher Carousel" Section</h3>
-                        <p>Allows payment using the user's vouchers in selected supermarkets, stores, and Brands:</p>
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h4>"Voucher Carousel" Section</h4>
+                        <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Allows payment
+                            using the user's vouchers:</p>
                         <ul>
                             <li>Adding a new voucher.</li>
-                            <li>Splitting vouchers (for amounts greater than 1500 ILS).</li>
-                            <li>Activating a voucher with an authentication code.</li>
+                            <li>Splitting vouchers (> 1500 ILS).</li>
+                            <li>Activating a voucher.</li>
                             <li>Locked voucher.</li>
                             <li>Deleting a voucher.</li>
-                            <li>Voucher redemption process and payment at checkout.</li>
-                            <li>Canceling redemption (refund).</li>
-                            <li>Voucher details for online payment.</li>
-                            <li>Sending the voucher to a friend.</li>
-                            <li>Canceling sending to a friend.</li>
-                            <li>Action history of the voucher.</li>
-                            <li>List of networks that accept the voucher.</li>
+                            <li>Redemption & Refund processes.</li>
+                            <li>Voucher details.</li>
+                            <li>Sending/Canceling to a friend.</li>
+                            <li>Action history.</li>
+                            <li>List of accepting networks.</li>
                         </ul>
+                    </div>
 
-                        <h3>Vouchers Section (Main Screen)</h3>
+                    <div class="scope-card">
+                        <h4>Vouchers Section (Main)</h4>
                         <ul>
                             <li>Total amount of all vouchers.</li>
                             <li>Action history.</li>
                         </ul>
+                    </div>
 
-                        <h3>Secondary Screens</h3>
+                    <div class="scope-card">
+                        <h4>Secondary Screens</h4>
                         <ul>
-                            <li>"Terms of Use" approval screen displayed on the first app launch.</li>
-                            <li>Updating the list of networks cooperating with Paybox in the database.</li>
+                            <li>"Terms of Use" approval screen.</li>
+                            <li>Updating the network database.</li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="scope-image-container" style="flex: 0 0 250px;">
-                        <img src="../media/Paybox/unnamed.gif" alt="Voucher Carousel" class="project-media"
-                            style="margin: 0; width: 100%;">
-                    </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <img src="../media/Paybox/unnamed.gif" alt="Voucher Carousel" class="project-media"
+                        style="margin: 0 auto; width: 100%; max-width: 250px;">
+                    <p class="media-caption">Voucher Carousel Feature</p>
                 </div>
             </div>
 

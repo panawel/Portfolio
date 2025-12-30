@@ -31,22 +31,7 @@
             display: block;
         }
 
-        .tech-stack {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
 
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
 
         .project-content {
             max-width: 900px;
@@ -374,43 +359,6 @@
             font-size: 0.95rem;
             line-height: 1.4;
         }
-
-        .nested-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .nested-list>li {
-            margin-bottom: 1.5rem;
-        }
-
-        .nested-list>li>strong {
-            display: block;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-        }
-
-        .nested-list>li>strong::before {
-            content: "► ";
-            color: var(--accent-primary);
-        }
-
-        .sub-list {
-            padding-left: 1.5rem;
-        }
-
-        .sub-list li {
-            color: var(--text-muted);
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-        }
-
-        .sub-list li::before {
-            content: "▷ ";
-            color: var(--text-secondary);
-            font-weight: normal;
-        }
     </style>
 </head>
 
@@ -528,56 +476,60 @@
                 <p>The entire app is in scope! The goal of this test cycle is to identify any issues related to its core
                     Components:</p>
 
-                <ul class="nested-list">
-                    <li>
-                        <strong>Home Page</strong>
-                        <ul class="sub-list">
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h4>Home Page</h4>
+                        <ul>
                             <li>Search</li>
                             <li>My Goodies Balance</li>
                             <li>Goodies Reset Date</li>
                             <li>Display Gift Cards</li>
                             <li>Display Benefits</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong>Gift Cards</strong>
-                        <ul class="sub-list">
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Gift Cards</h4>
+                        <ul>
                             <li>Valid Gift Card Details</li>
-                            <li>Total Payment Amount Displayed</li>
-                            <li>Select Credit Card for Payment</li>
+                            <li>Total Payment Display</li>
+                            <li>Payment Selection</li>
                             <li>Purchase Confirmation</li>
                             <li>Transaction Cancellation</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong>Benefits</strong>
-                        <ul class="sub-list">
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Benefits</h4>
+                        <ul>
                             <li>Valid Benefit Details</li>
-                            <li>Total Payment Amount Displayed</li>
-                            <li>Purchase Confirmation Received</li>
-                            <li>Transaction Cancellation</li>
-                            <li>Cancellation Confirmation Received</li>
+                            <li>Total Payment Display</li>
+                            <li>Purchase Confirmation</li>
+                            <li>Benefit Cancellation</li>
+                            <li>Cancellation Confirmation</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong>Profile</strong>
-                        <ul class="sub-list">
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Profile</h4>
+                        <ul>
                             <li>Profile Picture</li>
                             <li>Credit Card Details</li>
                             <li>My Mobile Number</li>
                             <li>My Settings</li>
                         </ul>
-                    </li>
-                    <li>
-                        <strong>Wallet</strong>
-                        <ul class="sub-list">
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Wallet</h4>
+                        <ul>
                             <li>My Purchases</li>
                             <li>My History</li>
-                            <li>Option for Repeat Purchase</li>
+                            <li>Repeat Purchase Option</li>
                             <li>Transaction Cancellation</li>
                         </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">

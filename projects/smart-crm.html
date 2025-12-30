@@ -31,22 +31,7 @@
             display: block;
         }
 
-        .tech-stack {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
 
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
 
         .project-content {
             max-width: 900px;
@@ -581,89 +566,85 @@
             </div>
 
             <div class="project-section">
-                <h2>E2E (End-to-End)</h2>
-                <p>The following business processes were tested:</p>
-                <ul class="plus-list">
-                    <li>Adding a new customer as a "lead" (creating a new lead for a potential customer).</li>
-                    <li>Editing an existing lead details.</li>
-                    <li>Sending a WhatsApp message to the customer without adding them to the contact list.</li>
-                    <li>Purchasing a subscription and checking feature limitations based on subscription type.</li>
-                    <li>Negative testing to challenge the system's behavior in boundary cases.</li>
-                </ul>
-            </div>
+                <h2>Testing Methodology</h2>
+                <div class="scope-grid">
 
-            <div class="project-section">
-                <h2>Integration</h2>
-                <p>We designed and executed scripts to test integration between Smart CRM and third-party apps,
-                    ensuring correct data flow:</p>
-                <ul class="plus-list">
-                    <li>Integration between "Smart CRM" and the device browser.</li>
-                    <li>Integration with WhatsApp to send pre-written message templates.</li>
-                </ul>
-            </div>
+                    <div class="scope-card">
+                        <h4>End-to-End (E2E)</h4>
+                        <ul>
+                            <li><strong>Leads:</strong> Adding/Editing leads.</li>
+                            <li><strong>Communication:</strong> Sending WhatsApp without saving contact.</li>
+                            <li><strong>Subscription:</strong> purchasing & checking limitations.</li>
+                            <li><strong>Boundary:</strong> Challenging system behavior.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Gateway</h2>
-                <ul class="plus-list">
-                    <li>Verified calculation of payment amounts based on premium plans, discounts, or promotions.</li>
-                    <li>Ensured the subscription purchase process aligns with the Play Store purchasing process without
-                        bugs.</li>
-                </ul>
-            </div>
+                    <div class="scope-card">
+                        <h4>Integration</h4>
+                        <ul>
+                            <li><strong>Device:</strong> Browser integration.</li>
+                            <li><strong>External:</strong> WhatsApp template messaging.</li>
+                            <li>Ensured correct data flow between system & 3rd parties.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>I18N (Internationalization)</h2>
-                <p>We spoofed locations and changed device languages to test global compatibility:</p>
-                <ul class="plus-list">
-                    <li>Verified "Leads" filtering screen adaptation.</li>
-                    <li>Checked subscription purchase screen adaptation and process success.</li>
-                    <li>Ensured "Floating Circle" widget pop-ups display correctly.</li>
-                    <li>Validated application menus, contact screens, and more.</li>
-                </ul>
-            </div>
+                    <div class="scope-card">
+                        <h4>Gateway & Payments</h4>
+                        <ul>
+                            <li><strong>Calculations:</strong> Premium plans, discounts, promotions.</li>
+                            <li><strong>Flow:</strong> Play Store purchasing process alignment.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Backup & Restore</h2>
-                <p>Ensured validity, reliability, and integrity of the new backup/restore feature involving cloud data
-                    transmission.</p>
-                <p>We verified that the backup process preserves all required data and that restoration works after
-                    a server crash or device switch. We tested across different user accounts, subscription types,
-                    and devices to mitigate data loss risks.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>I18N (Global)</h4>
+                        <ul>
+                            <li><strong>Adaptation:</strong> Filter screens, Subscription screens.</li>
+                            <li><strong>Layout:</strong> Floating widget display.</li>
+                            <li>Validated menus & contacts across languages/locales.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>C.R.U.D</h2>
-                <p>Tests on database operations (Create, Read, Update, Delete):</p>
-                <ul class="plus-list">
-                    <li>User registration and account creation.</li>
-                    <li>User login authentication and account access.</li>
-                    <li>Subscription purchase process and account detail updates reflected across the app.</li>
-                </ul>
-            </div>
+                    <div class="scope-card">
+                        <h4>Backup & Restore</h4>
+                        <ul>
+                            <li><strong>Integrity:</strong> Cloud data transmission validity.</li>
+                            <li><strong>Recovery:</strong> Verified restore after crash/device switch.</li>
+                            <li>Tested across accounts & devices to mitigate data loss.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Interruption</h2>
-                <p>Challenged the application with external disruptions to prevent crashes or data loss:</p>
-                <ul class="plus-list">
-                    <li>Triggering voice dictation while playing music.</li>
-                    <li>Triggering voice notes during a phone call with Bluetooth headphones.</li>
-                    <li>Testing collisions between the "floating circle" widget and other app widgets.</li>
-                    <li>Responding to notifications from the notification shade.</li>
-                </ul>
-            </div>
+                    <div class="scope-card">
+                        <h4>C.R.U.D</h4>
+                        <ul>
+                            <li><strong>Users:</strong> Registration, Login, Auth.</li>
+                            <li><strong>Data:</strong> Account updates & subscription status reflection.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Security</h2>
-                <p>Conducted system resilience tests against unauthorized access and checked for privacy issues or data
-                    leaks.</p>
-                <p>We monitored and analyzed communication between the app and servers, verified encryption of backed-up
-                    data, and ensured no sensitive information was exposed during transfer.</p>
+                    <div class="scope-card">
+                        <h4>Interruption Testing</h4>
+                        <ul>
+                            <li><strong>Audio:</strong> Voice dictation vs Music/Calls.</li>
+                            <li><strong>UI:</strong> Widget collisions.</li>
+                            <li><strong>System:</strong> Notification handling.</li>
+                        </ul>
+                    </div>
 
-                <h3 style="margin-top: 1.5rem;">Tools Used:</h3>
-                <div class="tech-stack" style="justify-content: flex-start; margin-top: 1rem;">
-                    <span class="tech-badge">JIRA + Xray</span>
-                    <span class="tech-badge">MEmu Play</span>
-                    <span class="tech-badge">Fiddler</span>
+                    <div class="scope-card">
+                        <h4>Security</h4>
+                        <ul>
+                            <li><strong>Access:</strong> Unauthorized access resilience.</li>
+                            <li><strong>Privacy:</strong> Data leak prevention.</li>
+                            <li><strong>Encryption:</strong> Secure backup & transfer.</li>
+                        </ul>
+                        <div class="tech-stack" style="justify-content: flex-start; margin-top: 1rem;">
+                            <span class="tech-badge">JIRA + Xray</span>
+                            <span class="tech-badge">MEmu Play</span>
+                            <span class="tech-badge">Fiddler</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

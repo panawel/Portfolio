@@ -30,22 +30,7 @@
             display: block;
         }
 
-        .tech-stack {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
 
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
 
         .project-content {
             max-width: 900px;
@@ -463,55 +448,63 @@
                 <h2>Project Scope</h2>
                 <p>The development team provided me with an APK file of our internal 'Signal' version, which I tested
                     before it was rolled out to our customers worldwide:</p>
-                <ul>
-                    <li>Focus on the new integration features between Signal and another classified product of the
-                        company. These features are unique and are not available in the original version found in the
-                        Play Store.</li>
-                    <li>To ensure there is no regression and basic functions are not interrupted or stopped due to the
-                        new features and changes added.</li>
-                    <li>Perform Exploratory tests by using the app in creative and unexpected ways to find potential
-                        issues that might not be caught by formal tests.</li>
-                </ul>
-            </div>
 
-            <div class="project-section">
-                <h2>End-to-End Tests</h2>
-                <p>Ensured that the entire app worked smoothly from start to finish. I verified scenarios like
-                    registering new users, OTP verification, sending messages, high-quality video/audio calls, proper
-                    notification display, permissions, sending/receiving media files, creating groups, and the app's
-                    scalability in landscape/split-screen mode. I checked many other aspects to make sure the app
-                    functioned correctly.</p>
-            </div>
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h4>Integration Features</h4>
+                        <ul>
+                            <li><strong>Focus:</strong> New integration between Signal and internal classified products.
+                            </li>
+                            <li>Tested unique features unavailable in the Play Store version.</li>
+                            <li>Ensured no functionality loss during integration.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Component</h2>
-                <p>I divided the app into screens, each displaying various elements. Each element is a component that I
-                    tested with different types of functional and non-functional tests. Based on this component
-                    breakdown, I documented the bugs found in each component in Jira in an organized way. This included
-                    steps to reproduce, screenshots, videos, app version details, and more, This helped developers fix
-                    issues faster and more efficiently.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>End-to-End Tests</h4>
+                        <ul>
+                            <li><strong>Scenarios:</strong> User registration, OTP verification, messaging.</li>
+                            <li><strong>Features:</strong> Audio/Video calls, groups, media sharing.</li>
+                            <li>Verified app scalability in split-screen/landscape modes.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>UI</h2>
-                <p>UI tests checked that all visual elements of the app, like buttons and text fields and in Differnt
-                    Languages, displayed and functioned correctly across different devices. I also ensured the app was
-                    user-friendly and responsive.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>Component Testing</h4>
+                        <ul>
+                            <li><strong>Breakdown:</strong> Screen-by-screen element analysis.</li>
+                            <li><strong>Documentation:</strong> Detailed JIRA reports with reproduction steps & media.
+                            </li>
+                            <li>Verified functional behavior of individual UI components.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Installations</h2>
-                <p>I performed installation tests to ensure that there weren’t any problems when installing, updating,
-                    or uninstalling the application on different devices, and operating systems Versions.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>UI Testing</h4>
+                        <ul>
+                            <li><strong>Visuals:</strong> Buttons, text fields, layout correctness.</li>
+                            <li><strong>i18n:</strong> Validated display in different languages.</li>
+                            <li>Ensured responsiveness across diverse devices.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h2>Regression</h2>
-                <p>I always run regression tests whenever we added new features or fixed any bugs so that I could be
-                    sure that nothing had broken in the other parts of the app.</p>
-                <p>There are a huge number of tests (More than 600 test cases) that need to be repeated with every new
-                    version. So, whenever I had some time, I read about using automation to streamline the testing
-                    process.</p>
+                    <div class="scope-card">
+                        <h4>Installation Testing</h4>
+                        <ul>
+                            <li><strong>Lifecycle:</strong> Install, Update, Uninstall.</li>
+                            <li>Verified stability across different OS versions and device types.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Regression & Exploratory</h4>
+                        <ul>
+                            <li><strong>Regression:</strong> 600+ test cases run per new version/fix.</li>
+                            <li><strong>Exploratory:</strong> Creative usage to uncover edge-case defects.</li>
+                            <li>Ensured new features didn't break existing core functions.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">

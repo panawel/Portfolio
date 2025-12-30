@@ -31,22 +31,7 @@
             display: block;
         }
 
-        .tech-stack {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
 
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
 
         .project-content {
             max-width: 900px;
@@ -567,50 +552,54 @@
                     After studying the requirements, writing test cases, the engineers provided the following QA
                     support:
                 </p>
-            </div>
 
-            <div class="project-section">
-                <h3>1. Functional testing: GUI, E2E, Accessibility</h3>
-                <p>To make sure the application flow performs The team tested every aspect of the ticket purchasing
-                    process, END-TO-END, from navigating the website to receiving the tickets by mail, utilizing both
-                    positive and negative testing scenarios to ensure complete coverage.</p>
-                <p>While ensuring high GUI quality, the team discovered a range of critical defects, including one that
-                    could result in a substantial financial loss - The seating chart displayed on the website is
-                    outdated and not identical to the actual physical seating arrangement in Venue number 13 . According
-                    to the website, there are only 14 seats in row 7. In reality, there are two additional seats in that
-                    row. Two chairs that cannot be ordered online.</p>
-            </div>
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h4>Functional Testing</h4>
+                        <ul>
+                            <li><strong>Scope:</strong> GUI, E2E, Accessibility.</li>
+                            <li><strong>Coverage:</strong> Verified annual ticket purchasing flow end-to-end (positive &
+                                negative).</li>
+                            <li><strong>Finding:</strong> Critical defect found in Venue 13 (seating plan mismatch vs
+                                reality), potentially causing revenue loss.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h3>2. Accessibility</h3>
-                <p>Also checked the accessibility tool bar. conducted tests on each options it offered to ensure that
-                    the site operates according to the standards set by the Israeli Internet Association.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>Accessibility</h4>
+                        <ul>
+                            <li><strong>Tools:</strong> Accessibility Toolbar.</li>
+                            <li>Tested all toolbar options ensuring compliance with Israeli Internet Association
+                                standards.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h3>3. Compatibility testing</h3>
-                <p>The next goal was to deliver consistent user experience across diverse browsers while interacting
-                    with the online ticket purchasing application.</p>
-                <p>we examined the entire ticket purchase process, END-TO-END, on various devices with different
-                    operating systems and different browsers, in order to detect defects.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>Compatibility Testing</h4>
+                        <ul>
+                            <li><strong>Goal:</strong> Consistent UX across browsers/OS.</li>
+                            <li>Executed E2E flows on various devices/browsers to detect cross-platform defects.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h3>4. Load Testing</h3>
-                <p>Load tests were carried out to define the peak of the website capacity depending on the number of
-                    concurrently working users, To make sure the purchasing process would cope with the desired load and
-                    operate with no interruptions.</p>
-                <p>performance testing applying using 'JMeter' software that emulating real-life users load.</p>
-                <p>then, applied the same amount of load on other movie theaters websites to compare their performance
-                    capabilities.</p>
-            </div>
+                    <div class="scope-card">
+                        <h4>Load Testing</h4>
+                        <ul>
+                            <li><strong>Tool:</strong> JMeter.</li>
+                            <li>Simulated concurrent users to find capacity peaks.</li>
+                            <li>Benchmarked performance against competitor cinema websites.</li>
+                        </ul>
+                    </div>
 
-            <div class="project-section">
-                <h3>5. I18N</h3>
-                <p>QA engineers carried out a set of localization checks to provide proper solution interface and
-                    functionality transparency for each, Hebrew and English. Medium priority defect were found only in
-                    chrome browser when changing the interface to EN, it doesn't stay that way when moving to other
-                    pages in PLANET site. The language return to HE automatically.</p>
+                    <div class="scope-card">
+                        <h4>I18N Testing</h4>
+                        <ul>
+                            <li><strong>Languages:</strong> Hebrew & English.</li>
+                            <li><strong>Defect:</strong> Interface language reverts from EN to HE automatically when
+                                navigating pages (Medium Priority).</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">

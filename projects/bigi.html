@@ -35,6 +35,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projects.css">
+    <link rel="stylesheet" href="../css/carousel.css">
     <style>
         .project-detail-hero {
             padding: 8rem 0 4rem;
@@ -97,55 +98,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Custom List Styles */
-        .scope-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
 
-        .scope-list li.main-item {
-            font-weight: 600;
-            color: var(--text-main);
-            margin-top: 1.5rem;
-        }
-
-        .scope-list li.main-item::before {
-            content: "►";
-            color: var(--accent-primary);
-            position: absolute;
-            left: 0;
-        }
-
-        .scope-list li.sub-item {
-            padding-left: 2rem;
-            font-size: 1rem;
-        }
-
-        .scope-list li.sub-item::before {
-            content: "▷";
-            color: var(--text-muted);
-            position: absolute;
-            left: 0.5rem;
-        }
-
-        .components-list li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .components-list li::before {
-            content: "⫸";
-            color: var(--accent-primary);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
 
         /* Services Grid */
         .services-grid {
@@ -228,24 +181,7 @@
             transition: transform 0.3s ease;
         }
 
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
 
-        .gallery-img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-img:hover {
-            transform: scale(1.02);
-        }
 
 
 
@@ -267,6 +203,37 @@
             width: 100%;
             height: 4px;
             background: var(--accent-primary);
+        }
+
+        .results-section h2 {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .results-list li::before {
+            content: "✎";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .more-projects-footer {
@@ -371,10 +338,19 @@
             display: block;
         }
 
-        .env-details span {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.4;
+
+
+        /* Custom Gallery Overrides for BIGI */
+        .bigi-gallery {
+            grid-template-columns: repeat(3, 1fr) !important;
+            max-width: 700px !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bigi-gallery .gallery-item {
+            aspect-ratio: 9/16 !important;
+            /* Assuming vertical mobile screenshots */
         }
     </style>
 </head>
@@ -490,49 +466,75 @@
                     The goal of this test cycle is to identify any issues related to its core functionality.<br>
                     I will be testing all of its features and functionalities such as:</p>
 
-                <ul class="scope-list">
-                    <li class="main-item">Registration</li>
-                    <li class="sub-item">Registration process- choose a free plan</li>
+                <div class="scope-grid">
+                    <!-- Registration Card -->
+                    <div class="scope-card">
+                        <h4>🔐 Registration</h4>
+                        <ul>
+                            <li>Registration process</li>
+                            <li>Choose a free plan</li>
+                        </ul>
+                    </div>
 
-                    <li class="main-item">Login</li>
-                    <li class="sub-item">Login to the platform with existing accounts</li>
-                    <li class="sub-item">Login to the platform with free accounts</li>
+                    <!-- Login Card -->
+                    <div class="scope-card">
+                        <h4>👤 Login</h4>
+                        <ul>
+                            <li>Login with existing accounts</li>
+                            <li>Login with free accounts</li>
+                        </ul>
+                    </div>
 
-                    <li class="main-item">Forgot password process</li>
-                    <li class="sub-item">Click on forgot password</li>
-                    <li class="sub-item">Reset password</li>
-                    <li class="sub-item">Create a new password</li>
-                    <li class="sub-item">Log in with the new password</li>
+                    <!-- Forgot Password Card -->
+                    <div class="scope-card">
+                        <h4>🔑 Forgot Password</h4>
+                        <ul>
+                            <li>Click on forgot password</li>
+                            <li>Reset password</li>
+                            <li>Create a new password</li>
+                            <li>Log in with new password</li>
+                        </ul>
+                    </div>
 
-                    <li class="main-item">Playback</li>
-                    <li class="sub-item">Play live channel</li>
-                    <li class="sub-item">Play free VOD asset</li>
-                    <li class="sub-item">Play Paid VOD asset</li>
+                    <!-- Playback Card -->
+                    <div class="scope-card">
+                        <h4>▶️ Playback</h4>
+                        <ul>
+                            <li>Play live channel</li>
+                            <li>Play free VOD asset</li>
+                            <li>Play Paid VOD asset</li>
+                        </ul>
+                    </div>
 
-                    <li class="main-item">Miscellaneous</li>
-                    <li class="sub-item">Add new profile</li>
-                    <li class="sub-item">Delete a profile</li>
-                    <li class="sub-item">Change platform language</li>
-                </ul>
+                    <!-- Misc Card -->
+                    <div class="scope-card">
+                        <h4>⚙️ Miscellaneous</h4>
+                        <ul>
+                            <li>Add new profile</li>
+                            <li>Delete a profile</li>
+                            <li>Change platform language</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">
                 <h2>Components Scope</h2>
-                <ul class="components-list">
-                    <li>Categories</li>
-                    <li>Contact, help, and support</li>
-                    <li>Countdown feature - Auto-switching between episodes after an episode is over</li>
-                    <li>Design</li>
-                    <li>Live shows</li>
-                    <li>Main page</li>
-                    <li>Menu</li>
-                    <li>Player functionality</li>
-                    <li>Search</li>
-                    <li>Series</li>
-                    <li>Settings</li>
-                    <li>Social media links</li>
-                    <li>Splash screen</li>
-                </ul>
+                <div class="components-cloud">
+                    <span class="component-tag">Categories</span>
+                    <span class="component-tag">Contact & Support</span>
+                    <span class="component-tag">Countdown Feature</span>
+                    <span class="component-tag">Design</span>
+                    <span class="component-tag">Live Shows</span>
+                    <span class="component-tag">Main Page</span>
+                    <span class="component-tag">Menu</span>
+                    <span class="component-tag">Player Functionality</span>
+                    <span class="component-tag">Search</span>
+                    <span class="component-tag">Series</span>
+                    <span class="component-tag">Settings</span>
+                    <span class="component-tag">Social Media Links</span>
+                    <span class="component-tag">Splash Screen</span>
+                </div>
             </div>
 
             <div class="project-section">
@@ -549,12 +551,14 @@
                 </div>
             </div>
 
-            <div class="project-section">
+            <div class="results-section">
                 <h2>Results</h2>
-                <p>20 bugs were found, including 9 high-priority issues that could lead to financial loss.</p>
-                <p>Clear instructions were given to recreate the issues and aid in their quick resolution.</p>
-                <p>Good communication between me and development teams helped ensure high quality and user satisfaction.
-                </p>
+                <ul class="results-list">
+                    <li>20 bugs were found, including 9 high-priority issues that could lead to financial loss.</li>
+                    <li>Clear instructions were given to recreate the issues and aid in their quick resolution.</li>
+                    <li>Good communication between me and development teams helped ensure high quality and user
+                        satisfaction.</li>
+                </ul>
             </div>
 
             <div class="project-section">
@@ -585,24 +589,47 @@
 
             <div class="project-section">
                 <h2>Documents</h2>
-                <div class="results-section" style="margin-top: 2rem;">
-                    <p style="text-align: center; font-style: italic; color: var(--text-muted);">
-                        As a result of customer's privacy agreement, I am unable to provide full details or attach any
-                        testing documents related to the testing process.
-                    </p>
-                </div>
+                <p>
+                    As a result of customer's privacy agreement, I am unable to provide full details or attach any
+                    testing documents related to the testing process.
+                </p>
             </div>
 
             <div class="project-section">
                 <h2>Gallery</h2>
-                <div class="project-gallery">
-                    <img src="../media/BIGI/Screenshot_20230407_154230_BIGI.jpg" alt="BIGI Screenshot 1"
-                        class="gallery-img" loading="lazy">
-                    <img src="../media/BIGI/Screenshot_20230407_155624_BIGI.jpg" alt="BIGI Screenshot 2"
-                        class="gallery-img" loading="lazy">
-                    <img src="../media/BIGI/Screenshot_20230407_154959_BIGI.jpg" alt="BIGI Screenshot 3"
-                        class="gallery-img" loading="lazy">
+                <div class="gallery-grid bigi-gallery">
+                    <div class="gallery-item">
+                        <img src="../media/BIGI/Screenshot_20230407_154230_BIGI.jpg" alt="BIGI Screenshot 1"
+                            loading="lazy">
+                        <div class="gallery-overlay"><span class="view-btn">View</span></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../media/BIGI/Screenshot_20230407_155624_BIGI.jpg" alt="BIGI Screenshot 2"
+                            loading="lazy">
+                        <div class="gallery-overlay"><span class="view-btn">View</span></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../media/BIGI/Screenshot_20230407_154959_BIGI.jpg" alt="BIGI Screenshot 3"
+                            loading="lazy">
+                        <div class="gallery-overlay"><span class="view-btn">View</span></div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Lightbox -->
+            <div id="lightbox" class="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <button class="lightbox-btn prev">&#10094;</button>
+                <div class="lightbox-content-wrapper">
+                    <img class="lightbox-img" src="" alt="">
+                    <div class="lightbox-video-container" style="display: none;">
+                        <video class="lightbox-video" controls>
+                            <source src="" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <button class="lightbox-btn next">&#10095;</button>
+            </div>
             </div>
 
         </article>
@@ -660,6 +687,7 @@
 
     <!-- Scripts -->
     <script src="../js/main.js"></script>
+    <script src="../js/carousel.js"></script>
     <script>
         // Randomly show 4 projects
         document.addEventListener('DOMContentLoaded', () => {

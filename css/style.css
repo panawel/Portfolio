@@ -1,15 +1,22 @@
 /* CSS Variables & Reset */
 :root {
-    /* Colors - Premium Dark Theme */
-    --bg-dark: #0a0a0a;
-    --bg-card: #141414;
-    --text-main: #e0e0e0;
-    --text-muted: #a0a0a0;
-    --accent-primary: #3b82f6;
-    /* Electric Blue */
-    --accent-secondary: #8b5cf6;
-    /* Violet */
-    --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    /* Colors - Modern Deep Slate Theme */
+    --bg-dark: #0B1121;
+    /* Rich Deep Slate instead of Black */
+    --bg-card: rgba(30, 41, 59, 0.7);
+    /* Semi-transparent slate */
+    --text-main: #f8fafc;
+    /* Slate 50 */
+    --text-muted: #cbd5e1;
+    /* Slate 300 */
+    --accent-primary: #38bdf8;
+    /* Sky Blue - More vibrant */
+    --accent-secondary: #818cf8;
+    /* Indigo - More vibrant */
+    --accent-gradient: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+    /* Multi-color vibrant gradient */
+
+    /* Layout */
 
     /* Layout */
     --container-width: 1200px;
@@ -41,10 +48,12 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background-color: var(--bg-dark);
-    /* Fallback */
+    /* Modern Mesh Gradient Background */
     background-image:
-        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(192, 132, 252, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
     background-attachment: fixed;
 }
 
@@ -112,8 +121,11 @@ h1 {
 /* Navigation */
 .navbar {
     height: var(--header-height);
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(11, 17, 33, 0.65);
+    /* More transparent */
+    backdrop-filter: blur(20px);
+    /* Stronger blur */
+    -webkit-backdrop-filter: blur(20px);
     position: fixed;
     top: 0;
     left: 0;
@@ -121,7 +133,7 @@ h1 {
     z-index: 1000;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar .container {
@@ -287,7 +299,7 @@ h1 {
     width: 100%;
     height: 100%;
     /* Desktop: Lighter darkness (0.4 to 0.8) */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+    background: linear-gradient(to bottom, rgba(11, 17, 33, 0.3), rgba(11, 17, 33, 0.85));
     backdrop-filter: blur(4px);
     z-index: -1;
 }
@@ -519,7 +531,11 @@ footer {
         /* Drawer style */
         max-width: 300px;
         height: 100vh;
-        background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #1e1b4b 100%);
+        height: 100vh;
+        background: rgba(11, 17, 33, 0.95);
+        /* Match new theme */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         /* Stronger Deep Black to Indigo */
         border-left: 1px solid rgba(255, 255, 255, 0.12);
         flex-direction: column;
