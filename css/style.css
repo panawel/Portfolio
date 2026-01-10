@@ -848,7 +848,9 @@ footer {
         justify-content: space-between;
         /* Spread items */
         overflow: hidden;
-        /* Fix background bleed */
+        /* Fix background bleed - Robust Solution */
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        mask-image: radial-gradient(white, black);
         -webkit-transform: translateZ(0);
         /* Safari fix */
         transform: translateZ(0);
