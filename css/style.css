@@ -842,7 +842,8 @@ footer {
 @media (max-width: 768px) {
     .floating-nav {
         top: 1.5rem;
-        padding: 0.4rem;
+        padding: 0.6rem;
+        /* Increased padding to prevent active item clipping */
         left: 5%;
         /* Explicit left positioning instead of center transform */
         width: 90%;
