@@ -851,10 +851,10 @@ footer {
         /* Fix background bleed - Robust Solution */
         -webkit-mask-image: -webkit-radial-gradient(white, black);
         mask-image: radial-gradient(white, black);
-        -webkit-transform: translateZ(0);
-        /* Safari fix */
-        transform: translateZ(0);
-        /* Mobile performance & clipping fix */
+        -webkit-transform: translateX(-50%) translateZ(0);
+        /* Safari fix + Centering */
+        transform: translateX(-50%) translateZ(0);
+        /* Mobile performance, centering & clipping fix */
     }
 
     .nav-item {
