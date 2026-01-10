@@ -843,6 +843,8 @@ footer {
     .floating-nav {
         top: 1.5rem;
         padding: 0.4rem;
+        left: 5%;
+        /* Explicit left positioning instead of center transform */
         width: 90%;
         /* flexible width on mobile */
         justify-content: space-between;
@@ -851,10 +853,16 @@ footer {
         /* Fix background bleed - Robust Solution */
         -webkit-mask-image: -webkit-radial-gradient(white, black);
         mask-image: radial-gradient(white, black);
-        -webkit-transform: translateX(-50%) translateZ(0);
-        /* Safari fix + Centering */
-        transform: translateX(-50%) translateZ(0);
-        /* Mobile performance, centering & clipping fix */
+        -webkit-transform: translateZ(0);
+        /* Safari clipping fix only */
+        transform: translateZ(0);
+        /* Mobile performance & clipping fix */
+    }
+
+    /* Override hidden state for specific positioning */
+    .floating-nav.nav-hidden {
+        transform: translateY(-200%) translateZ(0) !important;
+        -webkit-transform: translateY(-200%) translateZ(0) !important;
     }
 
     .nav-item {
