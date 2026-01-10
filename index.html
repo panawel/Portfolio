@@ -242,54 +242,54 @@
 <body>
 
     <!-- Navigation -->
-    <header class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Idan Pnuel</a>
-
-            <button class="mobile-menu-btn" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <div class="dropdown">
-                    <a href="projects.html" class="dropdown-toggle">Projects</a>
-                    <div class="dropdown-menu">
-                        <a href="projects/paybox.html">
-                            <img src="media/Paybox/logo.png" alt="Paybox Label" loading="lazy" width="24" height="24">
-                            Paybox
-                        </a>
-                        <a href="projects/signal.html">
-                            <img src="media/Singal/logo.png" alt="Signal Label" loading="lazy" width="24" height="24">
-                            Signal
-                        </a>
-                        <a href="projects/smart-crm.html">
-                            <img src="media/SMART CRM/logo.png" alt="Smart CRM Label" loading="lazy" width="24"
-                                height="24"> Smart CRM
-                        </a>
-                        <a href="projects/planet.html">
-                            <img src="media/PLANET/logo.png" alt="Planet Label" loading="lazy" width="24" height="24">
-                            Planet
-                        </a>
-                        <a href="projects/leumi-goodies.html">
-                            <img src="media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies Label" loading="lazy"
-                                width="24" height="24"> Leumi Goodies
-                        </a>
-                        <a href="projects/carrefour.html">
-                            <img src="media/Carrefour/logo.png" alt="Carrefour Label" loading="lazy" width="24"
-                                height="24"> Carrefour
-                        </a>
-                        <a href="projects/bigi.html">
-                            <img src="media/BIGI/logo.png" alt="BIGI Label" loading="lazy" width="24" height="24"> BIGI
-                        </a>
-                    </div>
-                </div>
-                <a href="certificates.html">Certificates</a>
-            </nav>
+    <!-- Navigation -->
+    <nav class="floating-nav">
+        <a href="index.html" class="nav-item active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+        </a>
+        <div class="nav-item-wrapper">
+            <a href="projects.html" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Projects</span>
+            </a>
+            <div class="project-logos-dropdown">
+                <a href="projects/paybox.html" class="project-logo-item" title="Paybox">
+                    <img src="media/Paybox/logo.png" alt="Paybox">
+                </a>
+                <a href="projects/signal.html" class="project-logo-item" title="Signal">
+                    <img src="media/Singal/logo.png" alt="Signal">
+                </a>
+                <a href="projects/smart-crm.html" class="project-logo-item" title="Smart CRM">
+                    <img src="media/SMART CRM/logo.png" alt="Smart CRM">
+                </a>
+                <a href="projects/planet.html" class="project-logo-item" title="Planet">
+                    <img src="media/PLANET/logo.png" alt="Planet">
+                </a>
+                <a href="projects/leumi-goodies.html" class="project-logo-item" title="Leumi Goodies">
+                    <img src="media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies">
+                </a>
+                <a href="projects/carrefour.html" class="project-logo-item" title="Carrefour">
+                    <img src="media/Carrefour/logo.png" alt="Carrefour">
+                </a>
+                <a href="projects/bigi.html" class="project-logo-item" title="BIGI">
+                    <img src="media/BIGI/logo.png" alt="BIGI">
+                </a>
+            </div>
         </div>
-    </header>
+        <a href="certificates.html" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>Certificates</span>
+        </a>
+    </nav>
 
     <!-- Main Content -->
     <main>

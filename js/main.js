@@ -7,7 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initActiveDropdown();
     initVideoResizeHandler();
     initScrollHint();
+    initSmartNav();
 });
+
+function initSmartNav() {
+    const nav = document.querySelector('.floating-nav');
+    if (!nav) return;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateNav = () => {
+        const currentScrollY = window.scrollY;
+
+        // Threshold of 100px to avoid hiding at the very top
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            nav.classList.add('nav-hidden');
+        } else {
+            nav.classList.remove('nav-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateNav);
+            ticking = true;
+        }
+    });
+}
 
 function initScrollHint() {
     const scrollHint = document.querySelector('.scroll-hint');
