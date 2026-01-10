@@ -867,16 +867,35 @@ footer {
     }
 
     .nav-item {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.9rem;
-        gap: 0.4rem;
+        padding: 0.5rem 0.5rem;
+        /* Reduced padding */
+        font-size: 0.85rem;
+        /* Smaller font */
+        gap: 0.3rem;
+        /* Reduced gap */
         flex: 1;
         /* evenly distribute */
+        min-width: 0;
+        /* Allow shrinking */
     }
 
     .nav-item svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        /* Smaller icons */
+        height: 16px;
+    }
+
+    /* Small mobile adjustments */
+    @media (max-width: 380px) {
+        .nav-item {
+            padding: 0.4rem 0.2rem;
+            font-size: 0.75rem;
+        }
+
+        .nav-item span {
+            display: inline-block;
+            /* Ensure span respects layout */
+        }
     }
 
     /* Ensure text is visible as per request */
