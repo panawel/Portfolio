@@ -847,6 +847,8 @@ footer {
         /* flexible width on mobile */
         justify-content: space-between;
         /* Spread items */
+        overflow: hidden;
+        /* Fix background bleed */
     }
 
     .nav-item {
