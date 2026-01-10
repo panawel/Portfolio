@@ -849,6 +849,10 @@ footer {
         /* Spread items */
         overflow: hidden;
         /* Fix background bleed */
+        -webkit-transform: translateZ(0);
+        /* Safari fix */
+        transform: translateZ(0);
+        /* Mobile performance & clipping fix */
     }
 
     .nav-item {
