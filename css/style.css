@@ -57,6 +57,12 @@ body {
     background-attachment: fixed;
 }
 
+@media (max-width: 1024px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -137,6 +143,13 @@ h1 {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
 }
 
 .navbar .container {
@@ -469,6 +482,19 @@ h1 {
     z-index: 1;
     pointer-events: none;
     user-select: none;
+    /* Ensure images behave nicely */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-element img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    /* Glassy look for icons */
+    filter: drop-shadow(0 4px 10px rgba(56, 189, 248, 0.3));
+    opacity: 0.8;
 }
 
 .float-1 {
@@ -496,7 +522,17 @@ h1 {
     bottom: 20px;
     left: 10%;
     animation-delay: 4.5s;
+    bottom: 20px;
+    left: 10%;
+    animation-delay: 4.5s;
     font-size: 2.2rem;
+}
+
+.float-5 {
+    top: 10%;
+    right: 45%;
+    animation-delay: 2s;
+    opacity: 0.15;
 }
 
 @keyframes float {
@@ -527,6 +563,11 @@ h1 {
     .floating-element {
         font-size: 1.5rem;
         /* Smaller emojis on mobile */
+    }
+
+    .floating-element img {
+        width: 40px;
+        height: 40px;
     }
 
     /* Adjust positions to be less intrusive */
@@ -658,8 +699,9 @@ footer {
         height: 100vh;
         background: rgba(11, 17, 33, 0.95);
         /* Match new theme */
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        /* Match new theme */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         /* Stronger Deep Black to Indigo */
         border-left: 1px solid rgba(255, 255, 255, 0.12);
         flex-direction: column;
@@ -1317,6 +1359,14 @@ footer {
     transform: scale(1.1);
 }
 
+/* Larger Doc Icons */
+.stack-item img.doc-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    /* Slightly less rounded for docs */
+}
+
 .stack-item span {
     font-size: 0.75rem;
     color: var(--text-muted);
@@ -1339,6 +1389,8 @@ footer {
     .stack-category-card {
         padding: 1.5rem;
         border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     .stack-items-grid {
@@ -1356,6 +1408,11 @@ footer {
         height: 32px;
     }
 
+    .stack-item img.doc-icon {
+        width: 48px;
+        height: 48px;
+    }
+
     .stack-item span {
         font-size: 0.7rem;
     }
@@ -1366,6 +1423,13 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+}
+
+.stack-separator {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 1.5rem auto;
 }
 
 @media (max-width: 900px) {
