@@ -1,5 +1,16 @@
 /* Projects Page Styles */
 
+/* Fix for Navbar Overlap on Project Detail Pages */
+.project-detail-hero {
+    padding-top: 13rem !important;
+}
+
+@media (max-width: 768px) {
+    .project-detail-hero {
+        padding-top: 7rem !important;
+    }
+}
+
 .projects-page {
     padding-top: calc(var(--header-height) + 4rem);
     padding-bottom: 4rem;
@@ -40,10 +51,11 @@
     aspect-ratio: 1 / 1;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     border-color: var(--accent-primary);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
@@ -105,17 +117,18 @@
     border-radius: 16px;
     color: var(--text-main);
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
     padding: 0.5rem;
+    will-change: transform;
 }
 
 .other-project-btn:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: var(--accent-primary);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -278,11 +291,11 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 2rem;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .scope-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.1);
 }

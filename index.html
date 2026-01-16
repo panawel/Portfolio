@@ -48,6 +48,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about_enhancement.css">
 
     <!-- Custom Home Page Styles -->
     <style>
@@ -79,161 +80,9 @@
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .role {
-            font-size: 1.5rem;
-            letter-spacing: 6px;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-            font-weight: 500;
-            background: transparent;
-            display: block;
-            padding: 0;
-            border: none;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Updated CTA styling for inside card */
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        /* Bio Section Redesign - Overlapping Glassmorphism */
-        .bio-section {
-            padding: 0 0 6rem 0;
-            background: transparent;
-            position: relative;
-            z-index: 10;
-            margin-top: -120px;
-            /* Pull up over the video */
-        }
-
-        .bio-card {
-            background: rgba(30, 41, 59, 0.65);
-            /* More transparent for glass effect */
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            /* Slightly brighter top border */
-            border-radius: 30px;
-            padding: 4rem 3rem;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            max-width: 1000px;
-            margin: 0 auto;
-            opacity: 0;
-            /* For animation */
-        }
-
-        /* Observer class for animation triggers */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .bio-quote-icon {
-            font-size: 4rem;
-            color: var(--accent-primary);
-            opacity: 0.2;
-            position: absolute;
-            top: -2rem;
-            left: 2rem;
-            background: var(--bg-dark);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: serif;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .bio-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 300;
-            font-style: normal;
-            line-height: 1.6;
-            color: var(--text-main);
-        }
-
-        /* CTA Section Redesign */
-        .cta-section {
-            padding-bottom: 6rem;
-        }
-
-        .cta-buttons {
-            gap: 2rem;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 3rem;
-            }
-
-            .role {
-                font-size: 1rem;
-                letter-spacing: 2px;
-            }
-
-            /* Adjust overlap for mobile */
-            .bio-section {
-                margin-top: -100px;
-                /* Higher overlap */
-                padding-bottom: 4rem;
-            }
-
-            .bio-card {
-                padding: 2.5rem 1rem;
-                background: rgba(15, 15, 15, 0.85);
-                /* Slightly less transparent for readability */
-                backdrop-filter: blur(20px);
-                border-radius: 20px;
-                margin: 0 1rem;
-                /* Ensure some side spacing */
-            }
-
-            .bio-text {
-                font-size: 1.1rem;
-            }
-
-            /* Compact Buttons One-After-Another */
-            .cta-buttons {
-                flex-direction: column !important;
-                /* Force column layout */
-                gap: 1rem;
-                flex-wrap: nowrap;
-                margin-top: 2rem !important;
-                width: 100%;
-            }
-
-            .cta-buttons .btn {
-                width: 100%;
-                /* Full width buttons */
-                padding: 1rem 1.2rem;
-                font-size: 1rem;
-                white-space: nowrap;
-                /* Keep text on one line */
-                display: flex;
-                align-items: center;
-                justify-content: center;
             }
         }
     </style>
@@ -323,31 +172,257 @@
             </div>
         </section>
 
-        <!-- Bio Section -->
-        <section class="bio-section">
+        <!-- About Section -->
+        <section class="bio-section" id="about">
             <div class="container">
-                <div class="bio-card animate-on-scroll">
-                    <!-- Bio Content Grid -->
-                    <div class="bio-grid">
-                        <div class="bio-item">
-                            <img src="media/symbols/timeline logo (1).png" alt="Timeline - 8 Years Experience"
-                                class="bio-feature-icon" loading="lazy" width="80" height="80">
-                            <p>I have a keen eye for detail developed through 8 years of previous professional
-                                experience -</p>
-                        </div>
-                        <div class="bio-item">
-                            <img src="media/symbols/QA logo.png" alt="QA Processes"
-                                class="bio-feature-icon bio-feature-icon-lg" loading="lazy" width="100" height="100">
+                <!-- About Me Section Header -->
+                <div class="section-header-styled animate-on-scroll">
+                    <div class="stack-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h2>About Me</h2>
+                </div>
 
-                            <p>that applied over the past two years to QA processes to ensure that the products I work
-                                on meet the highest standards of quality and performance.</p>
+                <div class="bio-card animate-on-scroll">
+                    <div class="about-content-wrapper">
+
+                        <!-- Floating Elements -->
+                        <div class="floating-element float-1">🎮</div>
+                        <div class="floating-element float-2">🚀</div>
+                        <div class="floating-element float-3">🐛</div>
+                        <div class="floating-element float-4">⚡</div>
+
+                        <div class="about-text-container">
+                            <p class="about-lead">
+                                Highly motivated <span class="highlight">QA Engineer</span> with a sharp eye for detail.
+                                🎯
+                            </p>
+                            <p class="about-sub">
+                                I specialize in reducing bug life cycles and optimizing workflows with <span
+                                    class="highlight">AI tools</span>.
+                                Always eager to master new technologies and tackle dynamic challenges.
+                                When I'm not testing, I'm exploring new <span class="highlight">tech & gaming</span>. 👾
+                            </p>
                         </div>
                     </div>
-                    <!-- CTA Buttons inside Card -->
-                    <div class="cta-buttons animate-on-scroll" style="transition-delay: 0.2s; margin-top: 3rem;">
-                        <a href="projects.html" class="btn btn-primary">View Projects</a>
-                        <a href="certificates.html" class="btn btn-secondary">View Certificates</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Stack Section -->
+        <section class="stack-section">
+            <div class="container">
+                <div class="section-header-styled animate-on-scroll">
+                    <div class="stack-icon-wrapper">
+                        <!-- Simple Book/Stack Icon placeholder or SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="section-icon">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
                     </div>
+                    <h2>My Stack</h2>
+                </div>
+
+                <div class="stack-categories-grid">
+
+                    <!-- Category 1: Web & Mobile Test Docs -->
+                    <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.1s;">
+                        <h3>Web & Mobile Test Docs</h3>
+                        <div class="stack-items-grid">
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/docs.png" alt="STP"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>STP</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/docs.png" alt="STD"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>STD</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/docs.png" alt="STR"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>STR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Test Automation -->
+                    <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.15s;">
+                        <h3>Tests Automation</h3>
+                        <div class="stack-items-grid">
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/playwright.svg" alt="Playwright"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Playwright</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/pytest.svg" alt="Pytest"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Pytest</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/appium.svg" alt="Appium"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Appium</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/maestro.svg" alt="Maestro"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Maestro</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Programming -->
+                    <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.2s;">
+                        <h3>Programming</h3>
+                        <div class="stack-items-grid">
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/Python1.svg" alt="Python"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Python</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/javascript.svg" alt="JavaScript"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/html.svg" alt="HTML"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>HTML</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/CSS3.svg" alt="CSS"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>CSS</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/git.svg" alt="Git"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Git</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/sourcetree.svg" alt="Sourcetree"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Sourcetree</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Databases & APIs -->
+                    <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.25s;">
+                        <h3>Databases & APIs</h3>
+                        <div class="stack-items-grid">
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/postman.svg" alt="Postman"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Postman</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/mongodb.svg" alt="MongoDB"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/redis.svg" alt="Redis"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Redis</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/sql.png" alt="SQL"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>SSMS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stack-split-row">
+                        <!-- Category 5: Project Management & Bug Tracking -->
+                        <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.3s;">
+                            <h3>Project Management & Bug Tracking</h3>
+                            <div class="stack-items-grid">
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/jira.svg" alt="Jira"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>Jira</span>
+                                </div>
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/xray.svg" alt="Xray"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>Xray</span>
+                                </div>
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/asana.svg" alt="Asana"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>Asana</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category 10: Monitoring & Analytics -->
+                        <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.35s;">
+                            <h3>Monitoring & Analytics</h3>
+                            <div class="stack-items-grid">
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/Kibana1.svg" alt="Kibana"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>Kibana</span>
+                                </div>
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/trackjs-cropped.svg" alt="TrackJS"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>TrackJS</span>
+                                </div>
+                                <div class="stack-item">
+                                    <img src="media/symbols/myStack/snowflake.svg" alt="Snowflake"
+                                        onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                    <span>Snowflake</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 6: AI Tools -->
+                    <div class="stack-category-card animate-on-scroll" style="transition-delay: 0.35s;">
+                        <h3>AI Tools</h3>
+                        <div class="stack-items-grid">
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/Antigravity.svg" alt="Antigravity"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Antigravity</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/Gemini1.svg" alt="Gemini"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>Gemini</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/notebooklm-icon.svg" alt="NotebookLM"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>NotebookLM</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/IDX1.svg" alt="IDX"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>IDX</span>
+                            </div>
+                            <div class="stack-item">
+                                <img src="media/symbols/myStack/ChatGPT.svg" alt="ChatGPT"
+                                    onerror="this.onerror=null; this.src='media/symbols/QA logo.png';">
+                                <span>ChatGPT</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </section>
