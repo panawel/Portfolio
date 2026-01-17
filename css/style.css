@@ -592,7 +592,48 @@ h1 {
         opacity: 0.1;
     }
 
-    /* bio-card overrides removed to allow glassmorphism on mobile */
+}
+
+/* About Logos Row */
+.about-logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.about-logos-row img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(56, 189, 248, 0.3));
+    transition: transform 0.3s ease;
+    opacity: 0.9;
+}
+
+.about-logos-row img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Floating Elements (Removed from HTML, keeping CSS for backup or removing if requested, 
+   but for now I will comment them out or just leave them there unused to avoid huge diffs 
+   unless user strictly wants cleanup. User asked to "change it to be like this", so I'll leave the CSS alone 
+   and just append the new styles or replace the floating block if I was replacing that specific block. 
+   Actually, I can replace the floating block styles with the new row styles to keep the file clean-ish if the tool allows large replaces? 
+   No, better to just append the new styles after .about-text. */
+
+@media (max-width: 768px) {
+    .about-logos-row {
+        gap: 1rem;
+    }
+
+    .about-logos-row img {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* CTA Buttons */
@@ -1043,6 +1084,7 @@ footer {
         /* evenly distribute */
         min-width: 0;
         /* Allow shrinking */
+        -webkit-tap-highlight-color: transparent;
     }
 
     .nav-item svg {
@@ -1359,6 +1401,19 @@ footer {
     transform: scale(1.1);
 }
 
+/* Custom size for Pytest & Playwright logos */
+.stack-item img.stack-logo-lg {
+    width: 65px;
+    height: 65px;
+}
+
+@media (max-width: 768px) {
+    .stack-item img.stack-logo-lg {
+        width: 55px;
+        height: 55px;
+    }
+}
+
 /* Larger Doc Icons */
 .stack-item img.doc-icon {
     width: 64px;
@@ -1401,6 +1456,9 @@ footer {
         width: 85px;
         height: 85px;
         padding: 0.75rem;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .stack-item img {
