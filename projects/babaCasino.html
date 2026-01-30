@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baba Casino | Idan Pnuel</title>
+    <meta name="description" content="Baba Casino project details - Social sweepstakes platform QA">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        /* --- Casino Theme Custom Overrides --- */
+        :root {
+            --casino-gold: #eebb55;
+            /* More metallic gold */
+            --casino-gold-dim: #b8860b;
+            --casino-red-dark: #4a0404;
+            --casino-red: #8b0000;
+            --casino-black: #121212;
+            /* Lightened from #080808 */
+            --casino-gradient-gold: linear-gradient(135deg, #d4af37 0%, #fcf6ba 50%, #aa771c 100%);
+            --casino-card-bg: rgba(20, 20, 20, 0.6);
+            /* More transparent to let bg show */
+            --casino-card-border: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            background-color: var(--casino-black);
+            background-image:
+                /* Top Center Red Glow - Increased Redness */
+                radial-gradient(circle at 50% -10%, rgba(139, 0, 0, 0.35) 0%, transparent 70%),
+                /* Coin Shine (Gold) - Top Right - Shiny & Modern */
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 35%),
+                /* Bottom Right Gold Glow */
+                radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.2) 0%, transparent 50%),
+                /* Left Side Deep Red */
+                radial-gradient(circle at 0% 40%, rgba(80, 4, 4, 0.3) 0%, transparent 50%),
+                /* Texture Pattern */
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 30px);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image:
+                    /* Mobile Red - Visible but controlled */
+                    radial-gradient(circle at 50% -10%, rgba(139, 0, 0, 0.25) 0%, transparent 60%),
+                    /* Mobile Gold Shine */
+                    radial-gradient(circle at 85% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                    /* Mobile Bottom Gold */
+                    radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 30px);
+            }
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+        }
+
+        h1.gold-text {
+            background: var(--casino-gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #d4af37;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero Section */
+        .project-detail-hero {
+            padding-top: 8rem !important;
+            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .casino-hero-image-container {
+            position: relative;
+            padding: 8px;
+            background: linear-gradient(45deg, #7c5e10, #d4af37, #7c5e10);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 450px;
+            /* Reduced from 600px */
+            /* Limit width */
+            margin: 0 auto 3rem;
+            cursor: pointer;
+            /* Indicate clickable */
+            transition: transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            /* Remove blue highlight on mobile */
+        }
+
+        .casino-hero-image-container:active {
+            transform: scale(0.98);
+        }
+
+        .project-media {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            display: block;
+            border: 2px solid #000;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            /* Ensure spacing */
+            margin-bottom: 3rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+            border: 1px solid #444;
+            color: #d4af37;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-badge:hover {
+            border-color: var(--casino-gold);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* general content spacing */
+        .project-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 4rem;
+        }
+
+        .project-section {
+            margin-bottom: 6rem;
+            /* More breathing room */
+        }
+
+        .project-section h2 {
+            border-left: 4px solid var(--casino-gold);
+            padding-left: 1.5rem;
+            color: var(--casino-gold);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Glassmorphism Cards */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* Better sizing */
+            gap: 2rem;
+        }
+
+        .scope-card,
+        .env-card,
+        .automation-card {
+            background: var(--casino-card-bg);
+            border: 1px solid var(--casino-card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scope-card:hover,
+        .env-card:hover,
+        .automation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--casino-gold);
+            background: rgba(30, 30, 30, 0.85);
+        }
+
+        .scope-card h4 {
+            color: #f0f0f0;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* Custom Icon Styling for Headers */
+        .scope-card h4::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--casino-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--casino-gold);
+        }
+
+        .scope-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .scope-card li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .scope-card li::before {
+            content: "♦";
+            color: var(--casino-gold-dim);
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Automation Section - Special Styling */
+        .automation-section {
+            background: linear-gradient(160deg, rgba(74, 4, 4, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .automation-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--casino-red), transparent);
+        }
+
+        .automation-content h3 {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .automation-list {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .automation-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .automation-icon {
+            font-size: 1.5rem;
+            color: var(--casino-gold);
+            margin-top: -4px;
+        }
+
+        /* Device Lab */
+        .testing-env-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .env-card {
+            flex-direction: row;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .env-icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+        }
+
+        .env-details strong {
+            display: block;
+            color: #f0f0f0;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .env-details span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 768px) {
+            h1.gold-text {
+                font-size: 2.5rem;
+            }
+
+            .project-detail-hero {
+                padding-top: 6rem !important;
+            }
+
+            .tech-stack {
+                gap: 0.5rem;
+            }
+
+            .scope-grid,
+            .testing-env-grid {
+                grid-template-columns: 1fr;
+                /* Stack on mobile */
+            }
+
+            .automation-section {
+                padding: 1.5rem;
+            }
+
+            .env-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+        }
+
+        .floating-nav {
+            background: rgba(5, 5, 5, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Custom Footer Styles for Baba Casino --- */
+        /* Override specifically for this page's footer to match the casino theme */
+        .more-projects-footer {
+            background: linear-gradient(180deg, #121212 0%, #1a0505 100%);
+            border-top: 1px solid var(--casino-gold-dim);
+        }
+
+        .more-projects-title {
+            color: var(--casino-gold);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Improve the random project cards for this theme */
+        .other-project-btn {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .other-project-btn:hover {
+            background: rgba(40, 40, 40, 0.8);
+            border-color: var(--casino-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .other-project-name {
+            color: #e0e0e0;
+        }
+
+        /* Custom Back Button */
+        .btn-secondary {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%) !important;
+            border: 1px solid var(--casino-gold-dim) !important;
+            color: var(--casino-gold) !important;
+            font-family: 'Playfair Display', serif !important;
+            letter-spacing: 1px;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+            background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%) !important;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="floating-nav">
+        <a href="../index.html" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+        </a>
+        <div class="nav-item-wrapper">
+            <a href="../projects.html" class="nav-item active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Projects</span>
+            </a>
+            <div class="project-logos-dropdown">
+                <a href="babaCasino.html" class="project-logo-item" title="Baba Casino">
+                    <img src="../media/Baba Casino/400x400ia-75.webp" alt="Baba Casino">
+                </a>
+                <a href="paybox.html" class="project-logo-item" title="Paybox">
+                    <img src="../media/Paybox/logo.png" alt="Paybox">
+                </a>
+                <a href="signal.html" class="project-logo-item" title="Signal">
+                    <img src="../media/Singal/logo.png" alt="Signal">
+                </a>
+                <a href="smart-crm.html" class="project-logo-item" title="Smart CRM">
+                    <img src="../media/SMART CRM/logo.png" alt="Smart CRM">
+                </a>
+                <a href="planet.html" class="project-logo-item" title="Planet">
+                    <img src="../media/PLANET/logo.png" alt="Planet">
+                </a>
+                <a href="leumi-goodies.html" class="project-logo-item" title="Leumi Goodies">
+                    <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies">
+                </a>
+                <a href="carrefour.html" class="project-logo-item" title="Carrefour">
+                    <img src="../media/Carrefour/logo.png" alt="Carrefour">
+                </a>
+                <a href="bigi.html" class="project-logo-item" title="BIGI">
+                    <img src="../media/BIGI/logo.png" alt="BIGI">
+                </a>
+            </div>
+        </div>
+        <a href="../certificates.html" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>Certificates</span>
+        </a>
+    </nav>
+
+    <main>
+        <section class="project-detail-hero">
+            <div class="container" style="width: 100%; max-width: 1200px;">
+                <h1 class="gold-text">Baba Casino</h1>
+                <p class="eyebrow">Premier Social Sweepstakes Platform</p>
+
+                <div class="casino-hero-image-container" id="casino-slot-container">
+                    <img src="../media/Baba Casino/Baba_Wild_Slot_image.png" alt="Baba Casino Slot Interface"
+                        class="project-media" id="casino-slot-image">
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-badge">Desktop</span>
+                    <span class="tech-badge">Mobile</span>
+                    <div style="flex-basis: 100%; height: 0;"></div>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Playwright</span>
+                    <span class="tech-badge">MongoDB</span>
+                    <span class="tech-badge">Kibana</span>
+                </div>
+            </div>
+        </section>
+
+        <article class="project-content">
+
+            <div class="project-section">
+                <h2>Overview</h2>
+                <div class="scope-card">
+                    <p style="color: var(--text-main); font-size: 1.1rem; line-height: 1.8;">
+                        Baba Casino is a premier social sweepstakes platform tailored for the US market. The application
+                        features a dual-currency system (Gold Coins and Sweeps Coins) and provides a legally compliant,
+                        cross-platform gaming experience across Web, Mobile Web (WebView), and Native environments.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Core QA Responsibilities</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">
+                    Managed end-to-end Quality Assurance for a high-traffic gaming ecosystem, ensuring seamless
+                    integration between frontend features and complex backend services.
+                </p>
+
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h4>Payment & Compliance</h4>
+                        <ul>
+                            <li>Validated 3rd-party payment gateways (Nuvei, GIDX, Skrill) and KYC flows.</li>
+                            <li>Executed 3DS verification tests.</li>
+                            <li>Ensured secure transaction handling compliant with US regulations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>LiveOps & Engagement</h4>
+                        <ul>
+                            <li>Verified real-time features including leaderboards, tournaments, and mini-games.</li>
+                            <li>Tested promotional systems (coupons, daily rewards).</li>
+                            <li>Validated dynamic pop-up system logic.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Data & Analytics</h4>
+                        <ul>
+                            <li>Performed deep-dive validation of event logging using Snowflake (SQL).</li>
+                            <li>Monitored server health and logs via Kibana.</li>
+                            <li>Ensured data integrity across all environments.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scope-card">
+                        <h4>Infrastructure</h4>
+                        <ul>
+                            <li>Validated database persistence (MongoDB, Redis).</li>
+                            <li>Managed feature configurations via Admin environments using JSON/CSV.</li>
+                            <li>Coordinated release deployments.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>The "Plus" Side: Automation</h2>
+                <div class="automation-section">
+                    <div class="automation-content">
+                        <h3>Self-Taught Automation Initiative</h3>
+                        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                            Driven by a desire to optimize repetitive tasks, I independently learned and implemented an
+                            automation layer.
+                        </p>
+                        <div class="automation-list">
+                            <div class="automation-item">
+                                <span class="automation-icon">★</span>
+                                <div>
+                                    <strong style="color: #f0f0f0;">Regression Suite</strong>
+                                    <p style="color: var(--text-muted); margin-top: 0.2rem;">Developed a custom
+                                        automated smoke and regression suite using Python and Playwright with the Pytest
+                                        framework.</p>
+                                </div>
+                            </div>
+                            <div class="automation-item">
+                                <span class="automation-icon">★</span>
+                                <div>
+                                    <strong style="color: #f0f0f0;">AI Integration</strong>
+                                    <p style="color: var(--text-muted); margin-top: 0.2rem;">Leveraged AI tools (Gemini,
+                                        Antigravity) to build small Python utilities to speed up daily manual workflows.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="automation-item">
+                                <span class="automation-icon">★</span>
+                                <div>
+                                    <strong style="color: #f0f0f0;">Impact</strong>
+                                    <p style="color: var(--text-muted); margin-top: 0.2rem;">Reduced manual time for
+                                        release-day "sanity" checks and allowed for faster verification of core gameplay
+                                        flows.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Device Lab</h2>
+                <div class="testing-env-grid">
+                    <div class="env-card">
+                        <div class="env-icon-box">📱</div>
+                        <div class="env-details">
+                            <strong>Mobile Ecosystem</strong>
+                            <span>iOS (iPhone XS through 11+)</span>
+                            <span>Android (Samsung tablets/handsets)</span>
+                            <span>Native Wrapper & WebView</span>
+                        </div>
+                    </div>
+                    <div class="env-card">
+                        <div class="env-icon-box">💻</div>
+                        <div class="env-details">
+                            <strong>Desktop Platforms</strong>
+                            <span>Windows & macOS Cross-browser</span>
+                            <span>Chrome, Safari, Firefox</span>
+                            <span>Responsive Design Validation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <!-- More Projects Footer -->
+            <section class="more-projects-footer">
+                <div class="container">
+                    <h3 class="more-projects-title">Explore More Projects</h3>
+                    <div id="random-projects-container" class="other-projects"
+                        style="border-top: none; margin-top: 0; padding-top: 0;">
+                        <a href="babaCasino.html" class="other-project-btn" style="display:none;" data-id="baba">
+                            <img src="../media/Baba Casino/400x400ia-75.webp" alt="Baba Casino"
+                                class="other-project-logo">
+                            <span class="other-project-name">Baba Casino</span>
+                        </a>
+                        <a href="paybox.html" class="other-project-btn" style="display:none;" data-id="paybox">
+                            <img src="../media/Paybox/logo.png" alt="Paybox" class="other-project-logo">
+                            <span class="other-project-name">Paybox</span>
+                        </a>
+                        <a href="signal.html" class="other-project-btn" style="display:none;" data-id="signal">
+                            <img src="../media/Singal/logo.png" alt="Signal" class="other-project-logo">
+                            <span class="other-project-name">Signal</span>
+                        </a>
+                        <a href="smart-crm.html" class="other-project-btn" style="display:none;" data-id="smart-crm">
+                            <img src="../media/SMART CRM/logo.png" alt="Smart CRM" class="other-project-logo">
+                            <span class="other-project-name">Smart CRM</span>
+                        </a>
+                        <a href="planet.html" class="other-project-btn" style="display:none;" data-id="planet">
+                            <img src="../media/PLANET/logo.png" alt="Planet" class="other-project-logo">
+                            <span class="other-project-name">Planet</span>
+                        </a>
+                        <a href="leumi-goodies.html" class="other-project-btn" style="display:none;" data-id="leumi">
+                            <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies"
+                                class="other-project-logo">
+                            <span class="other-project-name">Leumi Goodies</span>
+                        </a>
+                        <a href="carrefour.html" class="other-project-btn" style="display:none;" data-id="carrefour">
+                            <img src="../media/Carrefour/logo.png" alt="Carrefour" class="other-project-logo">
+                            <span class="other-project-name">Carrefour</span>
+                        </a>
+                        <a href="bigi.html" class="other-project-btn" style="display:none;" data-id="bigi">
+                            <img src="../media/BIGI/logo.png" alt="BIGI" class="other-project-logo">
+                            <span class="other-project-name">BIGI</span>
+                        </a>
+                    </div>
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <!-- Random Project Script -->
+    <script>
+        // Randomly show 4 projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            const currentId = 'baba'; // Exclude current project if desired, or just shuffle all. logic below just shuffles.
+            // Fisher-Yates shuffle
+            for (let i = projects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [projects[i], projects[j]] = [projects[j], projects[i]];
+            }
+            // Show first 4
+            let count = 0;
+            projects.forEach(p => {
+                if (count < 4 && p.dataset.id !== 'baba') { // Optional exclusion of self
+                    p.style.display = 'flex';
+                    count++;
+                }
+            });
+            // If we didn't get 4 (because current was one of first 4), show one more if available
+            if (count < 4) {
+                // simplify: just show first 4 non-self.
+            }
+
+            // Simpler approach matching paybox.html but filtering:
+            // Hide all
+            projects.forEach(p => p.style.display = 'none');
+
+            let shown = 0;
+            for (let p of projects) {
+                if (p.dataset.id !== 'baba' && shown < 4) {
+                    p.style.display = 'flex';
+                    shown++;
+                }
+            }
+        });
+
+        // Coin Animation System
+        const CoinAnimationSystem = {
+            canvas: null,
+            ctx: null,
+            coins: [],
+            isRunning: false,
+            width: 0,
+            height: 0,
+            dpr: 1,
+            stopTimeout: null,
+
+            init() {
+                // Create Canvas
+                this.canvas = document.createElement('canvas');
+                this.canvas.style.position = 'fixed';
+                this.canvas.style.top = '0';
+                this.canvas.style.left = '0';
+                this.canvas.style.width = '100%';
+                this.canvas.style.height = '100%';
+                this.canvas.style.zIndex = '9999'; // On top of everything
+                this.canvas.style.pointerEvents = 'none'; // Click-through
+                document.body.appendChild(this.canvas);
+
+                this.ctx = this.canvas.getContext('2d');
+                this.dpr = window.devicePixelRatio || 1;
+
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+
+                // Start the show
+                this.startJackpot();
+            },
+
+            resize() {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight;
+                this.canvas.width = this.width * this.dpr;
+                this.canvas.height = this.height * this.dpr;
+                this.ctx.scale(this.dpr, this.dpr);
+            },
+
+            startJackpot() {
+                // Allow immediate restart:
+                // 1. Cancel any pending stop timer
+                if (this.stopTimeout) {
+                    clearTimeout(this.stopTimeout);
+                    this.stopTimeout = null;
+                }
+
+                // Ensure canvas exists and is visible
+                this.ensureCanvas();
+
+                // Spawn coins
+                const coinCount = window.innerWidth < 768 ? 40 : 80; // Performance optimization
+
+                this.coins = []; // Reset coins
+                for (let i = 0; i < coinCount; i++) {
+                    this.coins.push(this.createCoin());
+                }
+
+                if (!this.isRunning) {
+                    this.isRunning = true;
+                    this.animate();
+                }
+
+                // Stop after 4 seconds
+                this.stopTimeout = setTimeout(() => {
+                    this.isRunning = false;
+                    // Fade out canvas
+                    if (this.canvas) {
+                        this.canvas.style.transition = 'opacity 1s ease';
+                        this.canvas.style.opacity = '0';
+                    }
+                }, 4000);
+            },
+
+            ensureCanvas() {
+                if (!this.canvas) {
+                    // Create if doesn't exist (initial run or if removed)
+                    this.canvas = document.createElement('canvas');
+                    this.canvas.style.position = 'fixed';
+                    this.canvas.style.top = '0';
+                    this.canvas.style.left = '0';
+                    this.canvas.style.width = '100%';
+                    this.canvas.style.height = '100%';
+                    this.canvas.style.zIndex = '9999';
+                    this.canvas.style.pointerEvents = 'none';
+                    document.body.appendChild(this.canvas);
+                    this.ctx = this.canvas.getContext('2d');
+                    this.resize();
+                } else {
+                    // Reset existing canvas
+                    this.canvas.style.opacity = '1';
+                    this.canvas.style.transition = 'none'; // Instant appear
+                    // Ensure it's in body (rare edge case if removed)
+                    if (!document.body.contains(this.canvas)) {
+                        document.body.appendChild(this.canvas);
+                    }
+                }
+            },
+
+            createCoin() {
+                return {
+                    x: this.width / 2,
+                    y: this.height + 50, // Start below screen
+                    vx: (Math.random() - 0.5) * (this.width / 20), // Spread
+                    vy: -(Math.random() * 10 + 10), // Upward force
+                    gravity: 0.25,
+                    size: Math.random() * 10 + 15, // 15-25px
+                    color: '#FFD700',
+                    rotation: Math.random() * Math.PI,
+                    rotationSpeed: (Math.random() - 0.5) * 0.2
+                };
+            },
+
+            animate() {
+                if (!this.isRunning) return;
+
+                this.ctx.clearRect(0, 0, this.width, this.height);
+
+                for (let i = 0; i < this.coins.length; i++) {
+                    let coin = this.coins[i];
+
+                    // Physics
+                    coin.x += coin.vx;
+                    coin.y += coin.vy;
+                    coin.vy += coin.gravity;
+                    coin.rotation += coin.rotationSpeed;
+
+                    // Draw Coin
+                    this.ctx.save();
+                    this.ctx.translate(coin.x, coin.y);
+                    this.ctx.scale(Math.cos(coin.rotation), 1); // 3D spin effect
+
+                    // Coin Body
+                    this.ctx.beginPath();
+                    this.ctx.arc(0, 0, coin.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = coin.color;
+                    this.ctx.fill();
+
+                    // Coin Border (Inner)
+                    this.ctx.lineWidth = 2;
+                    this.ctx.strokeStyle = '#DAA520'; // GoldenRod
+                    this.ctx.stroke();
+
+                    // Inner Symbol ($)
+                    this.ctx.fillStyle = '#DAA520';
+                    this.ctx.font = `bold ${coin.size * 1.2}px Inter, sans-serif`;
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+                    this.ctx.fillText('$', 0, 2);
+
+                    this.ctx.restore();
+                }
+
+                requestAnimationFrame(() => this.animate());
+            }
+        };
+
+        // Run when page loads
+        window.addEventListener('load', () => {
+            CoinAnimationSystem.init();
+        });
+
+        // Click Trigger
+        const slotImage = document.getElementById('casino-slot-container'); // Using container for bigger hit area
+        if (slotImage) {
+            slotImage.addEventListener('click', () => {
+                CoinAnimationSystem.startJackpot();
+            });
+        }
+    </script>
+</body>
+
+</html>
