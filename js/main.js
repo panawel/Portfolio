@@ -300,8 +300,8 @@ const FireworksSystem = {
     ctx: null,
     particles: [],
     isRunning: false,
-    width: 300,
-    height: 300,
+    width: 800,
+    height: 600,
     dpr: 1,
 
     init(container) {
@@ -336,9 +336,9 @@ const FireworksSystem = {
         const originY = (this.height / 2) + offsetY;
         const colors = ['#3b82f6', '#8b5cf6', '#e0e0e0', '#ffffff', '#FFD700'];
 
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 40; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 2 + 1;
+            const velocity = Math.random() * 3 + 2; // Bigger spread
             this.particles.push({
                 x: originX,
                 y: originY,
@@ -347,7 +347,8 @@ const FireworksSystem = {
                 alpha: 1,
                 color: colors[Math.floor(Math.random() * colors.length)],
                 decay: Math.random() * 0.02 + 0.01,
-                gravity: 0.05
+                gravity: 0.05,
+                size: Math.random() * 1.5 + 1.5 // Variable size (1.5px - 3px)
             });
         }
 
@@ -376,8 +377,13 @@ const FireworksSystem = {
                 this.ctx.save();
                 this.ctx.globalAlpha = p.alpha;
                 this.ctx.fillStyle = p.color;
+
+                // Glow Effect
+                this.ctx.shadowBlur = 8;
+                this.ctx.shadowColor = p.color;
+
                 this.ctx.beginPath();
-                this.ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 this.ctx.fill();
                 this.ctx.restore();
             }
@@ -409,7 +415,7 @@ function triggerFireworks(container) {
     // Main explosion (now random position)
     FireworksSystem.addExplosion(getRandomX(), getRandomY());
 
-    // Two more random explosions
+    // 3 more random explosions (Total 4)
     setTimeout(() => {
         FireworksSystem.addExplosion(getRandomX(), getRandomY());
     }, 150);
@@ -417,6 +423,10 @@ function triggerFireworks(container) {
     setTimeout(() => {
         FireworksSystem.addExplosion(getRandomX(), getRandomY());
     }, 300);
+
+    setTimeout(() => {
+        FireworksSystem.addExplosion(getRandomX(), getRandomY());
+    }, 450);
 }
 
 function initActiveDropdown() {

@@ -19,32 +19,34 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projects.css">
     <style>
-        /* --- Casino Theme Custom Overrides --- */
+        /* --- Casino Theme Custom Overrides (Royal Purple Edition) --- */
         :root {
-            --casino-gold: #eebb55;
-            /* More metallic gold */
-            --casino-gold-dim: #b8860b;
-            --casino-red-dark: #4a0404;
-            --casino-red: #8b0000;
-            --casino-black: #121212;
-            /* Lightened from #080808 */
-            --casino-gradient-gold: linear-gradient(135deg, #d4af37 0%, #fcf6ba 50%, #aa771c 100%);
-            --casino-card-bg: rgba(20, 20, 20, 0.6);
-            /* More transparent to let bg show */
+            --casino-gold: #ffd700;
+            /* Classic bright gold */
+            --casino-gold-dim: #c5a000;
+            --casino-red-dark: #1a0b2e;
+            /* Deepest Purple */
+            --casino-red: #663399;
+            /* Rebecca Purple */
+            --casino-black: #050510;
+            /* Midnight Blue/Black */
+            --casino-gradient-gold: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%);
+            --casino-card-bg: rgba(20, 20, 30, 0.6);
+            /* Blue-tinted dark */
             --casino-card-border: rgba(212, 175, 55, 0.3);
         }
 
         body {
             background-color: var(--casino-black);
             background-image:
-                /* Top Center Red Glow - Increased Redness */
-                radial-gradient(circle at 50% -10%, rgba(139, 0, 0, 0.35) 0%, transparent 70%),
+                /* Top Center Purple Glow */
+                radial-gradient(circle at 50% -10%, rgba(75, 0, 130, 0.4) 0%, transparent 70%),
                 /* Coin Shine (Gold) - Top Right - Shiny & Modern */
-                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 35%),
                 /* Bottom Right Gold Glow */
-                radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.2) 0%, transparent 50%),
-                /* Left Side Deep Red */
-                radial-gradient(circle at 0% 40%, rgba(80, 4, 4, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                /* Left Side Deep Purple */
+                radial-gradient(circle at 0% 40%, rgba(40, 10, 60, 0.4) 0%, transparent 50%),
                 /* Texture Pattern */
                 repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 30px);
             font-family: 'Inter', sans-serif;
@@ -55,12 +57,12 @@
         @media (max-width: 768px) {
             body {
                 background-image:
-                    /* Mobile Red - Visible but controlled */
-                    radial-gradient(circle at 50% -10%, rgba(139, 0, 0, 0.25) 0%, transparent 60%),
+                    /* Mobile Purple */
+                    radial-gradient(circle at 50% -10%, rgba(75, 0, 130, 0.3) 0%, transparent 60%),
                     /* Mobile Gold Shine */
-                    radial-gradient(circle at 85% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                    radial-gradient(circle at 85% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
                     /* Mobile Bottom Gold */
-                    radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 90% 90%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
                     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 30px);
             }
         }
@@ -106,7 +108,7 @@
         .casino-hero-image-container {
             position: relative;
             padding: 8px;
-            background: linear-gradient(45deg, #7c5e10, #d4af37, #7c5e10);
+            background: linear-gradient(45deg, #44337a, #ffd700, #44337a);
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(0, 0, 0, 0.5);
             width: 100%;
@@ -257,14 +259,15 @@
             font-size: 1.1rem;
         }
 
-        /* Automation Section - Special Styling */
+        /* Automation Section - Special Styling (Subtle Rose) */
         .automation-section {
-            background: linear-gradient(160deg, rgba(74, 4, 4, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
-            border: 1px solid rgba(139, 0, 0, 0.3);
+            background: linear-gradient(145deg, rgba(30, 10, 15, 0.8) 0%, rgba(10, 5, 5, 0.9) 100%);
+            border: 1px solid rgba(255, 50, 80, 0.25);
             border-radius: 20px;
             padding: 3rem;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
         }
 
         .automation-section::before {
@@ -274,14 +277,17 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--casino-red), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 85, 0.7), transparent);
+            box-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
         }
 
         .automation-content h3 {
-            color: #ff6b6b;
+            color: #f0f0f0;
+            /* Off-White */
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
         }
 
         .automation-list {
@@ -382,7 +388,7 @@
         /* --- Custom Footer Styles for Baba Casino --- */
         /* Override specifically for this page's footer to match the casino theme */
         .more-projects-footer {
-            background: linear-gradient(180deg, #121212 0%, #1a0505 100%);
+            background: linear-gradient(180deg, #050510 0%, #150520 100%);
             border-top: 1px solid var(--casino-gold-dim);
         }
 
@@ -451,28 +457,28 @@
             </a>
             <div class="project-logos-dropdown">
                 <a href="babaCasino.html" class="project-logo-item" title="Baba Casino">
-                    <img src="../media/Baba Casino/400x400ia-75.webp" alt="Baba Casino">
+                    <img src="../media/Baba Casino/400x400ia-75.webp" alt="Baba Casino" draggable="false">
                 </a>
                 <a href="paybox.html" class="project-logo-item" title="Paybox">
-                    <img src="../media/Paybox/logo.png" alt="Paybox">
+                    <img src="../media/Paybox/logo.png" alt="Paybox" draggable="false">
                 </a>
                 <a href="signal.html" class="project-logo-item" title="Signal">
-                    <img src="../media/Singal/logo.png" alt="Signal">
+                    <img src="../media/Singal/logo.png" alt="Signal" draggable="false">
                 </a>
                 <a href="smart-crm.html" class="project-logo-item" title="Smart CRM">
-                    <img src="../media/SMART CRM/logo.png" alt="Smart CRM">
+                    <img src="../media/SMART CRM/logo.png" alt="Smart CRM" draggable="false">
                 </a>
                 <a href="planet.html" class="project-logo-item" title="Planet">
-                    <img src="../media/PLANET/logo.png" alt="Planet">
+                    <img src="../media/PLANET/logo.png" alt="Planet" draggable="false">
                 </a>
                 <a href="leumi-goodies.html" class="project-logo-item" title="Leumi Goodies">
-                    <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies">
+                    <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies" draggable="false">
                 </a>
                 <a href="carrefour.html" class="project-logo-item" title="Carrefour">
-                    <img src="../media/Carrefour/logo.png" alt="Carrefour">
+                    <img src="../media/Carrefour/logo.png" alt="Carrefour" draggable="false">
                 </a>
                 <a href="bigi.html" class="project-logo-item" title="BIGI">
-                    <img src="../media/BIGI/logo.png" alt="BIGI">
+                    <img src="../media/BIGI/logo.png" alt="BIGI" draggable="false">
                 </a>
             </div>
         </div>
@@ -493,7 +499,7 @@
 
                 <div class="casino-hero-image-container" id="casino-slot-container">
                     <img src="../media/Baba Casino/Baba_Wild_Slot_image.png" alt="Baba Casino Slot Interface"
-                        class="project-media" id="casino-slot-image">
+                        class="project-media" id="casino-slot-image" draggable="false">
                 </div>
 
                 <div class="tech-stack">
@@ -775,7 +781,8 @@
                 this.ensureCanvas();
 
                 // Spawn coins
-                const coinCount = window.innerWidth < 768 ? 40 : 80; // Performance optimization
+                // Spawn coins
+                const coinCount = window.innerWidth < 768 ? 30 : 60; // Increased count per request
 
                 this.coins = []; // Reset coins
                 for (let i = 0; i < coinCount; i++) {
@@ -827,13 +834,13 @@
                 return {
                     x: this.width / 2,
                     y: this.height + 50, // Start below screen
-                    vx: (Math.random() - 0.5) * (this.width / 20), // Spread
-                    vy: -(Math.random() * 10 + 10), // Upward force
+                    vx: (Math.random() - 0.5) * (this.width / 35), // Much tighter spread (was /25)
+                    vy: -(Math.random() * 10 + 15), // Fly much higher (was 8+8)
                     gravity: 0.25,
-                    size: Math.random() * 10 + 15, // 15-25px
+                    size: Math.random() * 10 + 12,
                     color: '#FFD700',
                     rotation: Math.random() * Math.PI,
-                    rotationSpeed: (Math.random() - 0.5) * 0.2
+                    rotationSpeed: (Math.random() - 0.5) * 0.1
                 };
             },
 
@@ -883,7 +890,9 @@
 
         // Run when page loads
         window.addEventListener('load', () => {
-            CoinAnimationSystem.init();
+            setTimeout(() => {
+                CoinAnimationSystem.init();
+            }, 1000); // 1 second delay
         });
 
         // Click Trigger
