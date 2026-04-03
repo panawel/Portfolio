@@ -225,6 +225,10 @@
 
 /* 3 Columns for Mobile & Tablet */
 @media (max-width: 1024px) {
+    .projects-page {
+        padding-top: 0;
+    }
+
     .projects-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;

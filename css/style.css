@@ -1244,21 +1244,91 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .sidebar {
-        transform: translateX(-100%);
+    section[id] {
+        scroll-margin-top: 100px;
     }
 
-    .sidebar.active {
-        transform: translateX(0);
+    .sidebar {
+        position: fixed;
+        top: 15px;
+        bottom: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 30px);
+        max-width: 380px;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.3rem 0.4rem;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border-light);
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        z-index: 1000;
+        transition: none;
+    }
+
+    .sidebar-header,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .sidebar-links {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 0;
+    }
+
+    .sidebar .nav-item {
+        flex-direction: column;
+        padding: 0.4rem 0.3rem;
+        border-radius: 12px;
+        justify-content: center;
+        transform: translateY(0);
+        background: transparent;
+        border: 1px solid transparent;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        min-width: 55px;
+        gap: 0;
+    }
+    
+    .sidebar .nav-item span {
+        display: block;
+        font-size: 0.6rem;
+        margin-top: 0.2rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .sidebar .nav-item svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sidebar .nav-item.active {
+        background: rgba(56, 189, 248, 0.2);
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        border-color: rgba(56, 189, 248, 0.4);
+        transform: translateY(0);
     }
 
     .main-content {
         margin-left: 0;
         width: 100%;
+        padding-bottom: 0;
     }
 
     .menu-toggle {
-        display: flex;
+        display: none;
+    }
+
+    /* Override any body overflow hidden from old sidebar active states if they exist */
+    body {
+        overflow-y: auto !important;
     }
 }
 

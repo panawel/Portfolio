@@ -20,6 +20,12 @@
     color: var(--text-main);
 }
 
+@media (max-width: 1024px) {
+    .certificates-page {
+        padding-top: 0;
+    }
+}
+
 .section-header p {
     color: var(--text-muted);
 }

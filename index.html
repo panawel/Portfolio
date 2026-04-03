@@ -121,7 +121,7 @@
         <div class="sidebar-links">
             <a href="#home" class="nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                <span>Overview</span>
+                <span>Home</span>
             </a>
             <a href="#about" class="nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -142,19 +142,13 @@
         </div>
         
         <div class="sidebar-footer">
-        </div>
-    
-        <div style="font-size: 0.7rem; text-align: center; color: rgba(255,255,255,0.3); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
-            &copy; 2026 Idan Pnuel. All Rights Reserved.
+            <div style="font-size: 0.7rem; text-align: center; color: rgba(255,255,255,0.3); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                &copy; 2026 Idan Pnuel. All Rights Reserved.
+            </div>
         </div>
     </nav>
 
-    <!-- Mobile Hamburger -->
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <!-- Mobile Hamburger removed (using bottom nav bar) -->
 
     <!-- Main Content -->
     <main class="main-content">
@@ -218,7 +212,7 @@
                                 <img src="media/symbols/myStack/Gemini1.svg" alt="Gemini" title="Gemini">
                                 <img src="media/symbols/myStack/Antigravity.svg" alt="Antigravity" title="Antigravity">
                                 <img src="media/symbols/myStack/ChatGPT.svg" alt="ChatGPT" title="ChatGPT">
-                                <img src="media/symbols/myStack/IDX1.svg" alt="IDX" title="IDX">
+                                <img src="media/symbols/myStack/Claude_AI_symbol.svg" alt="Claude" title="Claude">
                             </div>
 
                             <p class="about-sub">
@@ -644,52 +638,30 @@
         });
 
         function initSidebarNavigation() {
-            const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
             const navItems = document.querySelectorAll('.sidebar .nav-item');
             const sections = document.querySelectorAll('section[id]');
 
-            if (menuToggle && sidebar) {
-                menuToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    sidebar.classList.toggle('active');
-                    menuToggle.classList.toggle('open');
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
-                        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-                            sidebar.classList.remove('active');
-                            menuToggle.classList.remove('open');
-                        }
-                    }
-                });
-            }
-
             // Click Handler
             navItems.forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function(e) {
+                    // Prevent default jump and apply smooth scrolling
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+
                     navItems.forEach(i => i.classList.remove('active'));
                     this.classList.add('active');
-                    if (window.innerWidth <= 1024 && sidebar) {
-                        sidebar.classList.remove('active');
-                        menuToggle.classList.remove('open');
-                    }
                 });
             });
 
-            // Smart Hammer (Hide on scroll down)
-            let lastScrollY = window.scrollY;
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
-                if (window.innerWidth <= 1024 && menuToggle) {
-                    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                        menuToggle.classList.add('hidden');
-                    } else {
-                        menuToggle.classList.remove('hidden');
-                    }
-                }
-                lastScrollY = currentScrollY;
 
                 // Robust Scroll Spy logic below...
                 let current = '';
