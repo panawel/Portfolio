@@ -1,213 +1,93 @@
-// Main JavaScript shared across pages
+window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 600);
+        }, 400); // 400ms min delay for aesthetic
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     initFooterYear();
-    initMobileMenu();
+    initSidebar();
     initExperienceCounter();
     initActiveDropdown();
     initVideoResizeHandler();
     initScrollHint();
-    initSmartNav();
 });
 
-function initSmartNav() {
-    const nav = document.querySelector('.floating-nav');
-    if (!nav) return;
+function initSidebar() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
 
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    const updateNav = () => {
-        const currentScrollY = window.scrollY;
-
-        // Threshold of 100px to avoid hiding at the very top
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            nav.classList.add('nav-hidden');
-        } else {
-            nav.classList.remove('nav-hidden');
-        }
-
-        lastScrollY = currentScrollY;
-        ticking = false;
-    };
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateNav);
-            ticking = true;
-        }
-    });
-}
-
-function initScrollHint() {
-    const scrollHint = document.querySelector('.scroll-hint');
-    if (!scrollHint) return;
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            scrollHint.classList.add('hide-hint');
-        } else {
-            scrollHint.classList.remove('hide-hint');
-        }
-    });
-}
-
-function initVideoResizeHandler() {
-    const video = document.querySelector('.video-placeholder');
-    if (!video) return;
-
-    // Sources mapping
-    const sources = {
-        mobile: 'media/mobile.mp4',
-        tablet: 'media/tablet.mp4',
-        desktop: 'media/desktop.mp4'
-    };
-
-    let currentType = getVideoType();
-
-    function getVideoType() {
-        const width = window.innerWidth;
-        if (width < 769) return 'mobile';
-        if (width < 1025) return 'tablet';
-        return 'desktop';
-    }
-
-    // Debounce function
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    const handleResize = debounce(() => {
-        const newType = getVideoType();
-        if (newType !== currentType) {
-            // console.log(`Switching video from ${currentType} to ${newType}`);
-            currentType = newType;
-            const newSrc = sources[newType];
-
-            // Remember playback time? Optional, but nice.
-            // const currentTime = video.currentTime; 
-
-            // Update source
-            video.src = newSrc;
-            video.load();
-            video.play().catch(e => console.log("Autoplay prevented:", e));
-        }
-    }, 250); // Wait 250ms after resize stops
-
-    window.addEventListener('resize', handleResize);
-}
-
-function initFooterYear() {
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
-}
-
-function initMobileMenu() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    // Create and append overlay dynamically
-    let overlay = document.querySelector('.menu-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.classList.add('menu-overlay');
-        document.body.appendChild(overlay);
-    }
-
-    if (menuBtn && navLinks) {
-        // Toggle Menu
-        menuBtn.addEventListener('click', (e) => {
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleMenu();
+            sidebar.classList.toggle('active');
         });
 
-        // Close when clicking overlay
-        overlay.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
-
-        // Close when clicking outside (fallback for desktop if needed, or non-overlay clicks)
+        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                if (navLinks.classList.contains('active') &&
-                    !navLinks.contains(e.target) &&
-                    !menuBtn.contains(e.target) &&
-                    !overlay.contains(e.target)) {
-                    toggleMenu(false);
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
                 }
             }
         });
 
-        function toggleMenu(forceState = null) {
-            const isActive = navLinks.classList.contains('active');
-            const shouldBeActive = forceState !== null ? forceState : !isActive;
-
-            if (shouldBeActive) {
-                navLinks.classList.add('active');
-                overlay.classList.add('active');
-                menuBtn.setAttribute('aria-expanded', 'true');
-
-                // Block Scrolling
-                document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden'; // For some mobile browsers
-            } else {
-                navLinks.classList.remove('active');
-                overlay.classList.remove('active');
-                menuBtn.setAttribute('aria-expanded', 'false');
-
-                // Enable Scrolling
-                document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
-            }
-
-            // Animate Hamburger
-            const spans = menuBtn.querySelectorAll('span');
-            if (shouldBeActive) {
-                // To X
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                // Back to burger
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        }
+        // Close sidebar when a navigation link is clicked
+        const navLinks = sidebar.querySelectorAll('.nav-item');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
     }
 
-    // Handle mobile dropdowns (Accordion)
-    const dropdowns = document.querySelectorAll('.dropdown-toggle');
-    dropdowns.forEach(drop => {
-        drop.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                e.stopPropagation();
+    // Modern Scroll Spy using IntersectionObserver
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.sidebar .nav-item');
 
-                // Close other dropdowns (optional, but good for accordion)
-                dropdowns.forEach(otherDrop => {
-                    if (otherDrop !== drop) {
-                        otherDrop.parentElement.classList.remove('active');
+    if (navItems.length > 0 && sections.length > 0) {
+        // Options for the observer: trigger when section enters the top portion of the screen
+        const options = {
+            root: null, // viewport
+            rootMargin: '-10% 0px -85% 0px', // Narrow detection band near the top
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    if (id) {
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                            const href = item.getAttribute('href');
+                            if (href && (href === `#${id}` || href.endsWith(`#${id}`))) {
+                                item.classList.add('active');
+                            }
+                        });
                     }
-                });
+                }
+            });
+        }, options);
 
-                const parent = drop.parentElement;
-                parent.classList.toggle('active');
+        sections.forEach(section => observer.observe(section));
+    }
 
-                // Update aria-expanded
-                drop.setAttribute('aria-expanded', parent.classList.contains('active'));
+    // Explicit click handler to ensure immediate visual feedback regardless of scroll spy
+    const navLinks = sidebar.querySelectorAll('.nav-item');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.remove('active');
             }
         });
     });

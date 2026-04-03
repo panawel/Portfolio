@@ -353,60 +353,72 @@
 
 <body>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="floating-nav">
-        <a href="../index.html" class="nav-item">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            <span>Home</span>
-        </a>
-        <div class="nav-item-wrapper">
-            <a href="../projects.html" class="nav-item active">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                </svg>
-                <span>Projects</span>
-            </a>
-            <div class="project-logos-dropdown">
-                <a href="babaCasino.html" class="project-logo-item" title="Baba Casino">
-                    <img src="../media/Baba Casino/400x400ia-75.webp" alt="Baba Casino" draggable="false">
-                </a>
-                <a href="paybox.html" class="project-logo-item" title="Paybox">
-                    <img src="../media/Paybox/logo.png" alt="Paybox" draggable="false">
-                </a>
-                <a href="signal.html" class="project-logo-item" title="Signal">
-                    <img src="../media/Singal/logo.png" alt="Signal" draggable="false">
-                </a>
-                <a href="smart-crm.html" class="project-logo-item" title="Smart CRM">
-                    <img src="../media/SMART CRM/logo.png" alt="Smart CRM" draggable="false">
-                </a>
-                <a href="planet.html" class="project-logo-item" title="Planet">
-                    <img src="../media/PLANET/logo.png" alt="Planet" draggable="false">
-                </a>
-                <a href="leumi-goodies.html" class="project-logo-item" title="Leumi Goodies">
-                    <img src="../media/Leumi Goodies/1200x600wa (1).png" alt="Leumi Goodies" draggable="false">
-                </a>
-                <a href="carrefour.html" class="project-logo-item" title="Carrefour">
-                    <img src="../media/Carrefour/logo.png" alt="Carrefour" draggable="false">
-                </a>
-                <a href="bigi.html" class="project-logo-item" title="BIGI">
-                    <img src="../media/BIGI/logo.png" alt="BIGI" draggable="false">
-                </a>
+    <!-- Page Loader -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <h2 class="loader-logo">Idan Pnuel.</h2>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
             </div>
+            <div class="loader-text">Loading Experience...</div>
         </div>
-        <a href="../certificates.html" class="nav-item">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
-            <span>Certificates</span>
-        </a>
-    </nav>
+    </div>
 
-    <main>
+
+    <!-- Navigation -->
+    <!-- Navigation -->
+        <!-- Technical Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" style="text-decoration: none;">
+                <h2 class="sidebar-logo">Idan Pnuel.</h2>
+                <div class="sidebar-role">QA Engineer</div>
+            </a>
+        </div>
+        
+        <div class="sidebar-links">
+            <a href="../index.html#home" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>Overview</span>
+            </a>
+            <a href="../index.html#projects" class="nav-item active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                <span>All Projects</span>
+            </a>
+            <a href="../index.html#certificates" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span>Certificates</span>
+            </a>
+        </div>
+        
+        <div class="sidebar-footer" style="padding-top: 2rem;">
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom: 0.5rem; text-align: center;">Jump to project:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
+                <a href="babaCasino.html" title="Baba Casino"><img src="../media/Baba Casino/400x400ia-75.webp" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="paybox.html" title="Paybox"><img src="../media/Paybox/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="signal.html" title="Signal"><img src="../media/Singal/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="smart-crm.html" title="Smart CRM"><img src="../media/SMART CRM/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="planet.html" title="Planet"><img src="../media/PLANET/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="leumi-goodies.html" title="Leumi Goodies"><img src="../media/Leumi Goodies/1200x600wa (1).png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="carrefour.html" title="Carrefour"><img src="../media/Carrefour/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+                <a href="bigi.html" title="BIGI"><img src="../media/BIGI/logo.png" style="width:24px; height:24px; border-radius:4px; object-fit:contain; opacity:0.8;"></a>
+            </div>
+            
+        </div>
+    
+        <div style="font-size: 0.7rem; text-align: center; color: rgba(255,255,255,0.3); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
+            &copy; 2026 Idan Pnuel. All Rights Reserved.
+        </div>
+    </nav>
+    
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+    <main class="main-content">
         <section class="project-detail-hero">
             <div class="container">
                 <h1>Carrefour</h1>
@@ -574,25 +586,91 @@
                     </a>
                 </div>
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="../projects.html" class="btn btn-secondary">Back to Projects</a>
+                    <a href="../index.html#projects" class="btn btn-secondary">Back to Projects</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Idan Pnuel. All Rights Reserved.</p>
-        </div>
-    </footer>
-
+    
     <!-- Scripts -->
-    <script src="../js/main.js"></script>
     <script>
-        // Randomly show 4 projects
+        // Core Page Logic (Inlined for local file compatibility)
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    setTimeout(() => loader.remove(), 600);
+                }, 400);
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
+            initSidebarNavigation();
+            initOtherProjectsGallery();
+        });
+
+        function initSidebarNavigation() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const navItems = document.querySelectorAll('.sidebar .nav-item');
+
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('active');
+                    menuToggle.classList.toggle('open');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                            sidebar.classList.remove('active');
+                            menuToggle.classList.remove('open');
+                        }
+                    }
+                });
+            }
+
+            // Click Handler
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 1024 && sidebar) {
+                        sidebar.classList.remove('active');
+                        menuToggle.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Smart Hammer (Hide on scroll down)
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (window.innerWidth <= 1024 && menuToggle) {
+                    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                        menuToggle.classList.add('hidden');
+                    } else {
+                        menuToggle.classList.remove('hidden');
+                    }
+                }
+                lastScrollY = currentScrollY;
+            });
+            
+            // Set active state for projects link (since we are in a project)
+            navItems.forEach(item => {
+                const href = item.getAttribute('href');
+                if (href && href.includes('#projects')) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function initOtherProjectsGallery() {
             const projects = Array.from(document.querySelectorAll('.other-project-btn'));
+            if (projects.length === 0) return;
             // Fisher-Yates shuffle
             for (let i = projects.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -600,8 +678,9 @@
             }
             // Show first 4
             projects.slice(0, 4).forEach(p => p.style.display = 'flex');
-        });
+        }
     </script>
+
 </body>
 
 </html>
