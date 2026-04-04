@@ -397,13 +397,14 @@ h1 {
 
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
     /* Desktop: Lighter darkness (0.4 to 0.8) */
     background: linear-gradient(to bottom, rgba(11, 17, 33, 0.3), rgba(11, 17, 33, 0.85));
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: -1;
 }
 
@@ -411,6 +412,8 @@ h1 {
     .hero-overlay {
         /* Mobile/Tablet: Even lighter (0.3 to 0.6) */
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
     }
 }
 
@@ -1115,11 +1118,12 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.2rem;
-    border-radius: 12px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
     color: var(--text-muted);
     font-weight: 500;
-    transition: all var(--transition-fast);
+    letter-spacing: 0.01em;
+    transition: all 0.3s ease;
     text-decoration: none;
     font-size: 1rem;
     border: 1px solid transparent;
@@ -1139,13 +1143,7 @@ body {
 }
 
 .sidebar .nav-item svg {
-    width: 20px;
-    height: 20px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    display: none;
 }
 
 .sidebar-footer {
@@ -1255,16 +1253,16 @@ body {
         left: 50%;
         transform: translateX(-50%);
         width: calc(100% - 30px);
-        max-width: 380px;
+        max-width: 420px;
         height: auto;
         flex-direction: row;
         align-items: center;
-        padding: 0.3rem 0.4rem;
+        padding: 0.25rem 0.35rem;
         background: rgba(15, 23, 42, 0.6);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         border: 1px solid var(--glass-border-light);
-        border-radius: 16px;
+        border-radius: 14px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         z-index: 1000;
         transition: none;
@@ -1284,15 +1282,16 @@ body {
     }
 
     .sidebar .nav-item {
-        flex-direction: column;
-        padding: 0.4rem 0.3rem;
-        border-radius: 12px;
+        flex-direction: row;
+        padding: 0.45rem 0.55rem;
+        border-radius: 10px;
         justify-content: center;
+        align-items: center;
         transform: translateY(0);
         background: transparent;
         border: 1px solid transparent;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        min-width: 55px;
+        transition: all 0.25s ease;
+        min-width: 0;
         gap: 0;
         -webkit-tap-highlight-color: transparent;
         outline: none;
@@ -1300,22 +1299,56 @@ body {
     
     .sidebar .nav-item span {
         display: block;
-        font-size: 0.6rem;
-        margin-top: 0.2rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        margin-top: 0;
         text-align: center;
         white-space: nowrap;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.25s ease, font-weight 0.25s ease;
     }
 
     .sidebar .nav-item svg {
-        width: 18px;
-        height: 18px;
+        display: none;
+    }
+
+    .sidebar .nav-item:hover span {
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .sidebar .nav-item.active {
-        background: rgba(56, 189, 248, 0.2);
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
-        border-color: rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.15);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+        border-color: rgba(56, 189, 248, 0.35);
         transform: translateY(0);
+    }
+
+    .sidebar .nav-item.active span {
+        color: rgba(255, 255, 255, 1);
+        font-weight: 600;
+    }
+
+    /* On project pages: Projects link = "back" action — amber tint + back arrow */
+    /* Scoped to .nav-projects-back only — never bleeds onto other nav items */
+    body.is-project-page .sidebar .nav-projects-back.active {
+        background: rgba(251, 191, 36, 0.15);
+        box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+        border-color: rgba(251, 191, 36, 0.4);
+        position: relative;
+    }
+
+    body.is-project-page .sidebar .nav-projects-back.active svg {
+        color: rgb(251, 191, 36);
+        stroke: rgb(251, 191, 36);
+    }
+
+    body.is-project-page .sidebar .nav-projects-back.active span {
+        color: rgb(251, 191, 36);
+    }
+
+    body.is-project-page .sidebar .nav-projects-back.active span::before {
+        content: "↩ ";
     }
 
     .main-content {
