@@ -157,7 +157,7 @@ function initScrollHint() {
     const onScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                if (window.scrollY > 50) {
+                if (window.scrollY > 20) {
                     scrollHint.classList.add('hide-hint');
                     hasHidden = true;
                     // Remove listener so it never comes back

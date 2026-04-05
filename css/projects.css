@@ -26,8 +26,8 @@
     text-align: center;
     color: var(--text-muted);
     max-width: 600px;
-    margin: 0 auto 3rem;
-    font-size: 1.1rem;
+    margin: 0 auto 1.5rem;
+    font-size: 1rem;
 }
 
 .projects-grid {
@@ -220,6 +220,12 @@
 
     .other-project-btn:hover .other-project-logo {
         transform: translateY(-8px) scale(0.85);
+    }
+
+    /* Tighten page subtitle on small screens */
+    .page-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
     }
 }
 
