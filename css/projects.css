@@ -2,12 +2,18 @@
 
 /* Fix for Navbar Overlap on Project Detail Pages */
 .project-detail-hero {
-    padding-top: 13rem !important;
+    padding-top: 2.5rem !important; /* Desktop: sidebar is on the left, no top nav needed */
+}
+
+@media (max-width: 1024px) {
+    .project-detail-hero {
+        padding-top: 13rem !important; /* Tablet: floating island nav is at the top */
+    }
 }
 
 @media (max-width: 768px) {
     .project-detail-hero {
-        padding-top: 7rem !important;
+        padding-top: 7rem !important; /* Mobile: smaller floating island nav */
     }
 }
 
