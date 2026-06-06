@@ -11,27 +11,31 @@ interface ProjectModalProps {
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const fireCoins = () => {
-    const duration = 2000;
-    const end = Date.now() + duration;
+    // Fire 8 large coins from the left
+    confetti({
+      particleCount: 8,
+      angle: 60,
+      spread: 70,
+      origin: { x: 0, y: 0.8 },
+      colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
+      shapes: ['circle'],
+      scalar: 3.5,
+      gravity: 0.8,
+      ticks: 400
+    });
 
-    const frame = () => {
-      confetti({
-        particleCount: 5,
-        angle: 90,
-        spread: 80,
-        origin: { y: 1, x: Math.random() },
-        colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
-        shapes: ['circle'],
-        scalar: 1.5,
-        gravity: 0.5,
-        ticks: 400
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    };
-    frame();
+    // Fire 8 large coins from the right
+    confetti({
+      particleCount: 8,
+      angle: 120,
+      spread: 70,
+      origin: { x: 1, y: 0.8 },
+      colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
+      shapes: ['circle'],
+      scalar: 3.5,
+      gravity: 0.8,
+      ticks: 400
+    });
   };
 
   // Prevent scrolling on body when modal is open
