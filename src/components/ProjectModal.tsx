@@ -40,8 +40,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         scale,
         blur,
         zIndex,
-        duration: Math.random() * 4 + 6, // 6 to 10 seconds
-        delay: Math.random() * 2 // stagger over 2 seconds
+        duration: Math.random() * 8 + 12, // 12 to 20 seconds for ultra-slow majestic floating
+        delay: Math.random() * 4 // stagger over 4 seconds
       };
     });
     
@@ -102,12 +102,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           transition={{ 
             duration: coin.duration,
             delay: coin.delay,
-            x: { ease: "easeOut" },
-            y: { times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] },
+            x: { ease: "linear" }, // linear drift
+            y: { times: [0, 0.4, 1], ease: ["easeOut", "easeInOut"] }, // softer fall
             rotateX: { ease: "linear" },
             rotateY: { ease: "linear" },
             rotateZ: { ease: "linear" },
-            opacity: { times: [0, 0.1, 0.8, 1] }
+            opacity: { times: [0, 0.1, 0.9, 1] }
           }}
           onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
           style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0 }}
