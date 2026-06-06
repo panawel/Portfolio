@@ -200,7 +200,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             {/* Scrolling Right Column (Body) */}
             <div className="modal-body-content" onClick={handleContentClick} style={{ cursor: project.id === 'babaCasino' ? 'default' : 'auto' }}>
               {project.heroImage && (
-                <div style={{ position: 'relative', marginBottom: '1.5rem', marginTop: '0.5rem' }}>
+                <div style={{ position: 'relative', margin: 0, padding: 0 }}>
                   <motion.div 
                     whileHover={project.id === 'babaCasino' ? { scale: 1.02, boxShadow: '0 10px 40px rgba(255, 215, 0, 0.3)' } : {}}
                     whileTap={project.id === 'babaCasino' ? { scale: 0.98 } : {}}
@@ -210,38 +210,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                       cursor: project.id === 'babaCasino' ? 'pointer' : 'default', 
                       border: '1px solid rgba(255, 255, 255, 0.05)',
                       boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      marginBottom: '1rem' // minimal bottom spacing before text
                     }}
                   >
                     <img src={project.heroImage.replace('../', import.meta.env.BASE_URL)} alt="Hero" className="modal-hero-image" />
                   </motion.div>
-                  
-                  {project.id === 'babaCasino' && (
-                    <motion.div
-                      initial={{ y: 0 }}
-                      animate={{ y: [-5, 5, -5] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                      style={{
-                        position: 'absolute',
-                        top: '-15px',
-                        right: '-10px',
-                        background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-                        color: '#000',
-                        fontWeight: '900',
-                        padding: '0.5rem 1rem',
-                        borderRadius: '24px',
-                        fontSize: '0.85rem',
-                        boxShadow: '0 4px 15px rgba(255, 215, 0, 0.5)',
-                        border: '2px solid rgba(255,255,255,0.8)',
-                        pointerEvents: 'none',
-                        zIndex: 10,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px'
-                      }}
-                    >
-                      ✨ Click to Play!
-                    </motion.div>
-                  )}
                 </div>
               )}
 
