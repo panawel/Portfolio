@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { ProjectData } from '../data/projectsData';
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import confetti from 'canvas-confetti';
 
 interface ProjectModalProps {
   project: ProjectData;
@@ -10,32 +9,38 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
-  const fireCoins = () => {
-    // Fire 8 large coins from the left
-    confetti({
-      particleCount: 8,
-      angle: 60,
-      spread: 70,
-      origin: { x: 0, y: 0.8 },
-      colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
-      shapes: ['circle'],
-      scalar: 3.5,
-      gravity: 0.8,
-      ticks: 400
-    });
+  const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
-    // Fire 8 large coins from the right
-    confetti({
-      particleCount: 8,
-      angle: 120,
-      spread: 70,
-      origin: { x: 1, y: 0.8 },
-      colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
-      shapes: ['circle'],
-      scalar: 3.5,
-      gravity: 0.8,
-      ticks: 400
+  const fireCoins = () => {
+    const newCoins = Array.from({ length: 16 }).map((_, i) => {
+      const isLeft = i < 8;
+      const startX = isLeft ? -100 : window.innerWidth + 100;
+      const startY = window.innerHeight * 0.8;
+      
+      const targetX = isLeft 
+        ? Math.random() * (window.innerWidth * 0.4) + 100
+        : window.innerWidth - (Math.random() * (window.innerWidth * 0.4) + 100);
+      
+      const peakY = Math.random() * (window.innerHeight * 0.3) + 50;
+      
+      const endX = targetX + (isLeft ? 200 : -200) * Math.random();
+      const endY = window.innerHeight + 150;
+      
+      return {
+        id: Math.random().toString(),
+        startX,
+        startY,
+        peakY,
+        endX,
+        endY,
+        rotateStart: Math.random() * 90,
+        rotateEnd: (Math.random() * 720 + 720) * (Math.random() > 0.5 ? 1 : -1),
+        scale: Math.random() * 0.5 + 1.2, // very large
+        duration: Math.random() * 0.5 + 2 // 2-2.5s
+      };
     });
+    
+    setActiveCoins(prev => [...prev, ...newCoins]);
   };
 
   // Prevent scrolling on body when modal is open
@@ -67,6 +72,48 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
+      {/* 3D Flying Coins Overlay */}
+      {activeCoins.map(coin => (
+        <motion.div
+          key={coin.id}
+          initial={{ x: coin.startX, y: coin.startY, rotate: coin.rotateStart, scale: coin.scale }}
+          animate={{ 
+            x: coin.endX, 
+            y: [coin.startY, coin.peakY, coin.endY],
+            rotate: coin.rotateEnd
+          }}
+          transition={{ 
+            duration: coin.duration,
+            x: { ease: "linear" },
+            y: { times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] },
+            rotate: { ease: "linear" }
+          }}
+          onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
+          style={{ position: 'fixed', zIndex: 9999, pointerEvents: 'none', top: 0, left: 0 }}
+        >
+          <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.6)) drop-shadow(0 5px 10px rgba(255, 215, 0, 0.3))' }}>
+            <defs>
+              <linearGradient id="coinEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#B8860B" />
+                <stop offset="50%" stopColor="#FFD700" />
+                <stop offset="100%" stopColor="#8B6508" />
+              </linearGradient>
+              <linearGradient id="coinFace" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFFACD" />
+                <stop offset="50%" stopColor="#FFD700" />
+                <stop offset="100%" stopColor="#DAA520" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="54" r="44" fill="url(#coinEdge)" />
+            <circle cx="50" cy="46" r="44" fill="url(#coinFace)" />
+            <circle cx="50" cy="46" r="36" fill="none" stroke="#DAA520" strokeWidth="2" strokeDasharray="4 4" />
+            <circle cx="50" cy="46" r="32" fill="none" stroke="#DAA520" strokeWidth="1" />
+            <text x="50" y="65" fontFamily="Arial, sans-serif" fontSize="56" fontWeight="900" fill="#B8860B" textAnchor="middle" style={{ textShadow: '0 2px 4px rgba(255, 255, 255, 0.8)' }}>$</text>
+            <ellipse cx="28" cy="24" rx="14" ry="6" fill="rgba(255,255,255,0.6)" transform="rotate(-40 28 24)" />
+          </svg>
+        </motion.div>
+      ))}
+
       <motion.div 
         className="modal-content"
         initial={{ x: '100%' }}
