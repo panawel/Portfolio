@@ -162,6 +162,7 @@ export const Hero = () => {
       
       {/* Scroll Down Hint */}
       <motion.div
+        className="scroll-hint"
         initial={{ opacity: 0 }}
         animate={{ opacity: isScrolled ? 0 : 1 }}
         transition={{ duration: 0.3 }}
@@ -192,6 +193,15 @@ export const Hero = () => {
       <style>{`
         #home h1 span.text-gradient {
           display: inline-block;
+        }
+        @media (max-width: 768px) {
+          #home {
+            align-items: flex-start !important;
+            padding-top: 15vh;
+          }
+          .scroll-hint {
+            bottom: 90px !important;
+          }
         }
       `}</style>
     </section>
