@@ -12,19 +12,17 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
   const fireCoins = () => {
-    const newCoins = Array.from({ length: 16 }).map((_, i) => {
-      const isLeft = i < 8;
-      const startX = isLeft ? -100 : window.innerWidth + 100;
-      const startY = window.innerHeight * 0.8;
+    const newCoins = Array.from({ length: 20 }).map((_, i) => {
+      const startX = window.innerWidth / 2;
+      const startY = window.innerHeight + 100;
       
-      const targetX = isLeft 
-        ? Math.random() * (window.innerWidth * 0.4) + 100
-        : window.innerWidth - (Math.random() * (window.innerWidth * 0.4) + 100);
+      const endX = (Math.random() * window.innerWidth) - 100;
+      const peakY = Math.random() * (window.innerHeight * 0.4) - 100;
       
-      const peakY = Math.random() * (window.innerHeight * 0.3) + 50;
-      
-      const endX = targetX + (isLeft ? 200 : -200) * Math.random();
-      const endY = window.innerHeight + 150;
+      const isForeground = Math.random() > 0.8;
+      const scale = isForeground ? Math.random() * 1.5 + 2.5 : Math.random() * 0.8 + 0.8;
+      const blur = isForeground ? `blur(${Math.random() * 4 + 3}px)` : 'none';
+      const zIndex = isForeground ? 10000 : 9998;
       
       return {
         id: Math.random().toString(),
@@ -32,11 +30,18 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         startY,
         peakY,
         endX,
-        endY,
-        rotateStart: Math.random() * 90,
-        rotateEnd: (Math.random() * 720 + 720) * (Math.random() > 0.5 ? 1 : -1),
-        scale: Math.random() * 0.5 + 1.2, // very large
-        duration: Math.random() * 2 + 4.5 // 4.5 to 6.5 seconds
+        endY: window.innerHeight + 200,
+        rotateXStart: Math.random() * 360,
+        rotateXEnd: Math.random() * 2000 + 1000,
+        rotateYStart: Math.random() * 360,
+        rotateYEnd: Math.random() * 2000 + 1000,
+        rotateZStart: Math.random() * 360,
+        rotateZEnd: Math.random() * 720,
+        scale,
+        blur,
+        zIndex,
+        duration: Math.random() * 4 + 6, // 6 to 10 seconds
+        delay: Math.random() * 2 // stagger over 2 seconds
       };
     });
     
@@ -72,26 +77,42 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      {/* 3D Flying Coins Overlay */}
+      {/* 3D Cinematic Flying Coins Overlay */}
       {activeCoins.map(coin => (
         <motion.div
           key={coin.id}
-          initial={{ x: coin.startX, y: coin.startY, rotate: coin.rotateStart, scale: coin.scale }}
+          initial={{ 
+            x: coin.startX, 
+            y: coin.startY, 
+            rotateX: coin.rotateXStart,
+            rotateY: coin.rotateYStart,
+            rotateZ: coin.rotateZStart,
+            scale: coin.scale,
+            filter: coin.blur,
+            opacity: 0
+          }}
           animate={{ 
             x: coin.endX, 
             y: [coin.startY, coin.peakY, coin.endY],
-            rotate: coin.rotateEnd
+            rotateX: coin.rotateXEnd,
+            rotateY: coin.rotateYEnd,
+            rotateZ: coin.rotateZEnd,
+            opacity: [0, 1, 1, 0]
           }}
           transition={{ 
             duration: coin.duration,
-            x: { ease: "linear" },
+            delay: coin.delay,
+            x: { ease: "easeOut" },
             y: { times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] },
-            rotate: { ease: "linear" }
+            rotateX: { ease: "linear" },
+            rotateY: { ease: "linear" },
+            rotateZ: { ease: "linear" },
+            opacity: { times: [0, 0.1, 0.8, 1] }
           }}
           onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
-          style={{ position: 'fixed', zIndex: 9999, pointerEvents: 'none', top: 0, left: 0 }}
+          style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0 }}
         >
-          <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.6)) drop-shadow(0 5px 10px rgba(255, 215, 0, 0.3))' }}>
+          <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.5))' }}>
             <defs>
               <linearGradient id="coinEdge" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#B8860B" />
