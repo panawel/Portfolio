@@ -2,13 +2,14 @@
 import { homeData } from '../data/homeData';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 
 export const Hero = () => {
   const [terminalText, setTerminalText] = useState('');
   const [experience, setExperience] = useState('0.0');
   const [isScrolled, setIsScrolled] = useState(false);
+  const isAnimating = useRef(false);
   const fullText = '> Running test_portfolio.py... [PASSED] 100%';
 
   useEffect(() => {
@@ -52,6 +53,9 @@ export const Hero = () => {
   }, []);
 
   const triggerFireworks = () => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
     const duration = 3000;
     const end = Date.now() + duration;
 
@@ -73,6 +77,8 @@ export const Hero = () => {
 
       if (Date.now() < end) {
         requestAnimationFrame(frame);
+      } else {
+        isAnimating.current = false;
       }
     };
     frame();
