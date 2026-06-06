@@ -304,6 +304,7 @@ export const projects: ProjectData[] = [
   },
   {
     "id": "signal",
+    "brandColor": "rgba(58, 118, 240, 0.4)",
     "title": "Signal",
     "subtitle": "Increasing the number of tests by 50% within a given timeframe",
     "logo": "../media/Singal/logo.png",
@@ -357,6 +358,7 @@ export const projects: ProjectData[] = [
   },
   {
     "id": "smart-crm",
+    "brandColor": "rgba(147, 51, 234, 0.4)",
     "title": "Smart CRM",
     "subtitle": "Boosting quality for Customer Relationship Management mobile app.",
     "logo": "../media/SMART CRM/logo.png",
