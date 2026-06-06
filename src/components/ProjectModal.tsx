@@ -12,40 +12,40 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
   const fireCoins = () => {
-    const newCoins = Array.from({ length: 14 }).map((_, i) => {
-      // Position coins around the left and right edges
-      const isLeft = i % 2 === 0;
-      const xPos = isLeft 
-        ? Math.random() * (window.innerWidth * 0.2) - 50
-        : window.innerWidth - (Math.random() * (window.innerWidth * 0.2)) - 100;
-        
-      const yPos = Math.random() * (window.innerHeight * 0.8) + 50;
+    const newCoins = Array.from({ length: 15 }).map(() => {
+      const startX = window.innerWidth / 2;
+      const startY = window.innerHeight + 150;
+      
+      const endX = (Math.random() * window.innerWidth) - 100;
+      const peakY = Math.random() * (window.innerHeight * 0.4) - 100;
       
       const isForeground = Math.random() > 0.6;
-      const scale = isForeground ? Math.random() * 1.5 + 2.0 : Math.random() * 0.8 + 0.8;
-      const blur = isForeground ? `blur(${Math.random() * 3 + 2}px)` : 'none';
+      const scale = isForeground ? Math.random() * 1.5 + 2.5 : Math.random() * 0.8 + 0.8;
+      const blur = isForeground ? `blur(${Math.random() * 4 + 3}px)` : 'none';
       const zIndex = isForeground ? 10000 : 9998;
       
       return {
         id: Math.random().toString(),
-        x: xPos,
-        y: yPos,
-        yDrift: Math.random() * 40 + 30, // Drift up and down by 30-70px
-        rotateXStart: Math.random() * 40 - 20, // Gentle tilt
-        rotateXEnd: Math.random() * 80 - 40,
-        rotateYStart: Math.random() * 40 - 20,
-        rotateYEnd: Math.random() * 80 - 40,
+        startX,
+        startY,
+        peakY,
+        endX,
+        endY: window.innerHeight + 300,
+        // Crucial fix: extremely small rotation values so they tumble in ultra-slow motion
+        rotateXStart: Math.random() * 90,
+        rotateXEnd: Math.random() * 360 * (Math.random() > 0.5 ? 1 : -1), // only 0 to 1 flip!
+        rotateYStart: Math.random() * 90,
+        rotateYEnd: Math.random() * 360 * (Math.random() > 0.5 ? 1 : -1), // only 0 to 1 flip!
         rotateZStart: Math.random() * 360,
-        rotateZEnd: Math.random() * 60 - 30, // Lazy spin
+        rotateZEnd: Math.random() * 180, // half a spin
         scale,
         blur,
         zIndex,
-        duration: Math.random() * 6 + 10, // 10 to 16 seconds loop
-        delay: Math.random() * 1.5 // Fade in over 1.5s
+        duration: Math.random() * 6 + 10, // 10 to 16 seconds flight
+        delay: Math.random() * 2 // stagger over 2 seconds
       };
     });
     
-    // Replace instead of append, so repeated clicks don't flood the screen
     setActiveCoins(newCoins);
   };
 
@@ -78,13 +78,13 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      {/* Zero-Gravity Levitating Coins Overlay */}
+      {/* Cinematic Slow Motion Flying Coins Overlay */}
       {activeCoins.map(coin => (
         <motion.div
           key={coin.id}
           initial={{ 
-            x: coin.x, 
-            y: coin.y, 
+            x: coin.startX, 
+            y: coin.startY, 
             rotateX: coin.rotateXStart,
             rotateY: coin.rotateYStart,
             rotateZ: coin.rotateZStart,
@@ -93,19 +93,24 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             opacity: 0
           }}
           animate={{ 
-            y: [coin.y, coin.y - coin.yDrift, coin.y],
-            rotateX: [coin.rotateXStart, coin.rotateXStart + coin.rotateXEnd, coin.rotateXStart],
-            rotateY: [coin.rotateYStart, coin.rotateYStart + coin.rotateYEnd, coin.rotateYStart],
-            rotateZ: [coin.rotateZStart, coin.rotateZStart + coin.rotateZEnd, coin.rotateZStart],
-            opacity: 1
+            x: coin.endX,
+            y: [coin.startY, coin.peakY, coin.endY],
+            rotateX: coin.rotateXStart + coin.rotateXEnd,
+            rotateY: coin.rotateYStart + coin.rotateYEnd,
+            rotateZ: coin.rotateZStart + coin.rotateZEnd,
+            opacity: [0, 1, 1, 0] // fade out as they fall off screen
           }}
           transition={{ 
-            opacity: { duration: 2, delay: coin.delay }, // Smooth fade in
-            y: { duration: coin.duration, repeat: Infinity, ease: "easeInOut" },
-            rotateX: { duration: coin.duration * 1.2, repeat: Infinity, ease: "easeInOut" },
-            rotateY: { duration: coin.duration * 1.5, repeat: Infinity, ease: "easeInOut" },
-            rotateZ: { duration: coin.duration * 1.8, repeat: Infinity, ease: "easeInOut" }
+            duration: coin.duration,
+            delay: coin.delay,
+            x: { ease: "linear" },
+            y: { times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] }, // Parabola
+            rotateX: { ease: "linear" },
+            rotateY: { ease: "linear" },
+            rotateZ: { ease: "linear" },
+            opacity: { times: [0, 0.1, 0.8, 1] }
           }}
+          onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
           style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0 }}
         >
           <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.5))' }}>
