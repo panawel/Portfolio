@@ -12,7 +12,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
   const fireCoins = () => {
-    const newCoins = Array.from({ length: 15 }).map(() => {
+    // Reduce particle count on mobile for better performance
+    const coinCount = window.innerWidth < 768 ? 10 : 15;
+    
+    const newCoins = Array.from({ length: coinCount }).map(() => {
       const startX = window.innerWidth / 2;
       const startY = window.innerHeight + 150;
       
@@ -111,9 +114,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             opacity: { duration: coin.duration, delay: coin.delay, times: [0, 0.1, 0.8, 1] }
           }}
           onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
-          style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0 }}
+          style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0, willChange: 'transform, opacity' }}
         >
-          <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.5))' }}>
+          {/* Removed expensive drop-shadow filters for mobile 60fps performance */}
+          <svg viewBox="0 0 100 100" style={{ width: '80px', height: '80px' }}>
             <defs>
               <linearGradient id="coinEdge" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#B8860B" />
