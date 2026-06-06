@@ -865,7 +865,7 @@ Error generating stack: `+e.message+`
                         <span>📊</span> STR Document
                     </a>
                 </div>`}],resultsList:[`Enhanced ticketing services quality and a detailed usability testing report with all the
-                        findings.`]},{id:`signal`,title:`Signal`,subtitle:`Increasing the number of tests by 50% within a given timeframe`,logo:`../media/Singal/logo.png`,heroImage:`../media/Singal/signal-on-phone-handheld-hero-smaller.jpg`,overviewText:`In my first year as a QA engineer, my curiosity about the world of QA grew, along with my desire to
+                        findings.`]},{id:`signal`,brandColor:`rgba(58, 118, 240, 0.4)`,title:`Signal`,subtitle:`Increasing the number of tests by 50% within a given timeframe`,logo:`../media/Singal/logo.png`,heroImage:`../media/Singal/signal-on-phone-handheld-hero-smaller.jpg`,overviewText:`In my first year as a QA engineer, my curiosity about the world of QA grew, along with my desire to
                     learn and explore the field of testing. I read about various types of testing and techniques, and I
                     self-learned an AI tool called 'Maestro' and combined it with 'Appium' to utilize it for mobile
                     automation testing of 'Signal' app. This allowed me to increase the number of tests that could be
@@ -1016,7 +1016,7 @@ Error generating stack: `+e.message+`
                     </a>
                 </div>`}],resultsList:[`The automation tests quickly identified critical bugs and issues before the app was released and
                         installed on customers' devices.`,`Detailed documentation of over 100 bugs helped quickly fix all the issues, which enhanced the
-                        quality and reliability of the 'Signal' app.`]},{id:`smart-crm`,title:`Smart CRM`,subtitle:`Boosting quality for Customer Relationship Management mobile app.`,logo:`../media/SMART CRM/logo.png`,heroImage:`../media/SMART CRM/2023-07-03 01_02_19.067+0300.jpg`,overviewText:`Provided testing support and Design QA to assist the startup in identifying critical bugs and
+                        quality and reliability of the 'Signal' app.`]},{id:`smart-crm`,brandColor:`rgba(147, 51, 234, 0.4)`,title:`Smart CRM`,subtitle:`Boosting quality for Customer Relationship Management mobile app.`,logo:`../media/SMART CRM/logo.png`,heroImage:`../media/SMART CRM/2023-07-03 01_02_19.067+0300.jpg`,overviewText:`Provided testing support and Design QA to assist the startup in identifying critical bugs and
                     fixing them before releasing a new version to the Play Store.`,techStack:[`Data Integrity`,`Workflow Testing`,`Automation`,`B2B Application`],sections:[{title:`Overview`,contentHtml:`<!-- Quote Block Design -->
                 <div class="quote-container">
                     <span class="quote-icon">❝</span>
