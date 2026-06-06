@@ -49,7 +49,7 @@ const ProjectCard = ({ project, index, onClick }: { project: ProjectData, index:
           className="card-image"
           style={{ padding: project.id === 'planet' ? '0.5rem' : '2rem' }}
         >
-          <img src={project.logo.replace('../', '/')} alt={project.title} />
+          <img src={project.logo.replace('../', import.meta.env.BASE_URL)} alt={project.title} />
         </div>
         <div className="card-content">
           <h3>{project.title || project.id}</h3>

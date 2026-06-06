@@ -80,7 +80,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             <div className="modal-sidebar">
               <div className="sidebar-sticky-content">
                 <img 
-                  src={project.logo.replace('../', '/')} 
+                  src={project.logo.replace('../', import.meta.env.BASE_URL)} 
                   alt={project.title} 
                   className="modal-logo" 
                   style={{ height: project.id === 'planet' ? '120px' : '70px', marginBottom: project.id === 'planet' ? '1.5rem' : '2rem' }}
@@ -103,7 +103,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             {/* Scrolling Right Column (Body) */}
             <div className="modal-body-content">
               {project.heroImage && (
-                <img src={project.heroImage.replace('../', '/')} alt="Hero" className="modal-hero-image" />
+                <img src={project.heroImage.replace('../', import.meta.env.BASE_URL)} alt="Hero" className="modal-hero-image" />
               )}
 
               {project.sections.map((section, idx) => (
@@ -111,7 +111,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   <h2>{section.title}</h2>
                   <div 
                     className="section-content" 
-                    dangerouslySetInnerHTML={{ __html: section.contentHtml.replace(/\.\.\//g, '/') }} 
+                    dangerouslySetInnerHTML={{ __html: section.contentHtml.replace(/\.\.\//g, import.meta.env.BASE_URL) }} 
                   />
                 </div>
               ))}

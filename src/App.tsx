@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <video className="video-bg" autoPlay loop muted playsInline>
-        <source src="/media/desktop.mp4" type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}media/desktop.mp4`} type="video/mp4" />
       </video>
       <div className="video-overlay" />
       

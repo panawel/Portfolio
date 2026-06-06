@@ -32,10 +32,10 @@ export const About = () => {
 
           {/* AI Symbols */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '3rem', alignItems: 'center' }}>
-            <img src="/media/symbols/myStack/Gemini1.svg" alt="Gemini" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(0, 243, 255, 0.2))' }} />
-            <img src="/media/symbols/myStack/Antigravity.svg" alt="Antigravity" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(0, 243, 255, 0.2))' }} />
-            <img src="/media/symbols/myStack/ChatGPT.svg" alt="ChatGPT" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.2))', borderRadius: '12px' }} />
-            <img src="/media/symbols/myStack/Claude_AI_symbol.svg" alt="Claude" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(217, 119, 87, 0.2))' }} />
+            <img src={`${import.meta.env.BASE_URL}media/symbols/myStack/Gemini1.svg`} alt="Gemini" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(0, 243, 255, 0.2))' }} />
+            <img src={`${import.meta.env.BASE_URL}media/symbols/myStack/Antigravity.svg`} alt="Antigravity" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(0, 243, 255, 0.2))' }} />
+            <img src={`${import.meta.env.BASE_URL}media/symbols/myStack/ChatGPT.svg`} alt="ChatGPT" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.2))', borderRadius: '12px' }} />
+            <img src={`${import.meta.env.BASE_URL}media/symbols/myStack/Claude_AI_symbol.svg`} alt="Claude" style={{ width: '48px', height: '48px', filter: 'drop-shadow(0 0 15px rgba(217, 119, 87, 0.2))' }} />
           </div>
 
           <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
