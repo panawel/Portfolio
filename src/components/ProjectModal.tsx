@@ -12,7 +12,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
   const fireCoins = () => {
-    const newCoins = Array.from({ length: 20 }).map((_, i) => {
+    const newCoins = Array.from({ length: 20 }).map(() => {
       const startX = window.innerWidth / 2;
       const startY = window.innerHeight + 100;
       
