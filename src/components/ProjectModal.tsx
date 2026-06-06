@@ -41,8 +41,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         scale,
         blur,
         zIndex,
-        duration: Math.random() * 3 + 4.5, // 4.5 to 7.5 seconds flight
-        delay: Math.random() * 1.5 // stagger over 1.5 seconds
+        duration: Math.random() * 0.5 + 1.5, // 1.5 to 2.0 seconds flight
+        delay: Math.random() * 0.3 // fast stagger over 0.3 seconds
       };
     });
     
