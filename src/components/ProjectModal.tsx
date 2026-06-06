@@ -36,7 +36,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         rotateStart: Math.random() * 90,
         rotateEnd: (Math.random() * 720 + 720) * (Math.random() > 0.5 ? 1 : -1),
         scale: Math.random() * 0.5 + 1.2, // very large
-        duration: Math.random() * 0.5 + 2 // 2-2.5s
+        duration: Math.random() * 2 + 4.5 // 4.5 to 6.5 seconds
       };
     });
     
