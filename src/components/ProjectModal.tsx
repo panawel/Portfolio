@@ -103,12 +103,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           transition={{ 
             duration: coin.duration,
             delay: coin.delay,
-            x: { ease: "linear" },
-            y: { times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] }, // Parabola
-            rotateX: { ease: "linear" },
-            rotateY: { ease: "linear" },
-            rotateZ: { ease: "linear" },
-            opacity: { times: [0, 0.1, 0.8, 1] }
+            x: { duration: coin.duration, delay: coin.delay, ease: "linear" },
+            y: { duration: coin.duration, delay: coin.delay, times: [0, 0.4, 1], ease: ["easeOut", "easeIn"] },
+            rotateX: { duration: coin.duration, delay: coin.delay, ease: "linear" },
+            rotateY: { duration: coin.duration, delay: coin.delay, ease: "linear" },
+            rotateZ: { duration: coin.duration, delay: coin.delay, ease: "linear" },
+            opacity: { duration: coin.duration, delay: coin.delay, times: [0, 0.1, 0.8, 1] }
           }}
           onAnimationComplete={() => setActiveCoins(prev => prev.filter(c => c.id !== coin.id))}
           style={{ position: 'fixed', zIndex: coin.zIndex, pointerEvents: 'none', top: 0, left: 0 }}
