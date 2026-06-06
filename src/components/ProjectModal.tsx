@@ -12,8 +12,9 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeCoins, setActiveCoins] = useState<any[]>([]);
 
   const fireCoins = () => {
+    const isMobile = window.innerWidth < 768;
     // Reduce particle count on mobile for better performance
-    const coinCount = window.innerWidth < 768 ? 10 : 15;
+    const coinCount = isMobile ? 10 : 15;
     
     const newCoins = Array.from({ length: coinCount }).map(() => {
       const startX = window.innerWidth / 2;
@@ -23,7 +24,9 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       const peakY = Math.random() * (window.innerHeight * 0.4) - 100;
       
       const isForeground = Math.random() > 0.6;
-      const scale = isForeground ? Math.random() * 1.5 + 2.5 : Math.random() * 0.8 + 0.8;
+      // Coins are smaller on mobile
+      const scaleMultiplier = isMobile ? 0.6 : 1.0; 
+      const scale = (isForeground ? Math.random() * 1.5 + 2.5 : Math.random() * 0.8 + 0.8) * scaleMultiplier;
       const blur = 'none'; // Removed blurred coins per user request
       const zIndex = isForeground ? 10000 : 9998;
       
