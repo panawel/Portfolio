@@ -21,7 +21,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       
       const isForeground = Math.random() > 0.6;
       const scale = isForeground ? Math.random() * 1.5 + 2.5 : Math.random() * 0.8 + 0.8;
-      const blur = isForeground ? `blur(${Math.random() * 4 + 3}px)` : 'none';
+      const blur = 'none'; // Removed blurred coins per user request
       const zIndex = isForeground ? 10000 : 9998;
       
       return {
@@ -41,8 +41,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         scale,
         blur,
         zIndex,
-        duration: Math.random() * 6 + 10, // 10 to 16 seconds flight
-        delay: Math.random() * 2 // stagger over 2 seconds
+        duration: Math.random() * 3 + 4.5, // 4.5 to 7.5 seconds flight
+        delay: Math.random() * 1.5 // stagger over 1.5 seconds
       };
     });
     
