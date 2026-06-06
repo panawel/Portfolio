@@ -10,39 +10,56 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
+  const fireCoins = () => {
+    const duration = 2000;
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      confetti({
+        particleCount: 5,
+        angle: 90,
+        spread: 80,
+        origin: { y: 1, x: Math.random() },
+        colors: ['#FFD700', '#DAA520', '#B8860B', '#FFFACD'],
+        shapes: ['circle'],
+        scalar: 1.5,
+        gravity: 0.5,
+        ticks: 400
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+    frame();
+  };
+
   // Prevent scrolling on body when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     
-    // Trigger flying coins if Baba Casino
-    if (project.id === 'baba') {
-      const duration = 2000;
-      const end = Date.now() + duration;
-
-      const frame = () => {
-        confetti({
-          particleCount: 2,
-          angle: 90,
-          spread: 80,
-          origin: { y: 1, x: Math.random() },
-          colors: ['#FFD700', '#DAA520', '#B8860B'],
-          shapes: ['circle'],
-          scalar: 1.5,
-          gravity: 0.5,
-          ticks: 400
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      };
-      frame();
+    let timeoutId: ReturnType<typeof setTimeout>;
+    // Trigger flying coins if Baba Casino with 1 second delay
+    if (project.id === 'babaCasino') {
+      timeoutId = setTimeout(() => {
+        fireCoins();
+      }, 1000);
     }
 
     return () => {
       document.body.style.overflow = 'auto';
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, [project.id]);
+
+  const handleContentClick = (e: React.MouseEvent) => {
+    if (project.id === 'babaCasino') {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG' && target.getAttribute('src')?.includes('Baba_Wild_Slot_image')) {
+        fireCoins();
+      }
+    }
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -101,7 +118,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             </div>
 
             {/* Scrolling Right Column (Body) */}
-            <div className="modal-body-content">
+            <div className="modal-body-content" onClick={handleContentClick} style={{ cursor: project.id === 'babaCasino' ? 'default' : 'auto' }}>
               {project.heroImage && (
                 <img src={project.heroImage.replace('../', import.meta.env.BASE_URL)} alt="Hero" className="modal-hero-image" />
               )}
