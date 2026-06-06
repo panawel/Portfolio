@@ -197,10 +197,10 @@ export const Hero = () => {
         @media (max-width: 768px) {
           #home {
             align-items: flex-start !important;
-            padding-top: 15vh;
+            padding-top: 8vh !important;
           }
           .scroll-hint {
-            bottom: 90px !important;
+            bottom: 140px !important;
           }
         }
       `}</style>
