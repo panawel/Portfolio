@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti';
 
 export const Hero = () => {
   const [terminalText, setTerminalText] = useState('');
-  const [experience, setExperience] = useState('0.0');
+  const [experienceMonths, setExperienceMonths] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const isAnimating = useRef(false);
   const fullText = '> Running test_portfolio.py... [PASSED] 100%';
@@ -27,16 +27,16 @@ export const Hero = () => {
     let diffYears = now.getFullYear() - startDate.getFullYear();
     let diffMonths = now.getMonth() - startDate.getMonth();
     if (diffMonths < 0) { diffYears--; diffMonths += 12; }
-    const targetValue = parseFloat(diffYears + "." + diffMonths);
-    
-    let current = 0.0;
+    const targetMonths = diffYears * 12 + diffMonths;
+
+    let current = 0;
     const counterInterval = setInterval(() => {
-      current += 0.1;
-      if (current >= targetValue) {
-        current = targetValue;
+      current++;
+      if (current >= targetMonths) {
+        current = targetMonths;
         clearInterval(counterInterval);
       }
-      setExperience(current.toFixed(1));
+      setExperienceMonths(current);
     }, 50);
 
     // Scroll listener for the scroll-down hint
@@ -144,7 +144,7 @@ export const Hero = () => {
           whileTap={{ scale: 0.95 }}
         >
           <span style={{ color: 'var(--text-main)', fontSize: 'clamp(0.75rem, 3.5vw, 1.25rem)', fontWeight: 500 }}>
-            Celebrating <span style={{ color: 'var(--accent-cyan)', fontWeight: 700, textShadow: '0 0 10px rgba(0, 243, 255, 0.4)' }}>{experience}</span> Years as a QA Engineer!
+            Celebrating <span style={{ color: 'var(--accent-cyan)', fontWeight: 700, textShadow: '0 0 10px rgba(0, 243, 255, 0.4)' }}>{Math.floor(experienceMonths / 12)} yrs {experienceMonths % 12} mo</span> as a QA Engineer!
           </span>
           <span style={{ fontSize: 'clamp(1.1rem, 4.5vw, 1.4rem)' }}>🎉</span>
         </motion.div>

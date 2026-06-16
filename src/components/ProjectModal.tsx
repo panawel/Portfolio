@@ -3,13 +3,33 @@ import type { ProjectData } from '../data/projectsData';
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+interface Coin {
+  id: string;
+  startX: number;
+  startY: number;
+  peakY: number;
+  endX: number;
+  endY: number;
+  rotateXStart: number;
+  rotateXEnd: number;
+  rotateYStart: number;
+  rotateYEnd: number;
+  rotateZStart: number;
+  rotateZEnd: number;
+  scale: number;
+  blur: string;
+  zIndex: number;
+  duration: number;
+  delay: number;
+}
+
 interface ProjectModalProps {
   project: ProjectData;
   onClose: () => void;
 }
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
-  const [activeCoins, setActiveCoins] = useState<any[]>([]);
+  const [activeCoins, setActiveCoins] = useState<Coin[]>([]);
 
   const fireCoins = () => {
     const isMobile = window.innerWidth < 768;
@@ -83,6 +103,15 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   };
 
   return (
+    <>
+    <motion.div
+      className="modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      onClick={onClose}
+    />
     <div className="modal-overlay" onClick={onClose}>
       {/* Cinematic Slow Motion Flying Coins Overlay */}
       {activeCoins.map(coin => (
@@ -246,7 +275,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       </motion.div>
 
       <style>{`
-        .modal-overlay {
+        .modal-backdrop {
           position: fixed;
           top: 0;
           left: 0;
@@ -256,6 +285,15 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           z-index: 100;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 101;
           display: flex;
           justify-content: flex-end;
         }
@@ -537,7 +575,290 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             font-size: 2.5rem;
           }
         }
+
+        /* ── Device / Environment Cards ─────────────────────── */
+        .testing-env-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1.5rem;
+        }
+
+        .env-card {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 12px;
+          padding: 1.25rem;
+        }
+
+        .env-icon, .env-icon-box {
+          font-size: 2rem;
+          line-height: 1;
+          flex-shrink: 0;
+        }
+
+        .env-details {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+
+        .env-details strong {
+          color: var(--text-main);
+          font-size: 0.95rem;
+        }
+
+        .env-details span {
+          color: var(--text-muted);
+          font-size: 0.85rem;
+        }
+
+        /* ── Badges & Buttons ───────────────────────────────── */
+        .tech-badge {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.25rem 0.75rem;
+          background: rgba(0, 255, 136, 0.1);
+          color: var(--accent-green);
+          border-radius: 100px;
+          font-size: 0.85rem;
+          font-family: var(--font-mono);
+          border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .tech-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .round-badge {
+          display: inline-block;
+          padding: 0.2rem 0.75rem;
+          background: rgba(0, 243, 255, 0.12);
+          color: var(--accent-cyan);
+          border-radius: 100px;
+          font-size: 0.8rem;
+          font-family: var(--font-mono);
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          margin-bottom: 0.5rem;
+        }
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          cursor: pointer;
+          font-size: 0.95rem;
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── Check list ─────────────────────────────────────── */
+        .check-list {
+          list-style: none;
+          padding-left: 0;
+          margin: 1rem 0;
+        }
+
+        .check-list li {
+          padding-left: 1.75rem;
+          position: relative;
+          margin-bottom: 0.75rem;
+          color: var(--text-muted);
+        }
+
+        .check-list li::before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: var(--accent-green);
+          font-weight: 700;
+        }
+
+        /* ── Quote Block (Smart CRM) ─────────────────────────── */
+        .quote-container {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(0, 243, 255, 0.15);
+          border-radius: 16px;
+          padding: 2.5rem;
+          margin: 1rem 0;
+        }
+
+        .quote-icon {
+          font-size: 3.5rem;
+          color: var(--accent-cyan);
+          line-height: 1;
+          display: block;
+          margin-bottom: 1rem;
+          opacity: 0.5;
+        }
+
+        .quote-text-restored {
+          font-style: italic;
+          color: var(--text-secondary);
+          line-height: 1.8;
+          font-size: 1.05rem;
+        }
+
+        .quote-author-restored {
+          text-align: right;
+          color: var(--accent-cyan);
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          margin-top: 1.5rem;
+        }
+
+        /* ── Automation Section (Baba Casino) ───────────────── */
+        .automation-section {
+          margin: 1rem 0;
+        }
+
+        .automation-content {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .automation-content h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: var(--text-main);
+          text-align: center;
+        }
+
+        .automation-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          margin-top: 1.5rem;
+        }
+
+        .automation-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          padding: 1rem 1.25rem;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .automation-icon {
+          font-size: 1.25rem;
+          color: var(--accent-cyan);
+          flex-shrink: 0;
+          margin-top: 0.1rem;
+        }
+
+        /* ── Gallery (BIGI) ─────────────────────────────────── */
+        .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 1rem;
+          margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+          position: relative;
+          border-radius: 10px;
+          overflow: hidden;
+          aspect-ratio: 9 / 16;
+          background: rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          display: block !important;
+          border: none !important;
+          border-radius: 0 !important;
+          margin: 0 !important;
+        }
+
+        .gallery-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          backdrop-filter: blur(4px);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+          opacity: 1;
+        }
+
+        .view-btn {
+          color: white;
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          font-weight: 600;
+          padding: 0.4rem 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 100px;
+        }
+
+        /* ── Media (Paybox / Signal) ────────────────────────── */
+        .project-media {
+          width: 100%;
+          max-width: 100%;
+          border-radius: 12px !important;
+          display: block;
+          margin: 1.5rem auto !important;
+          border: 1px solid var(--border-color) !important;
+        }
+
+        .media-caption {
+          text-align: center;
+          font-style: italic;
+          color: var(--text-muted);
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+        }
+
+        /* ── Component Tag Cloud (Carrefour / BIGi / Planet) ── */
+        .components-cloud {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          margin-top: 1.5rem;
+        }
+
+        .component-tag {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.25rem 0.75rem;
+          background: rgba(0, 243, 255, 0.08);
+          color: var(--accent-cyan);
+          border-radius: 100px;
+          font-size: 0.85rem;
+          font-family: var(--font-mono);
+          border: 1px solid rgba(0, 243, 255, 0.15);
+        }
       `}</style>
     </div>
+    </>
   );
 };

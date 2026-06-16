@@ -19,10 +19,11 @@ const ProjectCard = ({ project, index, onClick }: { project: ProjectData, index:
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
+      whileTap={{ scale: 0.97 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true, margin: '0px 0px -20px 0px' }}
+      transition={{ duration: 0.25, delay: index * 0.05 }}
       style={{ position: 'relative', overflow: 'hidden' }}
     >
       {/* Mouse Tracking Glow */}
@@ -74,10 +75,10 @@ export const Projects = () => {
   return (
     <section id="projects" className="container section-padding">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: '0px 0px -30px 0px' }}
+        transition={{ duration: 0.25 }}
       >
         <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span className="mono text-gradient" style={{ fontSize: '1.5rem' }}>03.</span> Projects

@@ -6,10 +6,10 @@ export const Stack = () => {
   return (
     <section id="stack" className="container section-padding">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: '0px 0px -30px 0px' }}
+        transition={{ duration: 0.25 }}
       >
         <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span className="mono text-gradient" style={{ fontSize: '1.5rem' }}>02.</span> Tech Stack

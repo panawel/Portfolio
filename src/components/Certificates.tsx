@@ -44,10 +44,10 @@ export const Certificates = () => {
   return (
     <section id="certificates" className="container section-padding" style={{ paddingBottom: '10rem' }}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: '0px 0px -30px 0px' }}
+        transition={{ duration: 0.25 }}
       >
         <h2 style={{ fontSize: '2.5rem', marginBottom: '4rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span className="mono text-gradient" style={{ fontSize: '1.5rem' }}>04.</span> Certificates & Events
@@ -62,6 +62,7 @@ export const Certificates = () => {
               className="cert-frame glass"
               onClick={() => openLightbox(cert)}
               whileHover={{ scale: 1.02, y: -10 }}
+              whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <div className="cert-image-preview">

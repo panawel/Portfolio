@@ -24,6 +24,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
 body {
@@ -171,6 +176,8 @@ button {
   height: 100vh;
   object-fit: cover;
   z-index: -2;
+  filter: blur(3px);
+  transform: scale(1.02);
 }
 
 .video-overlay {
@@ -205,12 +212,29 @@ button {
   .container {
     padding: 0 1.5rem;
   }
-  
+
   .section-padding {
     padding: 4rem 1.5rem;
   }
-  
+
   .glass-padding {
     padding: 2rem 1.5rem;
   }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+button, a {
+  transition: transform 0.1s ease;
+}
+
+button:active, a:active {
+  transform: scale(0.94);
 }

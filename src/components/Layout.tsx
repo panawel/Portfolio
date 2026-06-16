@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Terminal, User, Code2, FolderGit2, Award } from 'lucide-react';
+import { Terminal, User, Code2, FolderGit2, Award, Mail } from 'lucide-react';
 
 interface LayoutProps {
   children: ReactNode;
@@ -104,6 +104,9 @@ const Sidebar = () => (
     </a>
     <a href="#certificates" className="nav-link" title="Certificates">
       <Award size={24} />
+    </a>
+    <a href="#contact" className="nav-link" title="Contact">
+      <Mail size={24} />
     </a>
   </nav>
 );
