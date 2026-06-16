@@ -1,147 +1,121 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
-
-React 19 + TypeScript + Vite single-page QA portfolio for Idan Pnuel. Deployed to GitHub Pages.
+## Commands
 
 ```bash
-npm run dev        # dev server
-npm run build      # tsc + vite build
-npm run deploy     # build + push to gh-pages branch
+npm run dev        # dev server at localhost:5173/Portfolio/
+npm run build      # tsc -b && vite build (must pass before deploy)
+npm run deploy     # build + push dist/ to gh-pages branch → goes live
+npm run lint       # eslint
 ```
 
-**Live URL:** `<username>.github.io/Portfolio/` — Vite base is `/Portfolio/` (set in `vite.config.ts`).
-
-## File Structure
-
-```
-src/
-  main.tsx                   # StrictMode entry
-  index.css                  # CSS variables, global resets, utility classes, .blink animation
-  App.tsx                    # video background (responsive: mobile/tablet/desktop sources) + Layout + all sections
-  components/
-    Layout.tsx               # 80px fixed left sidebar (6 icons: Home/About/Stack/Projects/Certs/Contact); bottom bar on mobile ≤768px
-    Hero.tsx                 # terminal typing effect, experience counter ("X yrs Y mo"), confetti fireworks, scroll hint
-    About.tsx                # glass card with AI tools icons (Gemini, Antigravity, ChatGPT, Claude)
-    Stack.tsx                # 4 category cards with SVG icons from public/media/symbols/myStack/
-    Projects.tsx             # card grid with mouse-tracking glow → opens ProjectModal
-    ProjectModal.tsx         # slide-in right panel; sticky left sidebar + scrolling right body
-    Certificates.tsx         # lightbox gallery with carousel, Framer layoutId transitions
-    Contact.tsx              # section 05 — glass card with LinkedIn / Email / GitHub buttons
-  data/
-    homeData.ts              # hero copy, about paragraphs, stack categories, certificates media list
-    projectsData.ts          # 7 projects as ProjectData[]; section content stored as HTML strings
-public/
-  favicon.svg                # QA-themed cyan checkmark on dark background
-  og-image.svg               # 1200×630 branded social share image
-  icons.svg
-  media/
-    desktop.mp4              # background video for desktop (≥1024px)
-    tablet.mp4               # background video for tablet (769px–1024px)
-    mobile.mp4               # background video for mobile (≤768px)
-    symbols/                 # PNG icons for testing types (E2E, Functional, API, CRUD, etc.)
-    symbols/myStack/         # SVG icons for tech stack (Playwright, Python, Jira, Claude, Gemini, etc.)
-    certificates/            # "QA Engineer Certification" (6 images + 1 video) + "Certificate of Excellence" (7 images)
-    Baba Casino/             # 400x400ia-75.webp (logo), Baba_Wild_Slot_image.png
-    Singal/                  # signal-on-phone-handheld-hero-smaller.jpg, logo.png, 2 GIFs
-    BIGI/                    # screenshots, logo, hfjon...png (used as both logo and heroImage)
-    Carrefour/               # Capture.JPG, logo.png
-    Leumi Goodies/           # Body_13.jpg, 1200x600wa (1).png
-    Paybox/                  # logo.png, 2 GIFs (InShot..., unnamed...), unnamed (1).gif
-    PLANET/                  # Sala_kinowa_2.jpg, logo.png, site.JPG, 3 others
-    SMART CRM/               # 2023-07-03 01_02_19.067+0300.jpg, logo.png
-    Match Mania/             # Match_Mania_image.png, image.jpg — NO project entry yet (future project)
-```
+**Live URL:** `https://panawel.github.io/Portfolio/` — Vite base is `/Portfolio/` (vite.config.ts).
 
 ## Architecture
 
 ### Data Flow
 
-All content lives in `src/data/`. Components are purely presentational.
+All content lives in `src/data/` — components are purely presentational.
 
-- `homeData.ts` — hero, about, stack, certificates
-- `projectsData.ts` — array of `ProjectData` objects. Each project has: `id`, `title`, `subtitle`, `logo`, `heroImage`, `overviewText`, `techStack[]`, `sections[]`, `resultsList[]`, `brandColor`.
+- `homeData.ts` — hero copy, about text, stack categories, certificates list
+- `projectsData.ts` — `ProjectData[]` (7 projects). Each has: `id`, `title`, `subtitle`, `logo`, `heroImage`, `overviewText`, `techStack[]`, `sections[]`, `resultsList[]`, `brandColor`.
 
-**Sections content is raw HTML strings** stored in `sections[].contentHtml`. Rendered via `dangerouslySetInnerHTML` in `ProjectModal.tsx`. The HTML uses CSS class names that must be defined in ProjectModal's inline `<style>` block to render correctly.
+**`sections[].contentHtml` is raw HTML.** Rendered via `dangerouslySetInnerHTML` in `ProjectModal.tsx`. Every CSS class used in that HTML must be defined in ProjectModal's inline `<style>` block (~25 rules already there).
 
-### Asset Path Convention
+### Asset Paths
 
-Project logo/hero paths in `projectsData.ts` are written as `"../media/..."`. At runtime they are resolved with:
+Paths in `projectsData.ts` use `"../media/..."`. At runtime, resolved via:
 ```ts
 project.logo.replace('../', import.meta.env.BASE_URL)
 ```
-When adding new asset references, follow this same `../media/...` pattern.
+Always follow this pattern when adding new asset references.
 
-### Styling Architecture
+### Styling — Three Layers
 
-Three layers, all co-existing:
-1. **`src/index.css`** — global CSS variables, resets, utility classes (`.card`, `.badge`, `.btn-primary`, `.glass`, `.container`, `.section-padding`, `.text-gradient`, `.mono`)
-2. **Inline `<style>` JSX blocks** — component-scoped styles injected as `<style>` tags at render time. Used in Layout, Hero, Stack, Projects, ProjectModal, Certificates.
-3. **Inline `style={}` props** — one-off overrides on individual elements.
+1. **`src/index.css`** — CSS variables (`:root`), resets, global utilities: `.card`, `.badge`, `.btn-primary`, `.glass`, `.container`, `.section-padding`, `.text-gradient`, `.mono`, `.blink`
+2. **Inline `<style>` JSX blocks** — component-scoped CSS injected at render time (Layout, Hero, Projects, ProjectModal, Certificates, Contact)
+3. **Inline `style={}` props** — one-off per-element overrides
 
 No CSS Modules, no Tailwind, no styled-components.
 
-### CSS Variables (defined in `index.css` `:root`)
+### CSS Variables (`src/index.css :root`)
 
-```css
---bg-main: #060608
---bg-surface: rgba(15, 15, 19, 0.6)
---accent-cyan: #00f3ff
---accent-green: #00ff88
---text-main: #ffffff
---text-secondary: #e2e8f0
---text-muted: #9ca3af
---border-color: rgba(255, 255, 255, 0.08)
---font-sans: 'Outfit', sans-serif
---font-mono: 'JetBrains Mono', monospace
+```
+--bg-main: #060608              --accent-cyan: #00f3ff
+--bg-surface: rgba(15,15,19,0.6)  --accent-green: #00ff88
+--text-main: #ffffff            --border-color: rgba(255,255,255,0.08)
+--text-secondary: #e2e8f0       --font-sans: 'Outfit', sans-serif
+--text-muted: #9ca3af           --font-mono: 'JetBrains Mono', monospace
 ```
 
 ### Responsive Breakpoints
 
-- `> 768px`: Sidebar is 80px fixed left column; `main` has `margin-left: 80px`
-- `≤ 768px`: Sidebar becomes 60px bottom bar; `main` has no left margin, `padding-bottom: 80px`
+- `> 768px` — sidebar is 80px fixed left; `main` has `margin-left: 80px`
+- `≤ 768px` — sidebar becomes 60px fixed bottom bar; `main` has `padding-bottom: 80px`
 
-### ProjectModal Layout
+**Viewport height:** All `position: fixed` full-screen elements use both `height: 100vh` (fallback) and `height: 100dvh` (override) to handle iOS/Android browser chrome correctly. The modal scroll area also has `padding-bottom: env(safe-area-inset-bottom, 0px)` for the iPhone home indicator.
 
-At `≥ 900px`: two-column flex row — 35% sticky left sidebar (logo, title, badges, overview) + 65% scrolling right body (hero image, sections).  
+### Smooth Scroll — Lenis
+
+Lenis is initialised in `App.tsx` via a RAF loop (`smoothWheel: true`, `syncTouch: false`). The instance is stored in `src/lib/lenisInstance.ts` and accessed anywhere via `getLenis()`.
+
+```ts
+import { getLenis } from '../lib/lenisInstance';
+getLenis()?.scrollTo('#section-id');
+```
+
+**Critical:** Lenis uses `prevent` to exempt `.modal-scroll-area` and `.modal-content` from its wheel capture — this is what allows the project modal to scroll internally. Do not remove this option.
+
+### Magnetic Buttons — `MagneticWrapper`
+
+`src/components/MagneticWrapper.tsx` wraps any element to make it drift toward the cursor on hover (Framer Motion springs). Auto-disabled on touch devices (`pointer: coarse` → renders children directly with no wrapper). Applied to: sidebar nav icons (`strength: 0.35`), Hero CTA (`strength: 0.4`), Contact buttons (`strength: 0.3`).
+
+### Entrance Animations
+
+All `whileInView` sections use: `initial={{ opacity: 0, y: 8 }}`, `duration: 0.25`, `viewport={{ once: true, margin: '0px 0px -30px 0px' }}`. Project cards stagger at `delay: index * 0.05`.
+
+### ProjectModal
+
+Slide-in right panel (`exit={{ x: '100%' }}`, spring). Two separate layers:
+- `motion.div.modal-backdrop` — fades in/out independently (`opacity: 0↔1`, `duration: 0.35s`)
+- `div.modal-overlay` — transparent positioning container only
+
+At `≥ 900px`: two-column — 35% sticky sidebar + 65% scrolling body.
 At `< 900px`: single column stacked.
-
-### Projects Grid
-
-`Projects.tsx` marks index 0 and index 3 as `.featured` — these span 2 columns on `≥ 768px`. Currently: Baba Casino (index 0) and Paybox (index 3) are featured.
 
 ### Special Interactions
 
-- **Baba Casino modal** — fires 14–19 animated SVG gold coins on open (1s delay) and on hero image click.
-- **Hero experience counter** — animates from 0 to current total months, displays as "X yrs Y mo". Start date hardcoded as `new Date('2023-09-01')`.
-- **Confetti fireworks** — triggered by clicking the experience counter badge.
+- **Baba Casino modal** — fires 14–19 SVG gold coins on open (1s delay) and on hero image click. Typed as `Coin[]` interface.
+- **Hero experience counter** — animates 0 → total months, renders as "X yrs Y mo". Start date: `2023-09-01`.
+- **Confetti fireworks** — `canvas-confetti`, triggered by clicking the experience counter badge.
+- **Press feedback** — `whileTap` on project cards, cert frames, contact buttons; CSS `button:active, a:active { transform: scale(0.94) }` for all others.
+- **Tap highlight** — `* { -webkit-tap-highlight-color: transparent }` removes blue flash on mobile/tablet.
 
-## Known Issues / TODOs
+### Projects Grid
 
-| Issue | Status | Notes |
-|-------|--------|-------|
-| `.blink` class undefined | ✅ Fixed | Added `@keyframes blink` + `.blink` rule to `index.css` |
-| Unstyled modal classes | ✅ Fixed | Added all ~25 missing CSS rules to `ProjectModal.tsx` `<style>` block |
-| Experience counter math | ✅ Fixed | Replaced float format with "X yrs Y mo" using total-months counter |
-| Mobile/tablet video unused | ✅ Fixed | `App.tsx` uses responsive `<source media>` for all three video files |
-| No contact section | ✅ Fixed | Added `Contact.tsx` (section 05) + `Mail` icon to sidebar |
-| No OG/meta tags | ✅ Fixed | Full og/twitter tags in `index.html`; `public/og-image.svg` created |
-| Favicon was Claude branding | ✅ Fixed | Replaced with QA cyan checkmark SVG |
-| `recharts` unused | ✅ Fixed | Removed from `package.json` |
-| `any[]` type for coins | ✅ Fixed | Replaced with typed `Coin` interface in `ProjectModal.tsx` |
-| Match Mania | 🔜 Future | Assets in `public/media/Match Mania/` — no `projectsData.ts` entry yet |
+Index 0 (Baba Casino) and index 3 (Paybox) are `.featured` — span 2 columns at `≥ 768px`.
+
+## File Structure (non-obvious parts)
+
+```
+src/
+  lib/
+    lenisInstance.ts     # module-level Lenis instance store (setLenis / getLenis)
+  components/
+    MagneticWrapper.tsx  # magnetic hover effect, auto-disabled on touch
+    Contact.tsx          # section 05 — inline SVG icons for LinkedIn/GitHub (lucide has none)
+public/
+  media/
+    Match Mania/         # assets exist but NO projectsData.ts entry yet (future project)
+```
 
 ## Dependencies
 
-```json
-"dependencies": {
-  "@types/canvas-confetti": "^1.9.0",
-  "canvas-confetti": "^1.9.4",    // fireworks in Hero
-  "framer-motion": "^12.40.0",    // all animation
-  "lucide-react": "^1.17.0",      // icons (note: no Linkedin/Github icons — Contact uses inline SVGs)
-  "react": "^19.2.6",
-  "react-dom": "^19.2.6"
-}
+```
+lenis ^1.3.23            smooth scroll
+framer-motion ^12.40.0   all animation (whileInView, whileTap, springs, layoutId)
+canvas-confetti ^1.9.4   fireworks in Hero
+lucide-react ^1.17.0     icons — no Linkedin/Github icons, Contact uses inline SVGs
 ```
