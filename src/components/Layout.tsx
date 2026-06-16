@@ -1,5 +1,12 @@
 import type { ReactNode } from 'react';
 import { Terminal, User, Code2, FolderGit2, Award, Mail } from 'lucide-react';
+import { MagneticWrapper } from './MagneticWrapper';
+import { getLenis } from '../lib/lenisInstance';
+
+const navTo = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+  e.preventDefault();
+  getLenis()?.scrollTo(target);
+};
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,6 +24,7 @@ export const Layout = ({ children }: LayoutProps) => {
         .sidebar {
           width: 80px;
           height: 100vh;
+          height: 100dvh;
           position: fixed;
           left: 0;
           top: 0;
@@ -90,23 +98,11 @@ const Sidebar = () => (
   <nav className="sidebar">
     <div className="logo">IP<span>.</span></div>
     
-    <a href="#home" className="nav-link" title="Home">
-      <Terminal size={24} />
-    </a>
-    <a href="#about" className="nav-link" title="About">
-      <User size={24} />
-    </a>
-    <a href="#stack" className="nav-link" title="Tech Stack">
-      <Code2 size={24} />
-    </a>
-    <a href="#projects" className="nav-link" title="Projects">
-      <FolderGit2 size={24} />
-    </a>
-    <a href="#certificates" className="nav-link" title="Certificates">
-      <Award size={24} />
-    </a>
-    <a href="#contact" className="nav-link" title="Contact">
-      <Mail size={24} />
-    </a>
+    <MagneticWrapper strength={0.35}><a href="#home" className="nav-link" title="Home" onClick={e => navTo(e, '#home')}><Terminal size={24} /></a></MagneticWrapper>
+    <MagneticWrapper strength={0.35}><a href="#about" className="nav-link" title="About" onClick={e => navTo(e, '#about')}><User size={24} /></a></MagneticWrapper>
+    <MagneticWrapper strength={0.35}><a href="#stack" className="nav-link" title="Tech Stack" onClick={e => navTo(e, '#stack')}><Code2 size={24} /></a></MagneticWrapper>
+    <MagneticWrapper strength={0.35}><a href="#projects" className="nav-link" title="Projects" onClick={e => navTo(e, '#projects')}><FolderGit2 size={24} /></a></MagneticWrapper>
+    <MagneticWrapper strength={0.35}><a href="#certificates" className="nav-link" title="Certificates" onClick={e => navTo(e, '#certificates')}><Award size={24} /></a></MagneticWrapper>
+    <MagneticWrapper strength={0.35}><a href="#contact" className="nav-link" title="Contact" onClick={e => navTo(e, '#contact')}><Mail size={24} /></a></MagneticWrapper>
   </nav>
 );

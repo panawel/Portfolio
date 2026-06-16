@@ -281,6 +281,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           left: 0;
           width: 100vw;
           height: 100vh;
+          height: 100dvh;
           background: rgba(0, 0, 0, 0.8);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
@@ -293,6 +294,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           left: 0;
           width: 100vw;
           height: 100vh;
+          height: 100dvh;
           z-index: 101;
           display: flex;
           justify-content: flex-end;
@@ -302,6 +304,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           width: 100%;
           max-width: 900px;
           height: 100vh;
+          height: 100dvh;
           background: var(--bg-main);
           border-left: 1px solid var(--border-color);
           box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
@@ -333,6 +336,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         .modal-scroll-area {
           overflow-y: auto;
           flex: 1;
+          padding-bottom: env(safe-area-inset-bottom, 0px);
         }
 
         .modal-grid-layout {

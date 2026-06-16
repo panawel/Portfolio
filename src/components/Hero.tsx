@@ -3,6 +3,8 @@ import { homeData } from '../data/homeData';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import { MagneticWrapper } from './MagneticWrapper';
+import { getLenis } from '../lib/lenisInstance';
 import confetti from 'canvas-confetti';
 
 export const Hero = () => {
@@ -154,9 +156,11 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <a href="#projects" className="btn-primary">
-            View Projects <ChevronRight size={20} />
-          </a>
+          <MagneticWrapper strength={0.4}>
+            <a href="#projects" className="btn-primary">
+              View Projects <ChevronRight size={20} />
+            </a>
+          </MagneticWrapper>
         </motion.div>
       </div>
       
@@ -179,7 +183,7 @@ export const Hero = () => {
           color: 'var(--text-muted)'
         }}
         onClick={() => {
-          document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          getLenis()?.scrollTo('#projects') ?? document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
         }}
       >
         <motion.div

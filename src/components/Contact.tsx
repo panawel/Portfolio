@@ -1,5 +1,6 @@
 import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { MagneticWrapper } from './MagneticWrapper';
 
 const LinkedinIcon = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
@@ -58,39 +59,45 @@ export const Contact = () => {
           </motion.p>
 
           <div className="contact-buttons">
-            <motion.a
-              href="https://www.linkedin.com/in/idanpnuel"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-btn"
-              whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <LinkedinIcon />
-              <span>LinkedIn</span>
-            </motion.a>
+            <MagneticWrapper strength={0.3}>
+              <motion.a
+                href="https://www.linkedin.com/in/idanpnuel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-btn"
+                whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <LinkedinIcon />
+                <span>LinkedIn</span>
+              </motion.a>
+            </MagneticWrapper>
 
-            <motion.a
-              href="mailto:panawel@gmail.com"
-              className="contact-btn"
-              whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Mail size={22} />
-              <span>Email</span>
-            </motion.a>
+            <MagneticWrapper strength={0.3}>
+              <motion.a
+                href="mailto:panawel@gmail.com"
+                className="contact-btn"
+                whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Mail size={22} />
+                <span>Email</span>
+              </motion.a>
+            </MagneticWrapper>
 
-            <motion.a
-              href="https://github.com/panawel"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-btn"
-              whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <GithubIcon />
-              <span>GitHub</span>
-            </motion.a>
+            <MagneticWrapper strength={0.3}>
+              <motion.a
+                href="https://github.com/panawel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-btn"
+                whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(0, 243, 255, 0.15)' }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <GithubIcon />
+                <span>GitHub</span>
+              </motion.a>
+            </MagneticWrapper>
           </div>
         </div>
       </motion.div>
