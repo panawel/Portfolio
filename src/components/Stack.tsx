@@ -24,7 +24,14 @@ export const Stack = () => {
               <div className="tech-items">
                 {category.items.map((item, j) => (
                   <div key={j} className="tech-item">
-                    <img src={item.icon.replace('../', '/')} alt={item.name} />
+                    <img
+                      src={item.icon.replace('../', '/')}
+                      alt={item.name}
+                      width={24}
+                      height={24}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span>{item.name}</span>
                   </div>
                 ))}

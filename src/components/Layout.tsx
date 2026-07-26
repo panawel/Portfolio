@@ -5,7 +5,13 @@ import { getLenis } from '../lib/lenisInstance';
 
 const navTo = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
   e.preventDefault();
-  getLenis()?.scrollTo(target);
+  const lenis = getLenis();
+  if (lenis) {
+    lenis.scrollTo(target);
+  } else {
+    // Lenis is absent under prefers-reduced-motion — fall back to native scrolling.
+    document.querySelector(target)?.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
 };
 
 interface LayoutProps {

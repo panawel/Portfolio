@@ -23,7 +23,7 @@ export const projects: ProjectData[] = [
     "title": "Baba Casino",
     "subtitle": "Premier Social Sweepstakes Platform tailored for the US market, featuring a dual-currency system and a cross-platform gaming experience.",
     "logo": "../media/Baba Casino/400x400ia-75.webp",
-    "heroImage": "../media/Baba Casino/Baba_Wild_Slot_image.png",
+    "heroImage": "../media/Baba Casino/Baba_Wild_Slot_image.webp",
     "overviewText": "",
     "techStack": [
       "Desktop",

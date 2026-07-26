@@ -183,7 +183,12 @@ export const Hero = () => {
           color: 'var(--text-muted)'
         }}
         onClick={() => {
-          getLenis()?.scrollTo('#projects') ?? document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          const lenis = getLenis();
+          if (lenis) {
+            lenis.scrollTo('#projects');
+          } else {
+            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          }
         }}
       >
         <motion.div

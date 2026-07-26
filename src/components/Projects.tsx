@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { projects } from '../data/projectsData';
 import type { ProjectData } from '../data/projectsData';
-import { ProjectModal } from './ProjectModal';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Only needed once a card is clicked — keeps it out of the initial bundle.
+const ProjectModal = lazy(() =>
+  import('./ProjectModal').then(m => ({ default: m.ProjectModal }))
+);
 
 const ProjectCard = ({ project, index, onClick }: { project: ProjectData, index: number, onClick: () => void }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -50,7 +54,12 @@ const ProjectCard = ({ project, index, onClick }: { project: ProjectData, index:
           className="card-image"
           style={{ padding: project.id === 'planet' ? '0.5rem' : '2rem' }}
         >
-          <img src={project.logo.replace('../', import.meta.env.BASE_URL)} alt={project.title} />
+          <img
+            src={project.logo.replace('../', import.meta.env.BASE_URL)}
+            alt={project.title}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="card-content">
           <h3>{project.title || project.id}</h3>
@@ -98,10 +107,12 @@ export const Projects = () => {
 
       <AnimatePresence>
         {selectedProject && (
-          <ProjectModal 
-            project={selectedProject} 
-            onClose={() => setSelectedProjectId(null)} 
-          />
+          <Suspense fallback={null}>
+            <ProjectModal
+              project={selectedProject}
+              onClose={() => setSelectedProjectId(null)}
+            />
+          </Suspense>
         )}
       </AnimatePresence>
 

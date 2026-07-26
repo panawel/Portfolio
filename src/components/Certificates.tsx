@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { homeData } from '../data/homeData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useScrollLock } from '../lib/useScrollLock';
 import type { HomeData } from '../data/homeData';
 
 type Certificate = HomeData['certificates'][0];
@@ -10,15 +11,8 @@ export const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
   const [mediaIndex, setMediaIndex] = useState(0);
 
-  // Prevent background scrolling when modal is open
-  useEffect(() => {
-    if (selectedCert) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => { document.body.style.overflow = 'auto'; };
-  }, [selectedCert]);
+  // Prevent background scrolling when the lightbox is open
+  useScrollLock(!!selectedCert);
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -67,16 +61,19 @@ export const Certificates = () => {
             >
               <div className="cert-image-preview">
                 {cert.media[0].type === 'image' ? (
-                  <motion.img 
+                  <motion.img
                     layoutId={`cert-media-${cert.title}`}
-                    src={cert.media[0].src.replace('../', '/')} 
-                    alt={cert.title} 
+                    src={cert.media[0].src.replace('../', '/')}
+                    alt={cert.title}
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <motion.video
                     layoutId={`cert-media-${cert.title}`}
                     src={cert.media[0].src.replace('../', '/')}
                     muted
+                    preload="none"
                   />
                 )}
                 

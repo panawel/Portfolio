@@ -33,3 +33,6 @@ dist-ssr
 # Agent and IDE Metadata
 .agent
 .temp
+
+# Pre-optimization asset backups (not shipped)
+media-originals

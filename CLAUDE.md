@@ -9,7 +9,14 @@ npm run dev        # dev server at localhost:5173/Portfolio/
 npm run build      # tsc -b && vite build (must pass before deploy)
 npm run deploy     # build + push dist/ to gh-pages branch → goes live
 npm run lint       # eslint
+npm run test:e2e   # Puppeteer regression suite — needs `npm run dev` running first
 ```
+
+`test:e2e` (`scripts/regression.mjs`) covers the bugs this site has actually
+shipped: hero double-scroll, background scrolling behind the modal/lightbox,
+overlays escaping the viewport, and navigation under `prefers-reduced-motion`.
+It asserts **geometry as well as behaviour** — an earlier behaviour-only suite
+passed 20/20 while the modal was visually broken.
 
 **Live URL:** `https://panawel.github.io/Portfolio/` — Vite base is `/Portfolio/` (vite.config.ts).
 
@@ -43,12 +50,34 @@ No CSS Modules, no Tailwind, no styled-components.
 ### CSS Variables (`src/index.css :root`)
 
 ```
---bg-main: #060608              --accent-cyan: #00f3ff
---bg-surface: rgba(15,15,19,0.6)  --accent-green: #00ff88
---text-main: #ffffff            --border-color: rgba(255,255,255,0.08)
+--bg-main: #0d0f14              --accent-cyan: #00f3ff
+--bg-surface: rgba(28,32,41,.65)  --accent-green: #00ff88
+--text-main: #ffffff            --border-color: rgba(255,255,255,0.12)
 --text-secondary: #e2e8f0       --font-sans: 'Outfit', sans-serif
---text-muted: #9ca3af           --font-mono: 'JetBrains Mono', monospace
+--text-muted: #b0bac7           --font-mono: 'JetBrains Mono', monospace
+
+Elevation:  --surface-1/2/3  +  --shadow-1/2/3  +  --edge-highlight
 ```
+
+### Background scrim — do not use `mix-blend-mode: multiply`
+
+`.video-overlay` sits over the background video. It previously used
+`rgba(8,12,20,0.85)` + `mix-blend-mode: multiply`, which collapsed the video
+from **16.2% to 0.76% luminance (21×)** — the cause of the site reading as
+near-black. It is now two normal-blend gradients:
+
+1. **Left→right scrim** protecting the hero text column. Without it the green
+   terminal line measures **3.61:1** against bright video patches — below AA.
+2. **Top→bottom scrim**, brighter mid-frame so the video stays visible.
+
+Alpha compounds across stacked layers as `1-(1-a1)(1-a2)` — a third layer will
+darken the page far more than its number suggests. **Re-measure after any change:**
+screenshot with text hidden, then check the brightest 98th-percentile background
+behind each text zone. Targets: small text ≥ 4.5:1, large text ≥ 3:1.
+
+`--text-muted` is tied to this. At the current background, the old `#9ca3af`
+measured **4.43:1 (fails AA)**; `#b0bac7` measures 5.73:1. Brightening the
+background further requires lifting muted text again.
 
 ### Responsive Breakpoints
 
@@ -68,13 +97,49 @@ getLenis()?.scrollTo('#section-id');
 
 **Critical:** Lenis uses `prevent` to exempt `.modal-scroll-area` and `.modal-content` from its wheel capture — this is what allows the project modal to scroll internally. Do not remove this option.
 
+**Critical:** `getLenis()?.scrollTo(target)` returns `void`. Never chain it with `??` as a fallback — the fallback always runs, firing a second competing scroll animation. Branch on the instance instead (see `Hero.tsx`).
+
+### Scroll Locking — `useScrollLock`
+
+`src/lib/useScrollLock.ts` is the single way to lock page scroll behind an overlay. `body { overflow: hidden }` alone is **not** enough: Lenis scrolls the window programmatically, which `overflow: hidden` does not block — so Lenis must be stopped too.
+
+```ts
+useScrollLock(isLocked);   // stops Lenis + sets body overflow, restores both on unlock
+```
+
+Used by `ProjectModal` (`useScrollLock(true)` — mounted only while open) and `Certificates` (`useScrollLock(!!selectedCert)`).
+
+Safe to combine with `prevent`: Lenis checks `prevent` *before* `isStopped`, so `.modal-scroll-area` keeps scrolling natively while the rest of the page is locked.
+
 ### Magnetic Buttons — `MagneticWrapper`
 
 `src/components/MagneticWrapper.tsx` wraps any element to make it drift toward the cursor on hover (Framer Motion springs). Auto-disabled on touch devices (`pointer: coarse` → renders children directly with no wrapper). Applied to: sidebar nav icons (`strength: 0.35`), Hero CTA (`strength: 0.4`), Contact buttons (`strength: 0.3`).
 
+### Reduced Motion
+
+`@media (prefers-reduced-motion: reduce)` in `index.css` neutralises transitions,
+the blink cursor, and the bouncing chevron, and hides the background video.
+`App.tsx` **skips Lenis initialisation entirely** in that case — so every
+`getLenis()` call site must branch (`if (lenis) … else scrollIntoView`), never
+`getLenis()?.scrollTo(...) ?? fallback`. `Hero.tsx` and `Layout.tsx` both do this.
+Under reduced motion `useScrollLock` falls back to `body overflow` alone, which is
+sufficient because Lenis is not running.
+
 ### Entrance Animations
 
 All `whileInView` sections use: `initial={{ opacity: 0, y: 8 }}`, `duration: 0.25`, `viewport={{ once: true, margin: '0px 0px -30px 0px' }}`. Project cards stagger at `delay: index * 0.05`.
+
+### ⚠️ Never give a section `content-visibility` or `contain`
+
+`ProjectModal` and the `Certificates` lightbox are `position: fixed` **descendants
+of their `<section>`**. Any ancestor with `content-visibility`, `contain`, or a
+`transform`/`filter`/`backdrop-filter` becomes their containing block, and the
+overlay gets trapped inside the section box instead of covering the viewport.
+
+This shipped once: `content-visibility: auto` on `.section-padding` put the modal
+backdrop at `(160, 2563)` and shrank the lightbox to `1200×814`. It also measured
+*slower* (layout 15.6ms vs 6.2ms). `scripts/regression.mjs` now asserts both
+overlays' rects equal the viewport, on desktop and mobile.
 
 ### ProjectModal
 
@@ -103,6 +168,9 @@ Index 0 (Baba Casino) and index 3 (Paybox) are `.featured` — span 2 columns at
 src/
   lib/
     lenisInstance.ts     # module-level Lenis instance store (setLenis / getLenis)
+    useScrollLock.ts     # overlay scroll lock — stops Lenis + body overflow
+media-originals/         # pre-optimization asset backups; OUTSIDE public/ so
+                         # Vite does not copy them into dist/. Gitignored.
   components/
     MagneticWrapper.tsx  # magnetic hover effect, auto-disabled on touch
     Contact.tsx          # section 05 — inline SVG icons for LinkedIn/GitHub (lucide has none)

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { ProjectData } from '../data/projectsData';
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useScrollLock } from '../lib/useScrollLock';
 
 interface Coin {
   id: string;
@@ -75,10 +76,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     setActiveCoins(newCoins);
   };
 
-  // Prevent scrolling on body when modal is open
+  // Prevent background scrolling for the whole lifetime of the modal
+  useScrollLock(true);
+
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    
     let timeoutId: ReturnType<typeof setTimeout>;
     // Trigger flying coins if Baba Casino with 1 second delay
     if (project.id === 'babaCasino') {
@@ -88,7 +89,6 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [project.id]);

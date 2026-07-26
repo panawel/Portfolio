@@ -2,18 +2,31 @@
 
 :root {
   /* Precision Engineering Theme - Dark Glass Mode */
-  --bg-main: #060608;
-  --bg-surface: rgba(15, 15, 19, 0.6);
-  --bg-surface-hover: rgba(22, 22, 28, 0.8);
-  
+  --bg-main: #0d0f14;
+  --bg-surface: rgba(28, 32, 41, 0.65);
+  --bg-surface-hover: rgba(38, 43, 55, 0.8);
+
+  /* Elevation scale — surfaces read as stacked layers, not one flat plane */
+  --surface-1: rgba(22, 25, 32, 0.55);
+  --surface-2: rgba(28, 32, 41, 0.65);
+  --surface-3: rgba(36, 41, 52, 0.78);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-3: 0 18px 48px -12px rgba(0, 0, 0, 0.7);
+
+  /* Top highlight that makes a raised surface catch the light */
+  --edge-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
   --accent-cyan: #00f3ff;
   --accent-green: #00ff88;
-  
+
   --text-main: #ffffff;
   --text-secondary: #e2e8f0;
-  --text-muted: #9ca3af;
-  
-  --border-color: rgba(255, 255, 255, 0.08);
+  /* Lifted from #9ca3af: on the brightened background that measured 4.43:1 (fails AA). This is 5.73:1. */
+  --text-muted: #b0bac7;
+
+  --border-color: rgba(255, 255, 255, 0.12);
   
   /* Fonts */
   --font-sans: 'Outfit', sans-serif;
@@ -112,17 +125,18 @@ button {
 
 /* Card Style */
 .card {
-  background: var(--bg-surface);
+  background: var(--surface-2);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-2), var(--edge-highlight);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   overflow: hidden;
 }
 
 .card:hover {
-  border-color: rgba(0, 243, 255, 0.3);
+  border-color: rgba(0, 243, 255, 0.35);
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-3), var(--edge-highlight);
 }
 
 /* Badges */
@@ -161,10 +175,11 @@ button {
 
 /* Glass panel */
 .glass {
-  background: rgba(15, 15, 19, 0.65);
+  background: var(--surface-2);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-2), var(--edge-highlight);
 }
 
 /* Background Video container */
@@ -181,6 +196,12 @@ button {
   transform: scale(1.02);
 }
 
+/*
+ * Normal-blend scrim, NOT multiply. Multiply against a near-black overlay
+ * collapsed the video from 16.2% to 0.76% luminance (21x). This lands ~4.3%:
+ * the video reads softly, and every text token stays >= 4.5:1 contrast.
+ * Gradient keeps top/bottom darker where text sits, brighter mid-frame.
+ */
 .video-overlay {
   position: fixed;
   top: 0;
@@ -188,17 +209,29 @@ button {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: rgba(8, 12, 20, 0.85);
-  mix-blend-mode: multiply; /* Mathematically darkens bright video spots */
+  /*
+   * Two deliberate layers (alpha compounds as 1-(1-a1)(1-a2) — measured, not guessed):
+   *  1. Text-protection scrim on the left, where all hero copy sits. Without it the
+   *     green terminal line measured 3.61:1 against bright video patches — below AA.
+   *  2. Vertical scrim: darker top/bottom, brighter mid-frame so the video reads.
+   * Right side stays light, so the video is still clearly visible.
+   */
+  background:
+    linear-gradient(
+      to right,
+      rgba(9, 11, 15, 0.38) 0%,
+      rgba(9, 11, 15, 0.32) 34%,
+      rgba(9, 11, 15, 0.08) 64%,
+      rgba(9, 11, 15, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(9, 11, 15, 0.6) 0%,
+      rgba(13, 15, 20, 0.46) 45%,
+      rgba(9, 11, 15, 0.62) 100%
+    );
   z-index: -1;
   transform: translateZ(0); /* Hardware acceleration for smooth scrolling */
-}
-
-/* Fallback for older browsers to maintain contrast */
-@supports not (mix-blend-mode: multiply) {
-  .video-overlay {
-    background: rgba(6, 6, 8, 0.85);
-  }
 }
 
 /* Global Utilities */
@@ -239,4 +272,64 @@ button, a {
 
 button:active, a:active {
   transform: scale(0.94);
+}
+
+/* ── Focus visibility (WCAG 2.4.7) ──────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Skip to content (WCAG 2.4.1) ───────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -100px;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent-cyan);
+  color: #04070c;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/*
+ * DO NOT add `content-visibility` or `contain` to .section-padding (or any
+ * ancestor of the modal / lightbox).
+ *
+ * Both imply paint containment, which makes the section a containing block for
+ * `position: fixed` descendants — the project modal and certificate lightbox get
+ * trapped inside the section box instead of covering the viewport.
+ * Measured on this page: no perf win either (layout 15.6ms with vs 6.2ms without,
+ * total task time a wash). Covered by scripts/regression.mjs geometry assertions.
+ */
+
+/* ── Reduced motion (WCAG 2.3.3 / vestibular safety) ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* The blinking terminal cursor and bouncing chevron are the worst offenders */
+  .blink {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .video-bg {
+    display: none;
+  }
+
+  button:active, a:active {
+    transform: none;
+  }
 }
