@@ -36,6 +36,3 @@ dist-ssr
 
 # Pre-optimization asset backups (not shipped)
 media-originals
-
-# Local-only project notes — kept on this machine, not published to the public repo
-CLAUDE.md
